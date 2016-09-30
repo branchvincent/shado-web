@@ -63,18 +63,13 @@
 		$num = 0;
 		foreach (array_keys($_SESSION['tasks']) as $task) {
 
+			$ops = "engineer";
 			$taskArr = $_SESSION['tasks'][$task];
 			$ops = array();
-			foreach ($_SESSION['parameters']['assistants'] as $assistant) {
+			foreach ($_SESSION['parameters']['assistants'] as $assistant)
 				if (in_array($num, $_SESSION['assistants'][$assistant]['tasks']))
 					$ops[] = $assistant;
 			$num++;
-
-			$ops = array();
-			foreach ($_SESSION['parameters']['assistants'] as $assistant) {
-				if (in_array($task, $_SESSION['assistants'][$assistant]['tasks']))
-					$ops[] = $assistant;
-			}
 
 			$sql = 'INSERT INTO
 						task_settings(
