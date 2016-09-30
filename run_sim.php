@@ -63,7 +63,6 @@
 		$num = 0;
 		foreach (array_keys($_SESSION['tasks']) as $task) {
 
-			$ops = "engineer";
 			$taskArr = $_SESSION['tasks'][$task];
 			$ops = array();
 			foreach ($_SESSION['parameters']['assistants'] as $assistant)
@@ -101,7 +100,6 @@
 						'"' . implode(", ", $ops) .
 					'")';
 
-			echo $sql;
 			if ($conn->query($sql) === TRUE) {
 				echo "New record created! <br>";
 			} else {
