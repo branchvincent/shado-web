@@ -43,7 +43,8 @@
 					'"' . implode(", ", array_keys($_SESSION['parameters']['assistants'])) . '",' .
 					'"' . sizeof($_SESSION['tasks']) .
 				'")';
-
+		echo $sql;
+		
 		if ($conn->query($sql) === TRUE) {
 	    	echo "New record created! <br>";
 		} else {
