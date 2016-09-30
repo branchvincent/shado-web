@@ -78,8 +78,8 @@
 							-- operator_names
 						)
 					values(
-						"' . $run_id .
-						'"' . $task . '",' .
+						"' . $run_id . '",' .
+						'"' . $task .
 						// '"' . implode(", ", $taskArr['priority']) . '",' .
 						// '"' . $taskArr['arrDist'] . '",' .
 						// '"' . implode(", ", $taskArr['arrPms']) . '",' .
