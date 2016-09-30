@@ -85,7 +85,7 @@
 			} else {
 				echo "Error: " . $sql . "<br>" . $conn->error;
 			}
-		// }
+		}
 	}
 
 //	Create parameter file
