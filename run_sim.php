@@ -59,8 +59,8 @@
 							run_id,
 							name,
 							priority,
-							arrival_distribution_type
-							-- arrival_distribution_parameters,
+							arrival_distribution_type,
+							arrival_distribution_parameters
 							-- service_distribution_type,
 							-- service_distribution_parameters,
 							-- expiration_distribution_type,
@@ -73,8 +73,8 @@
 						"' . $run_id . '",' .
 						'"' . $task . '",' .
 						'"' . implode(", ", $taskArr['priority']) . '",' .
-						'"' . $taskArr['arrDist'] .
-						// '"' . implode(", ", $taskArr['arrPms']) . '",' .
+						'"' . $taskArr['arrDist'] . '",' .
+						'"' . implode(", ", $taskArr['arrPms']) .
 						// '"' . $taskArr['serDist'] . '",' .
 						// '"' . implode(", ", $taskArr['serPms']) . '",' .
 						// '"' . implode(", ", $taskArr['affByTraff'] .
