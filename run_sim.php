@@ -40,15 +40,22 @@
 					'"' . $_SESSION['parameters']['hours'] . '",' .
 					'"' . implode(", ", $_SESSION['parameters']['traffic_nums']) . '",' .
 					'"' . $_SESSION['parameters']['reps'] . '",' .
-					'"' . implode(", ", array_keys($_SESSION['parameters']['assistants'])) . '",' .
+					'"' . implode(", ", $_SESSION['parameters']['assistants']) . '",' .
 					'"' . sizeof($_SESSION['tasks']) .
 				'")';
-		echo $sql;
-		
+
 		if ($conn->query($sql) === TRUE) {
+			$run_id = $conn->insert_id;
 	    	echo "New record created! <br>";
 		} else {
 		    echo "Error: " . $sql . "<br>" . $conn->error;
+		}
+
+		$sql = "INSERT INTO task_settings(run_id) values('$run_id')";
+		if ($conn->query($sql) === TRUE) {
+			echo "New record created! <br>";
+		} else {
+			echo "Error: " . $sql . "<br>" . $conn->error;
 		}
 
 		$task = "Communicating";
@@ -57,7 +64,7 @@
 
 			$sql = 'INSERT INTO
 						task_settings(
-							-- run_id,
+							run_id,
 							name
 							-- priority,
 							-- arrival_distribution_type,
@@ -71,8 +78,8 @@
 							-- operator_names
 						)
 					values(
-						"' . $task .
-						// "' . $task . '",' .
+						"' . $run_id .
+						'"' . $task . '",' .
 						// '"' . implode(", ", $taskArr['priority']) . '",' .
 						// '"' . $taskArr['arrDist'] . '",' .
 						// '"' . implode(", ", $taskArr['arrPms']) . '",' .
