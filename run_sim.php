@@ -60,7 +60,7 @@
 							name,
 							priority,
 							arrival_distribution_type,
-							arrival_distribution_parameters
+							arrival_distribution_parameters,
 							service_distribution_type,
 							service_distribution_parameters
 							-- expiration_distribution_type,
