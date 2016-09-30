@@ -57,8 +57,8 @@
 			$sql = 'INSERT INTO
 						task_settings(
 							run_id,
-							name
-							-- priority,
+							name,
+							priority
 							-- arrival_distribution_type,
 							-- arrival_distribution_parameters,
 							-- service_distribution_type,
