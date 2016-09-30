@@ -71,8 +71,8 @@
 						)
 					values(
 						"' . $run_id . '",' .
-						'"' . $task .
-						// '"' . implode(", ", $taskArr['priority']) . '",' .
+						'"' . $task . '",' .
+						'"' . implode(", ", $taskArr['priority']) .
 						// '"' . $taskArr['arrDist'] . '",' .
 						// '"' . implode(", ", $taskArr['arrPms']) . '",' .
 						// '"' . $taskArr['serDist'] . '",' .
