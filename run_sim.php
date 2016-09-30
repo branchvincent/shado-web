@@ -51,16 +51,8 @@
 		    echo "Error: " . $sql . "<br>" . $conn->error;
 		}
 
-		$sql = "INSERT INTO task_settings(run_id) values('$run_id')";
-		if ($conn->query($sql) === TRUE) {
-			echo "New record created! <br>";
-		} else {
-			echo "Error: " . $sql . "<br>" . $conn->error;
-		}
-
-		$task = "Communicating";
-		// foreach (array_keys($_SESSION['tasks']) as $task) {
-			// $taskArr = $_SESSION['tasks'][$task];
+		foreach (array_keys($_SESSION['tasks']) as $task) {
+			$taskArr = $_SESSION['tasks'][$task];
 
 			$sql = 'INSERT INTO
 						task_settings(
