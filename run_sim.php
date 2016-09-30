@@ -55,7 +55,7 @@
 
 		if ($conn->query($sql) === TRUE) {
 			$run_id = $conn->insert_id;
-	    	echo "New record created! <br>";
+	    	// echo "New record created! <br>";
 		} else {
 		    echo "Error: " . $sql . "<br>" . $conn->error;
 		}
@@ -101,7 +101,7 @@
 					'")';
 
 			if ($conn->query($sql) === TRUE) {
-				echo "New record created! <br>";
+				// echo "New record created! <br>";
 			} else {
 				echo "Error: " . $sql . "<br>" . $conn->error;
 			}
