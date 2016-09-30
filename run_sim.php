@@ -51,6 +51,7 @@
 		    echo "Error: " . $sql . "<br>" . $conn->error;
 		}
 
+		// $task = "Communicating";
 		foreach (array_keys($_SESSION['tasks']) as $task) {
 			$taskArr = $_SESSION['tasks'][$task];
 
@@ -77,18 +78,7 @@
 						'"' . $taskArr['serDist'] . '",' .
 						'"' . implode(", ", $taskArr['serPms']) . '",' .
 						'"' . implode(", ", $taskArr['affByTraff'] .
-						// '"' . sizeof($_SESSION['tasks']) .
 					'")';
-					fwrite($file, "\ntask_name\t\t$task\n");
-					fwrite($file, "prty\t\t\t" . implode(" ", $taskArr['priority']) . "\n");
-					fwrite($file, "arr_dist\t\t" . $taskArr['arrDist'] . "\n");
-					fwrite($file, "arr_pms\t\t\t" . implode(" ", $taskArr['arrPms']) . "\n");
-					fwrite($file, "ser_dist\t\t" . $taskArr['serDist'] . "\n");
-					fwrite($file, "ser_pms\t\t\t" . implode(" ", $taskArr['serPms']) . "\n");
-					fwrite($file, "exp_dist\t\t" . $taskArr['expDist'] . "\n");
-					fwrite($file, "exp_pms_lo\t\t" . implode(" ", $taskArr['expPmsLo']) . "\n");
-					fwrite($file, "exp_pms_hi\t\t" . implode(" ", $taskArr['expPmsHi']) . "\n");
-					fwrite($file, "aff_by_traff\t" . implode(" ", $taskArr['affByTraff']) . "\n");
 
 			if ($conn->query($sql) === TRUE) {
 				echo "New record created! <br>";
