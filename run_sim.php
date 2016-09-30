@@ -58,8 +58,8 @@
 						task_settings(
 							run_id,
 							name,
-							priority
-							-- arrival_distribution_type,
+							priority,
+							arrival_distribution_type
 							-- arrival_distribution_parameters,
 							-- service_distribution_type,
 							-- service_distribution_parameters,
@@ -72,8 +72,8 @@
 					values(
 						"' . $run_id . '",' .
 						'"' . $task . '",' .
-						'"' . implode(", ", $taskArr['priority']) .
-						// '"' . $taskArr['arrDist'] . '",' .
+						'"' . implode(", ", $taskArr['priority']) . '",' .
+						'"' . $taskArr['arrDist'] .
 						// '"' . implode(", ", $taskArr['arrPms']) . '",' .
 						// '"' . $taskArr['serDist'] . '",' .
 						// '"' . implode(", ", $taskArr['serPms']) . '",' .
