@@ -20,7 +20,11 @@
 
 	if (PHP_OS == "Linux") {
 		$conn = connect_database();
-		$sql = 'INSERT INTO runs(hours) values("' . $_SESSION['parameters']['hours'] . '")';
+		$sql = 'INSERT INTO
+					runs(session_folder_name, hours)
+				values(
+					"' . $_SESSION['session_id'] . '",'
+					. '"' . $_SESSION['parameters']['hours'] . '")';
 
 		if ($conn->query($sql) === TRUE) {
 	    	echo "New record created successfully";

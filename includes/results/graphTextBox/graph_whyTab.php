@@ -4,8 +4,6 @@
 
 	?>
 
-
-
 	<div id="text_box" class="why_tab" style="display: none;">
 
 			<h3 style="text-align: center;"> <u><em>Why</em> is my operator over or under-utilized at work? </u></h3><br>
