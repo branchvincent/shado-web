@@ -21,10 +21,22 @@
 	if (PHP_OS == "Linux") {
 		$conn = connect_database();
 		$sql = 'INSERT INTO
-					runs(session_folder_name, hours)
+					runs(
+						session_folder_name,
+						show_des_version,
+						-- start_time,
+						-- end_time,
+						hours,
+						reps,
+						num_task_types
+					)
 				values(
-					"' . $_SESSION['session_id'] . '",'
-					. '"' . $_SESSION['parameters']['hours'] . '")';
+					"' . $_SESSION['session_id'] . '",' .
+					'"' . $_SESSION['des_version'] . '",' .
+					'"' . $_SESSION['parameters']['hours'] . '",' .
+					'"' . $_SESSION['parameters']['reps'] . '",' .
+					'"' . sizeof($_SESSION['tasks']) .
+				'")';
 
 		if ($conn->query($sql) === TRUE) {
 	    	echo "New record created successfully";
