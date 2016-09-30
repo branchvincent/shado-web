@@ -24,8 +24,8 @@
 					runs(
 						session_folder_name,
 						show_des_version,
-						-- start_time,
-						-- end_time,
+						start_time,
+						end_time,
 						hours,
 						traffic_levels,
 						reps,
@@ -35,6 +35,8 @@
 				values(
 					"' . $_SESSION['session_id'] . '",' .
 					'"' . $_SESSION['des_version'] . '",' .
+					'"' . substr($_SESSION['parameters']['begin'], 0, -3) . '",' .
+					'"' . substr($_SESSION['parameters']['end'], 0, -3) . '",' .
 					'"' . $_SESSION['parameters']['hours'] . '",' .
 					'"' . implode(", ", $_SESSION['parameters']['traffic_nums']) . '",' .
 					'"' . $_SESSION['parameters']['reps'] . '",' .
