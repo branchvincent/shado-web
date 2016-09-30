@@ -16,6 +16,15 @@
 
 	require_once('includes/session_management/init.php');
 
+	// $num = 0;
+	// foreach (array_keys($_SESSION['tasks']) as $task) {
+	// 	$ops = array();
+	// 	foreach ($_SESSION['parameters']['assistants'] as $assistant) {
+	// 		if (in_array($num, $_SESSION['assistants'][$assistant]['tasks']))
+	// 			$ops[] = $assistant;
+	// 	$num++;
+	// }
+
 //	Connect to database
 
 	if (PHP_OS == "Linux") {
@@ -51,11 +60,21 @@
 		    echo "Error: " . $sql . "<br>" . $conn->error;
 		}
 
+		$num = 0;
 		foreach (array_keys($_SESSION['tasks']) as $task) {
+
 			$taskArr = $_SESSION['tasks'][$task];
+			$ops = array();
+			foreach ($_SESSION['parameters']['assistants'] as $assistant) {
+				if (in_array($num, $_SESSION['assistants'][$assistant]['tasks']))
+					$ops[] = $assistant;
+			$num++;
 
-
-			// array_search($task_num, $curr_tasks)
+			$ops = array();
+			foreach ($_SESSION['parameters']['assistants'] as $assistant) {
+				if (in_array($task, $_SESSION['assistants'][$assistant]['tasks']))
+					$ops[] = $assistant;
+			}
 
 			$sql = 'INSERT INTO
 						task_settings(
@@ -69,8 +88,8 @@
 							expiration_distribution_type,
 							expiration_distribution_parameters_low_traffic,
 							expiration_distribution_parameters_high_traffic,
-							affected_by_traffic
-							-- operator_names
+							affected_by_traffic,
+							operator_names
 						)
 					values(
 						"' . $run_id . '",' .
@@ -80,12 +99,14 @@
 						'"' . implode(", ", $taskArr['arrPms']) . '",' .
 						'"' . $taskArr['serDist'] . '",' .
 						'"' . implode(", ", $taskArr['serPms']) . '",' .
-						'"' . implode(", ", $taskArr['expDist']) . '",' .
+						'"' . $taskArr['expDist'] . '",' .
 						'"' . implode(", ", $taskArr['expPmsLo']) . '",' .
 						'"' . implode(", ", $taskArr['expPmsHi']) . '",' .
-						'"' . implode(", ", $taskArr['affByTraff']) .
+						'"' . implode(", ", $taskArr['affByTraff']) . '",' .
+						'"' . implode(", ", $ops) .
 					'")';
 
+			echo $sql;
 			if ($conn->query($sql) === TRUE) {
 				echo "New record created! <br>";
 			} else {
