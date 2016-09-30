@@ -29,7 +29,7 @@
 						hours,
 						traffic_levels,
 						reps,
-						-- operators,
+						operators,
 						num_task_types
 					)
 				values(
@@ -40,9 +40,8 @@
 					'"' . $_SESSION['parameters']['hours'] . '",' .
 					'"' . implode(", ", $_SESSION['parameters']['traffic_nums']) . '",' .
 					'"' . $_SESSION['parameters']['reps'] . '",' .
-					// '"' . $_SESSION['parameters']['assistants'] . '",' .
+					'"' . implode(", ", array_keys($_SESSION['parameters']['assistants'])) . '",' .
 					'"' . sizeof($_SESSION['tasks']) .
-
 				'")';
 
 		if ($conn->query($sql) === TRUE) {
