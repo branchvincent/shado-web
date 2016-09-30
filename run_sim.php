@@ -35,7 +35,8 @@
 				values(
 					"' . $_SESSION['session_id'] . '",' .
 					'"' . $_SESSION['des_version'] . '",' .
-					'"' . substr($_SESSION['parameters']['begin'], 0, -3) . '",' .
+					'"' . $_SESSION['parameters']['begin'] . '",' .
+					// '"' . substr($_SESSION['parameters']['begin'], 0, -3) . '",' .
 					'"' . substr($_SESSION['parameters']['end'], 0, -3) . '",' .
 					'"' . $_SESSION['parameters']['hours'] . '",' .
 					'"' . implode(", ", $_SESSION['parameters']['traffic_nums']) . '",' .
