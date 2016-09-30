@@ -51,8 +51,8 @@
 		    echo "Error: " . $sql . "<br>" . $conn->error;
 		}
 
-		// $task = "Communicating";
-		foreach (array_keys($_SESSION['tasks']) as $task) {
+		$task = "Communicating";
+		// foreach (array_keys($_SESSION['tasks']) as $task) {
 			$taskArr = $_SESSION['tasks'][$task];
 
 			$sql = 'INSERT INTO
@@ -85,7 +85,7 @@
 			} else {
 				echo "Error: " . $sql . "<br>" . $conn->error;
 			}
-		}
+		// }
 	}
 
 //	Create parameter file
