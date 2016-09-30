@@ -61,8 +61,8 @@
 							priority,
 							arrival_distribution_type,
 							arrival_distribution_parameters
-							-- service_distribution_type,
-							-- service_distribution_parameters,
+							service_distribution_type,
+							service_distribution_parameters
 							-- expiration_distribution_type,
 							-- expiration_distribution_parameters_low_traffic,
 							-- expiration_distribution_parameters_high_traffic,
@@ -74,9 +74,9 @@
 						'"' . $task . '",' .
 						'"' . implode(", ", $taskArr['priority']) . '",' .
 						'"' . $taskArr['arrDist'] . '",' .
-						'"' . implode(", ", $taskArr['arrPms']) .
-						// '"' . $taskArr['serDist'] . '",' .
-						// '"' . implode(", ", $taskArr['serPms']) . '",' .
+						'"' . implode(", ", $taskArr['arrPms']) . '",' .
+						'"' . $taskArr['serDist'] . '",' .
+						'"' . implode(", ", $taskArr['serPms']) .
 						// '"' . implode(", ", $taskArr['affByTraff'] .
 					'")';
 
