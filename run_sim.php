@@ -54,6 +54,9 @@
 		foreach (array_keys($_SESSION['tasks']) as $task) {
 			$taskArr = $_SESSION['tasks'][$task];
 
+
+			// array_search($task_num, $curr_tasks)
+
 			$sql = 'INSERT INTO
 						task_settings(
 							run_id,
@@ -63,9 +66,9 @@
 							arrival_distribution_parameters,
 							service_distribution_type,
 							service_distribution_parameters,
-							-- expiration_distribution_type,
-							-- expiration_distribution_parameters_low_traffic,
-							-- expiration_distribution_parameters_high_traffic,
+							expiration_distribution_type,
+							expiration_distribution_parameters_low_traffic,
+							expiration_distribution_parameters_high_traffic,
 							affected_by_traffic
 							-- operator_names
 						)
@@ -77,6 +80,9 @@
 						'"' . implode(", ", $taskArr['arrPms']) . '",' .
 						'"' . $taskArr['serDist'] . '",' .
 						'"' . implode(", ", $taskArr['serPms']) . '",' .
+						'"' . implode(", ", $taskArr['expDist']) . '",' .
+						'"' . implode(", ", $taskArr['expPmsLo']) . '",' .
+						'"' . implode(", ", $taskArr['expPmsHi']) . '",' .
 						'"' . implode(", ", $taskArr['affByTraff']) .
 					'")';
 
