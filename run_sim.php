@@ -46,7 +46,7 @@
 				'")';
 
 		if ($conn->query($sql) === TRUE) {
-	    	echo "New record created successfully";
+	    	echo "New record created! <br>";
 		} else {
 		    echo "Error: " . $sql . "<br>" . $conn->error;
 		}
@@ -71,7 +71,8 @@
 							-- operator_names
 						)
 					values(
-						"' . $task . '",' .
+						"' . $task .
+						// "' . $task . '",' .
 						// '"' . implode(", ", $taskArr['priority']) . '",' .
 						// '"' . $taskArr['arrDist'] . '",' .
 						// '"' . implode(", ", $taskArr['arrPms']) . '",' .
