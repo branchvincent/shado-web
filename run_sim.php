@@ -16,15 +16,6 @@
 
 	require_once('includes/session_management/init.php');
 
-	// $num = 0;
-	// foreach (array_keys($_SESSION['tasks']) as $task) {
-	// 	$ops = array();
-	// 	foreach ($_SESSION['parameters']['assistants'] as $assistant) {
-	// 		if (in_array($num, $_SESSION['assistants'][$assistant]['tasks']))
-	// 			$ops[] = $assistant;
-	// 	$num++;
-	// }
-
 //	Connect to database
 
 	if (PHP_OS == "Linux") {
@@ -55,7 +46,6 @@
 
 		if ($conn->query($sql) === TRUE) {
 			$run_id = $conn->insert_id;
-	    	// echo "New record created! <br>";
 		} else {
 		    echo "Error: " . $sql . "<br>" . $conn->error;
 		}
@@ -101,7 +91,6 @@
 					'")';
 
 			if ($conn->query($sql) === TRUE) {
-				// echo "New record created! <br>";
 			} else {
 				echo "Error: " . $sql . "<br>" . $conn->error;
 			}
@@ -113,7 +102,6 @@
 	// unlink($_SESSION['files']['params']) or die("did not unlink");
 	// $_SESSION['files']['params'] = tempnam(sys_get_temp_dir(), "params");
 
-	// echo "Dir = " . $_SESSION['session_dir'] . "\n";
 	$file = fopen($_SESSION['session_dir'] . "params", "w") or die("Unable to open parameter file. Please return to check and update your settings.");
 	fwrite($file, "output_path\t\t" . $_SESSION['session_dir'] . "\n");
 	fwrite($file, "num_hours\t\t" . $_SESSION['parameters']['hours'] . "\n");
