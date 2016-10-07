@@ -20,4 +20,3 @@
                     <span class="title">Fetching Results</span>
                 </div>
             </div>
-            <!-- <script src="includes/results/progressBar/style.js"></script> -->

@@ -151,10 +151,10 @@
 	//
 	// 	}
 
-	$html_head_insertions = '<link rel="stylesheet" href="includes/results/progressBar/style.css">';
+	$html_head_insertions = '<link rel="stylesheet" href="styles/loading_bar.css">';
 	// $html_head_insertions .= "<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>";
-	$html_head_insertions .= "<script src='includes/results/progressBar/style.js'></script>";
+	$html_head_insertions .= "<script src='scripts/loading_bar.js'></script>";
 	require_once('includes/page_parts/header.php');
-	require_once('includes/results/progressBar/loading_bar.php');
+	require_once('includes/results/loading_bar.php');
 	require_once('includes/page_parts/footer.php');
 ?>
