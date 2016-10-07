@@ -1,5 +1,19 @@
 <?php
-    session_start();
+/****************************************************************************
+*																			*
+*	File:		send_email.php     										    *
+*																			*
+*	Author:		Branch Vincent												*
+*																			*
+*	Date:		Sep 9, 2016													*
+*																			*
+*	Purpose:	This file sends an email.					                *
+*																			*
+****************************************************************************/
+
+//	Initialize session
+
+    require_once('includes/session_management/init.php');
 
     send_mail();
     header('Location: contact_us.php');

@@ -1,5 +1,22 @@
 <?php
+/****************************************************************************
+*																			*
+*	File:		view_detailed_results.php  									*
+*																			*
+*	Author:		Branch Vincent												*
+*																			*
+*	Date:		Sep 9, 2016													*
+*																			*
+*	Purpose:	This file defines the View Detailed Analysis page. 			*
+*																			*
+****************************************************************************/
+
+//	Initialize session
+
 	require_once('includes/session_management/init.php');
+
+//	Include headers
+
 	$html_head_insertions = '<script src="http://d3js.org/d3.v3.min.js"></script>' . "\r\n\t\t";
 	$html_head_insertions .= '<script type="text/javascript" src="includes/results/d3_graph.js"></script>';
 	$page_title = 'Detailed Analysis';
@@ -31,14 +48,12 @@
 				<button class="button" type="button" onclick="location.href='view_results.php';" style="color: black">&#8678 Results</button>
 			</li>
 			<li>
-				<button type="button" class="button" onclick="location.href='sim_summary.php';" style="color: black; visibility: hidden;">Print Report</button>
+				<button type="button" class="button" onclick="location.href='final_report.php';" style="color: black; visibility: hidden;">Print Report</button>
 			</li>
 			<li>
-				<button type="button" class="button" onclick="location.href='sim_summary.php';" style="color: black;">Preview Report &#8680</button>
+				<button type="button" class="button" onclick="location.href='final_report.php';" style="color: black;">Preview Report &#8680</button>
 			</li>
 		</ul>
 	</div>
 
-<?php
-	require_once('includes/page_parts/footer.php');
-?>
+<?php require_once('includes/page_parts/footer.php');?>

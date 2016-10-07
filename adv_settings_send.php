@@ -1,4 +1,16 @@
 <?php
+/****************************************************************************
+*																			*
+*	File:		adv_settings_send.php  										*
+*																			*
+*	Author:		Branch Vincent												*
+*																			*
+*	Date:		Sep 9, 2016													*
+*																			*
+*	Purpose:	This file gets and stores advanced settings. 				*
+*																			*
+****************************************************************************/
+
 //	Initialize session
 
 	require_once('includes/session_management/init.php');
@@ -100,8 +112,6 @@
 			$op_num++;
 		}
 	}
-	// print_r($_SESSION['assistants']);
-
 
 //	Continue to next page
 

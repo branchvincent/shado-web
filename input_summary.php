@@ -1,6 +1,20 @@
 <?php
+/****************************************************************************
+*																			*
+*	File:		input_summary.php  											*
+*																			*
+*	Author:		Branch Vincent												*
+*																			*
+*	Date:		Sep 9, 2016													*
+*																			*
+*	Purpose:	This file summarizes the input. 							*
+*																			*
+****************************************************************************/
 
-	session_start();
+//	Initialize session
+
+	require_once('includes/session_management/init.php');
+
 	$traff_levels = [0.5 => 0.1, 1 => 1, 2 => 2];
 
 	$file = fopen($_SESSION['session_dir'] . "input_summary.txt", "w");

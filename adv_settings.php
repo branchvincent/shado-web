@@ -16,7 +16,7 @@
 
 	require_once('includes/session_management/init.php');
 
-//	Set header info
+//	Include headers
 
 	$page_title = 'Advanced Settings';
 	$html_head_insertions = '<script type="text/javascript" src="scripts/adv_settings.js"></script>';

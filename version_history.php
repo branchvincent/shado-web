@@ -7,7 +7,7 @@
 *																			*
 *	Date:		Sep 9, 2016													*
 *																			*
-*	Purpose:	This file sets the version history page.					*
+*	Purpose:	This file defines the version history page.					*
 *																			*
 ****************************************************************************/
 
@@ -15,7 +15,7 @@
 
 	require_once('includes/session_management/init.php');
 
-//	Include page header
+//	Include headers
 
 	$page_title = 'Current Version';
 	require_once('includes/page_parts/header.php');

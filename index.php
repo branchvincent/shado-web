@@ -20,11 +20,10 @@
 //	session_unset();
 //	include('includes/session_management/set_session_vars.php');
 
-//	Include page header
+//	Include headers
 
 	$page_title = 'SHOW';
 	require_once('includes/page_parts/header.php');
-	// print_r($_SESSION);
 ?>
 			<div id="homePage" class="page">
 				<h1 class="pageTitle">Welcome to the SHOW!</h1>

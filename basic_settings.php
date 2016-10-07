@@ -16,7 +16,7 @@
 
 	require_once('includes/session_management/init.php');
 
-//	Set header info
+//	Include headers
 
 	$page_title = 'Run Simulation';
 	$html_head_insertions = '<script type="text/javascript" src="scripts/basic_settings.js"></script>';

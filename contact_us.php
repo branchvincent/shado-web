@@ -15,7 +15,7 @@
 
 	require_once('includes/session_management/init.php');
 
-//	Include page header
+//	Include headers
 
 	$page_title = 'Contact Us';
 	require_once('includes/page_parts/header.php');

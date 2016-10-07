@@ -1,6 +1,4 @@
 <?php
-    session_start();
-
 /****************************************************************************
 *																			*
 *	File:		set_session_vars.php  									    *
@@ -13,6 +11,10 @@
 *               the default_params.txt file				                    *
 *																			*
 ****************************************************************************/
+
+//	Start session
+
+	require_once('includes/session_management/init.php');
 
 //  Set session id and directory
 

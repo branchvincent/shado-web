@@ -1,5 +1,20 @@
 <?php
-	session_start();
+/****************************************************************************
+*																			*
+*	File:		operator_calculations.php  									*
+*																			*
+*	Author:		Branch Vincent												*
+*																			*
+*	Date:		Sep 9, 2016													*
+*																			*
+*	Purpose:	This file calculates the workload counts for the specified 	*
+*				operator.			    									*
+*																			*
+****************************************************************************/
+
+//	Initialize session
+
+    require_once('includes/session_management/init.php');
 
 	$low_count_0 = $_SESSION['low_count_0'];
 	$normal_count_0 = $_SESSION['normal_count_0'];
