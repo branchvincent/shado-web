@@ -1,231 +1,174 @@
 <?php
 
-	function graphText($file_name) {
+	function graphText($op_name) {
 
 		session_start();
 
-		$file = fopen($file_name,'r') or die("Could not open $file_name! Please return to check and update your settings.");
-		$count = array();
-		$temp_count = 0;
-		$skip = 1;
-		$num = 0;
+		$task_names = array_keys($_SESSION['tasks']);
 
-		while (!feof($file)) {
-			if($temp_count==1) {
-				$skip=1;
-			}
+	//	Initialize values
 
-			$line_of_text = fgetcsv($file,2048,',');
+		for ($i=0; $i<count($task_names); $i++)
+		{
+			$_SESSION['tasks'][$task_names[$i]]['results'][$op_name]['phase1']['high'] = 0;
+			$_SESSION['tasks'][$task_names[$i]]['results'][$op_name]['phase1']['low'] = 0;
 
-			if($line_of_text[0] == "Service Time") {
-				break;
-			}
+			$_SESSION['tasks'][$task_names[$i]]['results'][$op_name]['phase2']['high'] = 0;
+			$_SESSION['tasks'][$task_names[$i]]['results'][$op_name]['phase2']['low'] = 0;
 
-			if($skip==1) {
-				$num = count($line_of_text);
-				$count[$temp_count] = array();
-				for ($i = 1; $i < $num; $i++) {
-					if($temp_count==0) {
-						$count[$temp_count][$i-1]=$line_of_text[$i];
-					} else {
-						$count[$temp_count][$i-1]=(float)$line_of_text[$i];
-					}
-				}
+			$_SESSION['tasks'][$task_names[$i]]['results'][$op_name]['phase3']['high'] = 0;
+			$_SESSION['tasks'][$task_names[$i]]['results'][$op_name]['phase3']['low'] = 0;
 
-				$skip = 0;
-				$temp_count++;
-				continue;
-			}
+			$_SESSION['results'][$op_name]['Utilization'][$task_names[$i]] = array_sum($_SESSION['tasks'][$task_names[$i]]['results'][$op_name]['Utilization']);
+			$_SESSION['results'][$op_name]['counts']['high'][$task_names[$i]] = 0;
+			$_SESSION['results'][$op_name]['counts']['low'][$task_names[$i]] = 0;
 
-			if ($skip == 0) {
-				$skip = 1;
-				continue;
-			}
 		}
 
-		fclose($file);
+	//	Set values
 
-		$type_byPhase1 = array();
-		$type_byPhase2 = array();
-		$type_byPhase3 = array();
-		$type_byPhase = array();
-
-// 		for($j = 1; $j < $temp_count - 1; $j++) {
-//
-// <<<<<<< HEAD
-// 			$type_byPhase1[$j] =array();
-// 			$type_byPhase2[$j] = array();
-// 			$type_byPhase3[$j] = array();
-// 			$type_byPhase[$j] = array();
-// =======
-		for($j=1;$j<$temp_count-1;$j++)
+		for ($i=0; $i < $_SESSION['results'][$op_name]['simLength']; $i++)
 		{
-			$type_byPhase1[$j]=array();
-			$type_byPhase2[$j]=array();
-			$type_byPhase3[$j]=array();
-			$type_byPhase[$j]=0;
-// >>>>>>> 7f0fb161ef371c8638e485226d441e876059a563
 
-			for ($i = 1; $i < $num - 1; $i++) {
-				if ($i < 4) {
-					/* $type_byPhase1[$j][]=$count[$j][$i]; */
-					array_push($type_byPhase1[$j], $count[$j][$i]);
-// <<<<<<< HEAD
-// 					array_push($type_byPhase[$j], $count[$j][$i]);
-// 				} else {
-// 					if ($i > ($num - 5)) {
-// 						array_push($type_byPhase3[$j], $count[$j][$i]);
-// 						array_push($type_byPhase[$j], $count[$j][$i]);
-// 					} else {
-// =======
-					$type_byPhase[$j]=$type_byPhase[$j]+$count[$j][$i];
-/* 					array_push($type_byPhase[$j], $count[$j][$i]);
- */				}
-				else
+		//	For each task...
+
+			for ($j=0; $j<count($task_names); $j++)
+			{
+			//	High workload
+
+				if ($_SESSION['results'][$op_name]['sum'][$i] > 0.7)
 				{
-					if($i>($num-5))
+				//	Phase 1
+
+					if ($i < 3)
 					{
-						array_push($type_byPhase3[$j], $count[$j][$i]);
-						$type_byPhase[$j]=$type_byPhase[$j]+$count[$j][$i];
+						$util = $_SESSION['tasks'][$task_names[$j]]['results'][$op_name]['Utilization'][$i];
+						$length = count($_SESSION['tasks'][$task_names[$j]]['results'][$op_name]['phase1']['Utilization']);
+						$sum = array_sum($_SESSION['tasks'][$task_names[$j]]['results'][$op_name]['phase1']['Utilization']);
+
+						if($util > ($sum/$length))
+						{
+							$_SESSION['tasks'][$task_names[$j]]['results'][$op_name]['phase1']['high'] ++;
+							$_SESSION['results'][$op_name]['counts']['high'][$task_names[$j]] ++;
+						}
 					}
+
+				//	Phase 3
+
+					else if ($i > ($_SESSION['results'][$op_name]['simLength'] - 4))
+					{
+						$util = $_SESSION['tasks'][$task_names[$j]]['results'][$op_name]['Utilization'][$i];
+						$length = count($_SESSION['tasks'][$task_names[$j]]['results'][$op_name]['phase3']['Utilization']);
+						$sum = array_sum($_SESSION['tasks'][$task_names[$j]]['results'][$op_name]['phase3']['Utilization']);
+
+						if($util > ($sum/$length))
+						{
+							$_SESSION['tasks'][$task_names[$j]]['results'][$op_name]['phase3']['high'] ++;
+							$_SESSION['results'][$op_name]['counts']['high'][$task_names[$j]] ++;
+						}
+					}
+
+				//	Phase 2
+
 					else
 					{
-// >>>>>>> 7f0fb161ef371c8638e485226d441e876059a563
-						array_push($type_byPhase2[$j], $count[$j][$i]);
-						$type_byPhase[$j]=$type_byPhase[$j]+$count[$j][$i];
-					}
-				}
-			}
-		}
+						$util = $_SESSION['tasks'][$task_names[$j]]['results'][$op_name]['Utilization'][$i];
+						$length = count($_SESSION['tasks'][$task_names[$j]]['results'][$op_name]['phase2']['Utilization']);
+						$sum = array_sum($_SESSION['tasks'][$task_names[$j]]['results'][$op_name]['phase2']['Utilization']);
 
-		$count_type_high1 = array();
-		$count_type_high2 = array();
-		$count_type_high3 = array();
-		$count_type_low1 = array();
-		$count_type_low2 = array();
-		$count_type_low3 = array();
-
-		$count_type_low = array();
-		$count_type_high = array();
-
-		$length = $num - 2;
-
-		$length_phase1 = 3;
-		$length_phase2 = $length - 6;
-		$length_phase3 = 3;
-
-		for($j = 1; $j < $temp_count - 1; $j++) {
-			$count_type_high1[$j] = 0;
-			$count_type_low1[$j] = 0;
-			$count_type_high2[$j] = 0;
-			$count_type_low2[$j] = 0;
-			$count_type_high3[$j] = 0;
-			$count_type_low3[$j] = 0;
-			$count_type_high[$j] = 0;
-			$count_type_low[$j] = 0;
-		}
-
-		for($i = 1; $i < $num - 1; $i++) {
-			for ($j = 1; $j < $temp_count - 1; $j++) {
-				if ($count[$temp_count-1][$i] > 0.7) {
-					if ($i < 4) {
-						if ($count[$j][$i] > (array_sum($type_byPhase1[$j])/count($type_byPhase1[$j]))) {
-							$count_type_high1[$j]++;
-							$count_type_high[$j]++;
-						}
-					} else {
-						if ($i > ($num - 5)) {
-							if($count[$j][$i]>(array_sum($type_byPhase3[$j])/count($type_byPhase3[$j]))) {
-								$count_type_high3[$j]++;
-								$count_type_high[$j]++;
-							}
-						} else {
-							if ($count[$j][$i] > (array_sum($type_byPhase2[$j])/count($type_byPhase2[$j]))) {
-								$count_type_high2[$j]++;
-								$count_type_high[$j]++;
-							}
+						if($util > ($sum/$length))
+						{
+							$_SESSION['tasks'][$task_names[$j]]['results'][$op_name]['phase2']['high'] ++;
+							$_SESSION['results'][$op_name]['counts']['high'][$task_names[$j]] ++;
 						}
 					}
-					continue;
 				}
 
-				if ($count[$temp_count-1][$i] < 0.3) {
-					if ($i < 4) {
-						if($count[$j][$i] < (array_sum($type_byPhase1[$j])/count($type_byPhase1[$j]))) {
-							$count_type_low1[$j]++;
-							$count_type_low[$j]++;
-						}
-					} else {
-						if ($i > ($num - 5)) {
-							if ($count[$j][$i] < (array_sum($type_byPhase3[$j])/count($type_byPhase3[$j]))) {
-								$count_type_low3[$j]++;
-								$count_type_low[$j]++;
-							}
-						} else {
-							if ($count[$j][$i] < (array_sum($type_byPhase2[$j])/count($type_byPhase2[$j]))) {
-								$count_type_low2[$j]++;
-								$count_type_low[$j]++;
-							}
-						}
-					}
-					continue;
-				}
-			}
-		}
+			//	Low workload
 
-		arsort($count_type_low);
-
-		arsort($count_type_high);
-// <<<<<<< HEAD
-//
-// 		$count_ops = 0;
-// 		for ($i = 1; $i < 5; $i++) {
-// 			if (isset($_SESSION['operator'.$i])) {
-// 					if ($_SESSION['operator'.$i] == 1) {
-// =======
-		arsort($type_byPhase);
-
-		// print_r($count[10]);
-
-		$count_ops=0;
-		for($i=1;$i<5;$i++)
-		{
-			if(isset($_SESSION['operator'.$i]))
+				if ($_SESSION['results'][$op_name]['sum'][$i] < 0.3)
 				{
-					if($_SESSION['operator'.$i]==1){
-// >>>>>>> 7f0fb161ef371c8638e485226d441e876059a563
-						$count_ops++;
+				//	Phase 1
+
+					if ($i < 3)
+					{
+						$util = $_SESSION['tasks'][$task_names[$j]]['results'][$op_name]['Utilization'][$i];
+						$length = count($_SESSION['tasks'][$task_names[$j]]['results'][$op_name]['phase1']['Utilization']);
+						$sum = array_sum($_SESSION['tasks'][$task_names[$j]]['results'][$op_name]['phase1']['Utilization']);
+
+						if($util < ($sum/$length))
+						{
+							$_SESSION['tasks'][$task_names[$j]]['results'][$op_name]['phase1']['low'] ++;
+							$_SESSION['results'][$op_name]['counts']['low'][$task_names[$j]] ++;
+						}
+					}
+
+				//	Phase 3
+
+					else if ($i > ($_SESSION['results'][$op_name]['simLength'] - 4))
+					{
+						$util = $_SESSION['tasks'][$task_names[$j]]['results'][$op_name]['Utilization'][$i];
+						$length = count($_SESSION['tasks'][$task_names[$j]]['results'][$op_name]['phase3']['Utilization']);
+						$sum = array_sum($_SESSION['tasks'][$task_names[$j]]['results'][$op_name]['phase3']['Utilization']);
+
+						if($util < ($sum/$length))
+						{
+							$_SESSION['tasks'][$task_names[$j]]['results'][$op_name]['phase3']['low'] ++;
+							$_SESSION['results'][$op_name]['counts']['low'][$task_names[$j]] ++;
+						}
+					}
+
+				//	Phase 2
+
+					else
+					{
+						$util = $_SESSION['tasks'][$task_names[$j]]['results'][$op_name]['Utilization'][$i];
+						$length = count($_SESSION['tasks'][$task_names[$j]]['results'][$op_name]['phase2']['Utilization']);
+						$sum = array_sum($_SESSION['tasks'][$task_names[$j]]['results'][$op_name]['phase2']['Utilization']);
+
+						if($util < ($sum/$length))
+						{
+							$_SESSION['tasks'][$task_names[$j]]['results'][$op_name]['phase2']['low'] ++;
+							$_SESSION['results'][$op_name]['counts']['low'][$task_names[$j]] ++;
+						}
 					}
 				}
+			}
 		}
+
+
+	//	Calculate penalty
 
 		$penalty_high = 0;
 		$count_high = 0;
 		$count_low = 0;
 		$count_norm = 0;
-		for ($i = 1; $i < $num - 1; $i++) {
-			if ($count[$temp_count-1][$i] > 0.7) {
-				$penalty_high = $penalty_high + (3.33 * $count[$temp_count-1][$i] - 2.33);
+		for ($i=0; $i<$_SESSION['results'][$op_name]['simLength']; $i++)
+		{
+			if ($_SESSION['results'][$op_name]['sum'][$i] > 0.7)
+			{
+				$penalty_high = $penalty_high + (3.33 * $_SESSION['results'][$op_name]['sum'][$i] - 2.33);
 				$count_high++;
-			} else {
-				if ($count[$temp_count-1][$i] < 0.3) {
-					$count_low++;
-				} else {
-					$count_norm++;
-				}
+			}
+			else if ($_SESSION['results'][$op_name]['sum'][$i] < 0.3)
+			{
+				$count_low++;
+			}
+			else
+			{
+				$count_norm++;
 			}
 		}
+		print "<pre>";
+		print_r($_SESSION['tasks']);
+		print "</pre>";
 
-		if ($count_high < 0)
-			$penalty_high = $penalty_high/$count_high;
-		else
-			$penalty_high = 0;
 
-		if ($file_name == $_SESSION['session_dir'] . 'stats_engineer.csv') {
-			$assistant = 'engineer';
-		} else {
-			$assistant = 'conductor';
-		}
+		print "<pre>";
+		print_r($_SESSION['results']);
+		print "</pre>";
+
+		$assistant = $op_name;
 
 		require_once('includes/results/graphTextBox/graph_navBar.php');
 		require_once('includes/results/graphTextBox/graph_whenTab.php');

@@ -30,7 +30,6 @@
     $_SESSION['parameters'] = array();
     $_SESSION['tasks'] = array();
     $_SESSION['assistants'] = array();
-    $_SESSION['results'] = array();
 
 //  Set basic settings
 
@@ -91,15 +90,12 @@
 
 //  Read in tasks
 
-    $op_names = array_keys($_SESSION['assistants']);
-
     for ($i = 0; $i < $num_tasks; $i++) {
 
     //  Set task name
         $line = strstr(fgets($file), "\t");
         $line = strtolower(trim($line));
         $_SESSION['tasks'][$line] = array();
-
         $curr_task = $line;
 
     //  Set priority
@@ -145,16 +141,6 @@
         list($name, $data[0], $data[1], $data[2]) = fscanf($file, "%s %d %d %d");
         // $_SESSION['taskAffByTraff'][$i] = $data;
         $_SESSION['tasks'][$curr_task]['affByTraff'] = $data;
-
-    //  Set results for each task's assistants
-
-        for ($j = 0; $j < $num_ops; $j++)
-        {
-            if (in_array($i, $_SESSION['assistants'][$op_names[$j]]['tasks']))
-            {
-                $_SESSION['tasks'][$curr_task]['results'][$op_names[$j]] = array();
-            }
-        }
 
     //  Set associated operators
         // $line = strstr(fgets($file), "\t");
@@ -228,16 +214,3 @@
     //     $line = strtolower(trim($line));
     //     if (is_numeric($line[1])) echo "$line[1] is numeric! \n";
     // }
-    // print "<pre>";
-    // print_r($_SESSION['assistants']);
-    // print "</pre>";
-    // // print_r(array_keys($_SESSION['assistants']));
-    // // print_r($_SESSION['assistants'][$op_names[0]]['tasks']);
-    // print "<pre>";
-    // print_r(array_keys($_SESSION['tasks']));
-    // print "</pre>";
-
-    // readCSV('includes/session_management/stats_engineer.csv', 'engineer');
-    // print "<pre>";
-    // print_r($_SESSION['tasks']);
-    // print "</pre>";

@@ -16,11 +16,9 @@
 
     require_once('includes/session_management/init.php');
 
-    read_csv($_SESSION['session_dir'] . 'stats_engineer.csv', 'engineer');
-
-	$low_count_0 = $_SESSION['results']['engineer']['low_count'];
-	$normal_count_0 = $_SESSION['results']['engineer']['med_count'];
-	$high_count_0 = $_SESSION['results']['engineer']['high_count'];
+	$low_count_0 = $_SESSION['low_count_0'];
+	$normal_count_0 = $_SESSION['normal_count_0'];
+	$high_count_0 = $_SESSION['high_count_0'];
 
 	if (!in_array('conductor', $_SESSION['parameters']['assistants'])) {
 		$operator2Style = 'display:none; ';
@@ -28,11 +26,10 @@
 		$normal_count_1 = 0;
 		$high_count_1 = 0;
 	} else {
-        $operator2Style = ' ';
-		read_csv($_SESSION['session_dir'] . 'stats_conductor.csv', 'conductor');
-		$low_count_1 = $_SESSION['results']['conductor']['low_count'];
-		$normal_count_1 = $_SESSION['results']['conductor']['med_count'];
-		$high_count_1 = $_SESSION['results']['conductor']['high_count'];
+		$operator2Style = ' ';
+		$low_count_1 = $_SESSION['low_count_1'];
+		$normal_count_1 = $_SESSION['normal_count_1'];
+		$high_count_1 = $_SESSION['high_count_1'];;
 	}
 ?>
 
