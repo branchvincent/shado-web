@@ -45,7 +45,7 @@ function setup_nav() {
 //  Get filename
 
     var url = document.location.href;
-    var page = url.substring(url.lastIndexOf('/') + 1) || 'index.php';
+    var page = url.substring(url.lastIndexOf('/') + 1) || 'index';
 
 //  Select current file in top/side navigations
 
@@ -92,7 +92,7 @@ function select_top_tabs(page) {
 
 //  If not found, highlight basic settings page
 
-    var basic_settings = jQuery('#topNav li a[href="basic_settings.php"]')
+    var basic_settings = jQuery('#topNav li a[href="basic_settings"]');
     if (!found) jQuery(basic_settings).addClass('active');
 }
 
@@ -169,10 +169,10 @@ function select_side_tabs(page) {
 function disable_links() {
     var val = jQuery('#assistant_info').val();
     if (val == 0) {
-        jQuery('#sideNav li a[href="view_results.php"]').removeAttr("href");
+        jQuery('#sideNav li a[href="view_results"]').removeAttr("href");
         jQuery('#sideNav li a[href="view_detailed_results.php?operator=engineer"]').removeAttr("href");
         jQuery('#sideNav li a[href="view_detailed_results.php?operator=conductor"]').removeAttr("href");
-        jQuery('#sideNav li a[href="final_report.php"]').removeAttr("href");
+        jQuery('#sideNav li a[href="final_report"]').removeAttr("href");
     }
     else if (val == 1) {
         jQuery('#sideNav li a[href="view_detailed_results.php?operator=conductor"]').removeAttr("href");

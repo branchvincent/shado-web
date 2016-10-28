@@ -21,10 +21,10 @@
 
 			<nav id="topNav" class="hide">
 				<ul>
-					<li><a href="index.php">Home</a></li>
-					<li><a href="basic_settings.php">Run Simulation</a></li>
+					<li><a href="index">Home</a></li>
+					<li><a href="basic_settings">Run Simulation</a></li>
 					<li><a href="contact_us">Contact Us</a></li>
-					<li style="float: right"><a href="version_history.php">Version</a></li>
+					<li style="float: right"><a href="version_history">Version</a></li>
 				</ul>
 			</nav>
 		</div>

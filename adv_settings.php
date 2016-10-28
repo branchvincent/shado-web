@@ -38,7 +38,7 @@
 ?>
 			<div id="settingsPage" class="page">
 				<h1 class="pageTitle">Input Advanced Trip Conditions</h1>
-				<form id="taskParameters" action="adv_settings_send.php" method="post">
+				<form id="taskParameters" action="adv_settings_send" method="post">
 					<input id="current_tasks" name="current_tasks" type="hidden" value=<?php print_task_ids();?>>
 					<h2>Replications</h2>
 					Enter the number of replications, or the number of simulated trips. Note that more trips provide more precise results, but it may also increase the processing time.
@@ -87,7 +87,7 @@
 							</li>
 							<li>
 								<!-- <button type="button" class="button" onclick="location.href='reset_session_vars.php';" style="color: black;">Restore Defaults</button> -->
-								<button type="button" class="button" onclick="location.href='includes/session_management/set_session_vars.php';" style="color: black;">Restore Defaults</button>
+								<button type="button" class="button" onclick="location.href='includes/session_management/set_session_vars'; location.reload();" style="color: black;">Restore Defaults</button>
 							</li>
 							<li>
 								<input type="submit" class="button" name="run_sim" value="Run Simulation &#8680" style="background-color: #4CAF50;">

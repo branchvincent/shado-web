@@ -19,4 +19,4 @@
                     <span class="label">4</span>
                     <span class="title">Fetching Results</span>
                 </div>
-            </div>
+                </div>

@@ -12,7 +12,8 @@
 
 //	Start session
 
-	require_once('includes/session_management/init.php');
+	// require_once('./includes/session_management/init.php');
+	// require_once('init.php');
 
 //  Set session id and directory
 

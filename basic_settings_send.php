@@ -55,9 +55,9 @@
 //	Continue to next page
 
     if (isset($_POST['run_sim'])) {
-        header('Location: run_sim.php');
+        header('Location: run_sim');
     } else if (isset($_POST['adv_settings'])) {
-        header('Location: adv_settings.php');
+        header('Location: adv_settings');
     } else {
         die("Could not determine action. Please return to check and update your settings.");
     }

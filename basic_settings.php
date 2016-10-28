@@ -26,8 +26,6 @@
 		<h1 class="pageTitle">Input Basic Trip Conditions</h1>
 		<p>
 			To get started, provide the following information. Then, you can either run the simulation or change more assumptions.
-			<!-- What time of day does your operator begin <strong>(1)</strong> and end <strong>(2)</strong> his/her shift? And what’s the level of traffic <strong>(3)</strong> in the region during this shift? Lastly, specify any additional operators or technologies <strong>(4)</strong> that will assist the engineer during the trip.
-			And if you're a more advanced user, look at the advanced settings. -->
 		</p>
 		<br>
 
@@ -42,7 +40,7 @@
 			</form>
 		</div> -->
 
-		<form class="centerOuter" action="basic_settings_send.php" method="post">
+		<form class="centerOuter" action="basic_settings_send" method="post">
 			<div class="centerOuter">
 				<div class="startEndTime stepBox" style="width: 220px;">
 					<div class='stepCircle'>1</div>
@@ -85,7 +83,7 @@
 
 				<div class="startEndTime stepBox" style="width: 220px;">
 					<div class='stepCircle'>2</div>
-					<h3 class="whiteFont">When Does Your Trip End? <span class="hint--bottom-left hint--rounded hint--large" aria-label= "Enter the time of day that your engineer is expected to end his/her shift."><sup>(?)</sup></span></h3>
+					<h3 class="whiteFont">When Does Your Trip End? <span class="hint--bottom-left hint--rounded hint--large" aria-label="Enter the time of day that your engineer is expected to end his/her shift."><sup>(?)</sup></span></h3>
 
 					<select id='endHour' onchange="calculate_time();">
 						<?php
@@ -151,7 +149,6 @@
 								echo '</tr>';
 							?>
 						</table>
-					<!-- </div> -->
 
 				</div>
 			</div>
@@ -186,9 +183,6 @@
 				<div class='stepCircle'>5</div>
 
 				<h3 id='custom_heading' class='whiteFont'>Which Tasks Will This Custom Assistant Handle? <span class="hint--right hint--rounded hint--large" aria-label= "Identify which tasks the custom assistant can offload from the locomotive engineer."><sup>(?)</sup></span></h3>
-
-
-
 				<br>
 				<table id='custom_table'>
 					<tr>
@@ -197,7 +191,6 @@
 						<td><input type='text' name="custom_op_name" value="<?php if ($custom_name != 'custom') echo ucwords($custom_name); ?>"></input></td>
 					</tr>
 				<?php
-
 					if (isset($_SESSION['assistants']['custom']))
 						$custom_tasks = $_SESSION['assistants']['custom']['tasks'];
 					else
@@ -209,20 +202,10 @@
 						echo "<tr><td>" . ucwords($task) . " <span class='hint--right hint--rounded hint--large' aria-label= '".  $_SESSION['tasks'][$task]['description'] . "'>";
 						echo '<sup>(?)</sup></span></td><td>';
 						echo '<input type="checkbox" name="custom_op_task_' . $i . '"';
-						// if ($key = array_search($task, $custom_tasks) !== false) echo ' checked';
 						if (in_array($i++, $custom_tasks)) echo ' checked';
 						echo '></input>';
 						echo '</td></tr>';
 					}
-
-					// for($i = 0; $i < sizeof($_SESSION['tasks']); $i++)
-					// {
-					// 	echo "<tr><td>" . array_keys($_SESSION['tasks']) . "  <span class='tooltip' onmouseover='tooltip.pop(this, \'" . $_SESSION['taskDescription'][$_SESSION['taskNames'][$i]] . "\';)'><sup>(?)</sup></span></td><td><input type='checkbox' name='custom_op_task_" . $i . "' value='y'";
-					// 	if(($key = array_search(4, $_SESSION['taskAssocOps'][$i])) !== false) {
-			        //         echo ' checked';
-			        //     }
-					// 	echo "></input></td></tr>";
-					// }
 				?>
 				</table>
 			</div>
@@ -231,7 +214,7 @@
 			<div id="bottomNav">
 				<ul>
 					<li>
-						<button class="button hide" type="button" onclick="location.href='adv_settings.php';" style="color: black;">&#8678 Run Simulation</button>
+						<button class="button hide" type="button" onclick="location.href='adv_settings';" style="color: black;">&#8678 Run Simulation</button>
 					</li>
 					<li>
 						<input type="submit" class="button" name="adv_settings" style="color: black;" value="Advanced Conditions">

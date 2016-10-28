@@ -1,6 +1,14 @@
 <?php
 	session_start();
 
+	/****************************************************************************
+	*																			*
+	*	Function:	createGraphCsv												*
+	*																			*
+	*	Purpose:	To create a d3-compatible file 						 		*
+	*																			*
+	****************************************************************************/
+
 	function createGraphCsv($assistant) {
 
 		$file = fopen($_SESSION['session_dir'] . "stats_$assistant.csv", 'r') or die("Could not find $assistant file! Please return to check and update your settings.");
