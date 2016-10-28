@@ -5,8 +5,6 @@
 *																			*
 *	Author:		Branch Vincent												*
 *																			*
-*	Date:		Sep 9, 2016													*
-*																			*
 *	Purpose:	This page allows the user to change basic settings for the 	*
 *				simulation. 												*
 *																			*

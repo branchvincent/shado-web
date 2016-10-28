@@ -1,6 +1,24 @@
+/****************************************************************************
+*																			*
+*	File:		loading_bar.js		  										*
+*																			*
+*	Author:		Branch Vincent												*
+*																			*
+*	Purpose:	This file controls the loading bar animation.	            *
+*																			*
+****************************************************************************/
+
 jQuery.noConflict()(function ($) {
     jQuery(document).ready(init());
 });
+
+/****************************************************************************
+*																			*
+*	Function:	init            											*
+*																			*
+*	Purpose:	To initialize the loading bar 			    				*
+*																			*
+****************************************************************************/
 
 function init() {
     console.log("Called!")

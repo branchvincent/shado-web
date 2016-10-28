@@ -5,8 +5,6 @@
 *																			*
 *	Author:		Branch Vincent												*
 *																			*
-*	Date:		Sep 9, 2016													*
-*																			*
 *	Purpose:	This file sets the homepage.								*
 *																			*
 ****************************************************************************/
@@ -14,12 +12,12 @@
 //	Initialize session
 
 	include('includes/session_management/init.php');
-	print_r($_SESSION);
+	// print_r($_SESSION);
 
 //	Reset session, for testing purposes
 
-	session_unset();
-	include('includes/session_management/set_session_vars.php');
+	// session_unset();
+	// include('includes/session_management/set_session_vars.php');
 
 //	Include headers
 

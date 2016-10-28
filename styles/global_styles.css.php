@@ -4,8 +4,6 @@
 *																			*
 *	Author:		Branch Vincent												*
 *																			*
-*	Date:		Sep 9, 2016													*
-*																			*
 *	Purpose:	This file defines the global stying of the webpages.		*
 *																			*
 ****************************************************************************/
@@ -474,7 +472,7 @@ th {
  	display: inline-block;
  	margin: 20px;
  	text-align: left;
- 	
+
  } -->
 
  #conductor_summary{

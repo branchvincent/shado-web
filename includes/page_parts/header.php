@@ -23,7 +23,7 @@
 				<ul>
 					<li><a href="index.php">Home</a></li>
 					<li><a href="basic_settings.php">Run Simulation</a></li>
-					<li><a href="contact_us.php">Contact Us</a></li>
+					<li><a href="contact_us">Contact Us</a></li>
 					<li style="float: right"><a href="version_history.php">Version</a></li>
 				</ul>
 			</nav>

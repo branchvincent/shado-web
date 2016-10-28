@@ -1,6 +1,24 @@
+/****************************************************************************
+*																			*
+*	File:		print_page.js		  									    *
+*																			*
+*	Author:		Branch Vincent												*
+*																			*
+*	Purpose:	This file prints the final summary page.                 	*
+*																			*
+****************************************************************************/
+
 jQuery.noConflict()(function ($) {
     $(document).ready(init());
 });
+
+/****************************************************************************
+*																			*
+*	Function:	init											            *
+*																			*
+*	Purpose:	To disable buttons    										*
+*																			*
+****************************************************************************/
 
 function init() {
     jQuery('#submit1').addClass('remove');
@@ -19,6 +37,14 @@ document.addEventListener("DOMContentLoaded",function() {
 	// document.getElementById('whenTab').style.display="block";
 	// document.getElementById('operator2').style.display="none";}
 });
+
+/****************************************************************************
+*																			*
+*	Function:	printDiv											        *
+*																			*
+*	Purpose:	To print the division 										*
+*																			*
+****************************************************************************/
 
 function printDiv(divName) {
  	var printContents = document.getElementById(divName).innerHTML;

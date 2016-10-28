@@ -4,8 +4,6 @@
 *																			*
 *	Author:		Branch Vincent												*
 *																			*
-*	Date:		Sep 9, 2016													*
-*																			*
 *	Purpose:	This file makes calculations for the basic input settings 	*
 *				page.														*
 *																			*

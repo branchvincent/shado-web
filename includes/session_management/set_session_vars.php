@@ -5,8 +5,6 @@
 *																			*
 *	Author:		Branch Vincent												*
 *																			*
-*	Date:		Sep 9, 2016													*
-*																			*
 *	Purpose:	This sets default session variables, which is defined by    *
 *               the default_params.txt file				                    *
 *																			*
@@ -50,7 +48,8 @@
 
 //  Read in default values
 
-    $file = fopen('./static_data/default_params.txt', 'r') or die('Unable to open default parameter file! Please return to check and update your settings.');
+    // $file = fopen('./static_data/default_params.txt', 'r') or die('Unable to open default parameter file! Please return to check and update your settings.');
+	$file = fopen('default_params.txt', 'r') or die('Unable to open default parameter file! Please return to check and update your settings.');
 
 //  Set default number of replications
 

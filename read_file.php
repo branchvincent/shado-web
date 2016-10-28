@@ -5,8 +5,6 @@
 *																			*
 *	Author:		Branch Vincent												*
 *																			*
-*	Date:		Sep 9, 2016													*
-*																			*
 *	Purpose:	This file reads and outputs the provided file.			    *
 *																			*
 ****************************************************************************/

@@ -5,8 +5,6 @@
 *																			*
 *	Author:		Branch Vincent												*
 *																			*
-*	Date:		Sep 9, 2016													*
-*																			*
 *	Purpose:	This page allows the user to change advanced settings for  	*
 *				the simulation. 											*
 *																			*
@@ -88,7 +86,8 @@
 								<input type="submit" class="button" name="basic_settings" value="&#8678 Basic Conditions" style="color: black;">
 							</li>
 							<li>
-								<button type="button" class="button" onclick="location.href='reset_session_vars.php';" style="color: black;">Restore Defaults</button>
+								<!-- <button type="button" class="button" onclick="location.href='reset_session_vars.php';" style="color: black;">Restore Defaults</button> -->
+								<button type="button" class="button" onclick="location.href='includes/session_management/set_session_vars.php';" style="color: black;">Restore Defaults</button>
 							</li>
 							<li>
 								<input type="submit" class="button" name="run_sim" value="Run Simulation &#8680" style="background-color: #4CAF50;">

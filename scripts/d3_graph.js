@@ -1,7 +1,25 @@
+/****************************************************************************
+*																			*
+*	File:		d3_graph.js		  											*
+*																			*
+*	Author:		Branch Vincent												*
+*																			*
+*	Purpose:	This file creates the utilization graph for an operator.	*
+*																			*
+****************************************************************************/
+
 // $(document).ready(function() {
 // 	d3_visual();
 // });
 // alert('Here');
+
+/****************************************************************************
+*																			*
+*	Function:	d3_visual													*
+*																			*
+*	Purpose:	To create a utilization graph for the specified assistant 	*
+*																			*
+****************************************************************************/
 
 function d3_visual(assistant, num, filename) {
 	console.log("started d3 visual");

@@ -4,8 +4,6 @@
 *																			*
 *	Author:		Branch Vincent												*
 *																			*
-*	Date:		Sep 9, 2016													*
-*																			*
 *	Purpose:	This file highlights the current page in the various        *
 *               navigation bars									            *
 *																			*
@@ -57,14 +55,6 @@ function setup_nav() {
 
 //  Add animation to accordion-style side navigation links
 
-    // var acc = jQuery('.accordion');
-    //
-    // for (var i = 0; i < acc.length; i++) {
-    //     acc[i].onclick = function() {
-    //         this.classList.toggle('active');
-    //         this.nextElementSibling.classList.toggle('show');
-    //     }
-    // }
     jQuery('.accordion').each(function() {
         this.onclick = function() {
             this.classList.toggle('active');
