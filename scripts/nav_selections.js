@@ -170,11 +170,11 @@ function disable_links() {
     var val = jQuery('#assistant_info').val();
     if (val == 0) {
         jQuery('#sideNav li a[href="view_results"]').removeAttr("href");
-        jQuery('#sideNav li a[href="view_detailed_results.php?operator=engineer"]').removeAttr("href");
-        jQuery('#sideNav li a[href="view_detailed_results.php?operator=conductor"]').removeAttr("href");
+        jQuery('#sideNav li a[href="view_detailed_results?operator=engineer"]').removeAttr("href");
+        jQuery('#sideNav li a[href="view_detailed_results?operator=conductor"]').removeAttr("href");
         jQuery('#sideNav li a[href="final_report"]').removeAttr("href");
     }
     else if (val == 1) {
-        jQuery('#sideNav li a[href="view_detailed_results.php?operator=conductor"]').removeAttr("href");
+        jQuery('#sideNav li a[href="view_detailed_results?operator=conductor"]').removeAttr("href");
     }
 }

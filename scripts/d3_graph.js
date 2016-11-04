@@ -69,8 +69,8 @@ function d3_visual(assistant, num, filename) {
 	  .append("g")
 	    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-	console.log("read_file.php?filename=" + filename);
-	d3.csv("read_file.php?filename=" + filename, function(error, data) {
+	console.log("read_file?filename=" + filename);
+	d3.csv("read_file?filename=" + filename, function(error, data) {
 	  color.domain(d3.keys(data[0]).filter(function(key) { return key !== "time"; }));
 
 	  data.forEach(function(d) {

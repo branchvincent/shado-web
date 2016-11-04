@@ -161,7 +161,7 @@ var svg_summary = d3.select("#input_summary").append("svg")
 
 // d3.csv("sessions/input_summary.txt", type, function(error, data) {
 // d3.csv('<?php echo $_SESSION['session_dir'] . "input_summary.txt"; ?>', type, function(error, data) {
-d3.csv("read_file.php?filename=input_summary.txt", type, function(error, data) {
+d3.csv("read_file?filename=input_summary.txt", type, function(error, data) {
 
   if (error) throw error;
 

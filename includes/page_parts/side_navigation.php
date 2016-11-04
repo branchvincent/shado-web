@@ -13,8 +13,8 @@
 					<li>
 					    <button class="accordion">View Detailed Analysis</button>
 					    <div class="accordion-content">
-					      	<a href="view_detailed_results.php?operator=engineer">Engineer</a>
-					      	<a href="view_detailed_results.php?operator=conductor">Conductor</a>
+					      	<a href="view_detailed_results?operator=engineer">Engineer</a>
+					      	<a href="view_detailed_results?operator=conductor">Conductor</a>
 					    </div>
 				  	</li>
 				    <li><a href="final_report">Preview Report</a></li>
