@@ -5,7 +5,7 @@
 *																			*
 *	Author:		Branch Vincent												*
 *																			*
-*	Purpose:	This file defines the summary report page.					*
+*	Purpose:	This file defines the final report page which summarizes initial settings and results and allows the user to print.					*
 *																			*
 ****************************************************************************/
 
