@@ -1,5 +1,15 @@
 <?php
 
+/****************************************************************************
+*																			*
+*	File:		read_csv.php  												*
+*																			*
+*	Author:		Branch Vincent												*
+*																			*
+*	Purpose:	This file fetches the simulation results.					*
+*																			*
+****************************************************************************/
+
 	function read_csv($file_name, $op_name) {
 
 		require_once('includes/session_management/init.php');

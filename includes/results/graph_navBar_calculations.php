@@ -1,4 +1,21 @@
 <?php
+/****************************************************************************
+*																			*
+*	File:		graph_navBar_calculations.php  								*
+*																			*
+*	Author:		Branch Vincent												*
+*																			*
+*	Purpose:	This file calculates the workload for each operator. 		*
+*																			*
+****************************************************************************/
+
+	/****************************************************************************
+	*																			*
+	*	Function:	graphText													*
+	*																			*
+	*	Purpose:	To calculate the high and low workload for each operator 	*
+	*																			*
+	****************************************************************************/
 
 	function graphText($op_name) {
 

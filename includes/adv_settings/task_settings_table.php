@@ -1,4 +1,13 @@
 <?php
+
+/****************************************************************************
+*																			*
+*	File:	    task_settings_table.php										*
+*																			*
+*	Purpose:	To define the advanced settings table for a given task type *
+*																			*
+****************************************************************************/
+
     $service_time_tip = "How long does it typically take a human operator to complete this task?" . str_repeat(' &nbsp ', 82) . "Exponential: Specify the mean service time. For this distribution, the probability of each time occuring decreases exponentially as the time increases." . str_repeat(' &nbsp ', 62) . "Lognormal: Specify the mean and standard deviation of the service time. For this distribution, the logarithm of each time forms a normal distribution. This results in a skewed distribution with many small values and fewer large values. Therefore, the mean is usually greater than the mode." . str_repeat(' &nbsp ', 52) . "Uniform: Specify the minimum and maximum service time. For this distribution, any time within the bounds has an equally likely chance of occurring.";
 
     if ($task == "default") {

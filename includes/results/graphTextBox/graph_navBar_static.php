@@ -3,17 +3,7 @@
 	function graphTextStatic($fname){
 
 		session_start();
-// <<<<<<< HEAD
-//
-// 		$file_handle = fopen($fname,'r');
-// 		$count = array();
-// 		$temp_count = 0;
-// 		$skip = 1;
-// 		$num = 0;
-//
-// 		while (!feof($file_handle)) {
-// 			if($temp_count==1) {
-// =======
+
 		$traffic=array();
 		if(isset($_SESSION['traffic_time'])){
 			$time=$_SESSION['traffic_time'];
@@ -280,7 +270,7 @@
 				</ul>
 			</nav>";
 		include("includes/results/graphTextBox/graph_whyTab.php");
-		
+
 
 
 
