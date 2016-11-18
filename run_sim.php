@@ -5,8 +5,8 @@
 *																			*
 *	Author:		Branch Vincent												*
 *																			*
-*	Purpose:	This page creates a parameter file and executes the 		*
-*				simulation program											*
+*	Purpose:	This page creates a parameter file, executes the 		*
+*				simulation program, and shows the user a mock progress bar page.											*
 *																			*
 ****************************************************************************/
 
