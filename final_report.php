@@ -26,6 +26,22 @@
     // require_once('includes/results/operator.html');
     require_once('includes/results/graph_CsvFile.php');
     require_once('includes/results/graphTextBox/graph_navBar_static.php');
+
+    /****************************************************************************
+    *																			*
+    *	Function:	createSummary												*
+    *																			*
+    *	Purpose:	To pull in the utilization graphs for a human operator 	    *
+    *																			*
+    ****************************************************************************/
+
+    function createSummary($assistant) {
+
+        echo "<br><br><br>";
+        include('includes/results/d3_graph.php');
+        createGraphCsv($assistant);
+        graphTextStatic($_SESSION['session_dir'] . "stats_" . $assistant. ".csv");
+    }
 ?>
 
     <div id="print-content">
@@ -41,14 +57,6 @@
     echo "<br><br>";
     require_once('includes/results/input_summary.php');
     // require_once('input_summary.php');
-
-    function createSummary($assistant) {
-
-        echo "<br><br><br>";
-        include('includes/results/d3_graph.php');
-        createGraphCsv($assistant);
-        graphTextStatic($_SESSION['session_dir'] . "stats_" . $assistant. ".csv");
-    }
 
     createSummary("engineer");
 
