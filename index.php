@@ -17,7 +17,8 @@
 //	Reset session, for testing purposes
 
 	session_unset();
-	include('includes/session_management/set_session_vars.php');
+	include('includes/session_management/init.php');
+	// include('includes/session_management/set_session_vars.php');
 
 //	Include headers
 
@@ -47,11 +48,10 @@
 					        <th>Description</th>
 					    </tr>
 						<?php
-							$task_names = array_keys($_SESSION['default_tasks']);
-							foreach ($task_names as $task) {
+							foreach ($_SESSION['defaults']->tasks as $task) {
 								echo '<tr>';
-								echo '<td>' . ucwords($task) . '</td>';
-								echo '<td>' . $_SESSION['default_tasks'][$task]['description'] . '</td>';
+								echo '<td>' . ucwords($task->name) . '</td>';
+								echo '<td>' . $task->description . '</td>';
 								echo '</tr>';
 							}
 						?>

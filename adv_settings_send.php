@@ -25,7 +25,7 @@
 
 //	Save replications
 
-	$_SESSION['parameters']['reps'] = (int)$_POST["num_reps"];
+	$_SESSION['parameters']->reps = (int)$_POST["num_reps"];
 
 //	Loop through each task type
 

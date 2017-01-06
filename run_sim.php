@@ -23,7 +23,7 @@
 
 //	Create parameter file and run simulation
 
-	create_param_file();
+	$_SESSION['parameters']->writeToFile($_SESSION['session_dir'] . "params");
 
 	if (PHP_OS == "Darwin") {
 		echo passthru("bin/des_mac " . $_SESSION['session_dir'] . "params");

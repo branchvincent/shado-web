@@ -48,7 +48,7 @@
 
 					<select id='beginHour' onchange="calculate_time();">
 						<?php
-							$hr = (int)substr($_SESSION['parameters']['begin'], 0, 2);
+							$hr = (int)substr($_SESSION['parameters']->begin, 0, 2);
 							for ($i = 1; $i <= 12; $i++) {
 								$selected = '';
 								if ($i == $hr) $selected = ' selected="selected"';
@@ -58,7 +58,7 @@
 						?>
 					</select>:<select id='beginMin' onchange="calculate_time();">
 						<?php
-							$min = (int)substr($_SESSION['parameters']['begin'], 3, 5);
+							$min = (int)substr($_SESSION['parameters']->end, 3, 5);
 							for ($i = 0; $i <= 50; $i+=10) {
 								$selected = '';
 								if ($i == $min) $selected = ' selected="selected"';
@@ -70,7 +70,7 @@
 					<select id='beginMd' onchange="calculate_time();">
 						<?php
 							$options = ['AM', 'PM'];
-							$md = substr($_SESSION['parameters']['begin'], 6);
+							$md = substr($_SESSION['parameters']->begin, 6);
 							for ($i = 0; $i < sizeof($options); $i++) {
 								$selected = '';
 								if ($options[$i] == $md) $selected = ' selected="selected"';
@@ -78,7 +78,7 @@
 							}
 						?>
 					</select>
-					<input id="begin_time" name="begin_time" type="hidden" value="<?php echo $_SESSION['parameters']['begin'];?>">
+					<input id="begin_time" name="begin_time" type="hidden" value="<?php echo $_SESSION['parameters']->begin;?>">
 				</div>
 
 				<div class="startEndTime stepBox" style="width: 220px;">
@@ -87,7 +87,7 @@
 
 					<select id='endHour' onchange="calculate_time();">
 						<?php
-							$hr = (int)substr($_SESSION['parameters']['end'], 0, 2);
+							$hr = (int)substr($_SESSION['parameters']->end, 0, 2);
 							for ($i = 1; $i <= 12; $i++) {
 								$selected = '';
 								if ($i == $hr) $selected = ' selected="selected"';
@@ -97,7 +97,7 @@
 						?>
 					</select>:<select id='endMin' onchange="calculate_time();">
 						<?php
-							$min = (int)substr($_SESSION['parameters']['end'], 3, 5);
+							$min = (int)substr($_SESSION['parameters']->end, 3, 5);
 							for ($i = 0; $i <= 50; $i+=10) {
 								$selected = '';
 								if ($i == $min) $selected = ' selected="selected"';
@@ -109,7 +109,7 @@
 					<select id='endMd' onchange="calculate_time();">
 						<?php
 							$options = ['AM', 'PM'];
-							$md = substr($_SESSION['parameters']['end'], 6);
+							$md = substr($_SESSION['parameters']->end, 6);
 							for ($i = 0; $i < sizeof($options); $i++) {
 								$selected = '';
 								if ($options[$i] == $md) $selected = ' selected="selected"';
@@ -117,8 +117,8 @@
 							}
 						?>
 					</select>
-					<input id="end_time" name="end_time" type="hidden" value="<?php echo $_SESSION['parameters']['end'];?>">
-					<input id="num_hours" name="num_hours" type="hidden" value="<?php echo $_SESSION['parameters']['hours'];?>">
+					<input id="end_time" name="end_time" type="hidden" value="<?php echo $_SESSION['parameters']->end;?>">
+					<input id="num_hours" name="num_hours" type="hidden" value="<?php echo $_SESSION['parameters']->hours;?>">
 				</div>
 			</div>
 
@@ -134,8 +134,8 @@
 								echo '<tr id="traffic_levels">';
 								$chars = ['h', 'm', 'l'];
 								$labels = ['High', 'Med', 'Low'];
-								for ($i = 0; $i < $_SESSION['parameters']['hours']; $i++) {
-									$val = $_SESSION['parameters']['traffic_chars'][$i];
+								for ($i = 0; $i < $_SESSION['parameters']->hours; $i++) {
+									$val = $_SESSION['parameters']->traffic[$i];
 									echo '<td>';
 									for ($j = 0; $j < sizeof($labels); $j++) {
 										$selected = '';
@@ -160,17 +160,17 @@
 					<table id="assistantsTable" cellspacing="0">
 						<tr>
 							<?php
-								$assistant_names = array_keys($_SESSION['assistants']);
-								for ($i = 1; $i < sizeof($assistant_names); $i++) {
-									$assistant = $assistant_names[$i];
+								$assistants = $_SESSION['parameters']->operators;
+								for ($i = 1; $i < sizeof($assistants); $i++) {
+									$assistant = $assistants[$i];
 									$selected = '';
-									if (in_array($assistant, $_SESSION['parameters']['assistants'])) {
+									if ($assistant->active) {
 										$selected = ' checked';
 									}
 									echo '<td><input ';
-									if ($assistant == 'custom') echo 'id="custom_assistant" onchange="toggle_custom_settings();"';
-									echo 'type="checkbox" name="assistant_' . $i . '"' . $selected . '>' . ucwords($assistant) . ' ';
-									echo "<span class='hint--right hint--rounded hint--large' aria-label= '". $_SESSION['assistants'][$assistant]['description'] . "'><sup>(?)</sup></span>";
+									if ($assistant->name == 'custom') echo 'id="custom_assistant" onchange="toggle_custom_settings();"';
+									echo 'type="checkbox" name="assistant_' . $i . '"' . $selected . '>' . ucwords($assistant->name) . ' ';
+									echo "<span class='hint--right hint--rounded hint--large' aria-label= '". $assistant->description . "'><sup>(?)</sup></span>";
 									echo '</td>';
 								}
 							?>

@@ -18,9 +18,9 @@
 	$file = fopen($_SESSION['session_dir'] . "input_summary.txt", "w");
 	fwrite($file,"time,");
 	fwrite($file,"t_level\n");
-	for ($i = 0; $i < $_SESSION['parameters']['hours']; $i++) {
+	for ($i = 0; $i < $_SESSION['parameters']->hours; $i++) {
 		fwrite($file,($i) .",");
-		$label = $_SESSION['parameters']['traffic_nums'][$i];
+		$label = $_SESSION['parameters']->getTrafficNums()[$i];
 		fwrite($file, $traff_levels[$label]."\n");
 	}
 	fwrite($file,($time) .",");
@@ -80,7 +80,7 @@
 <div id="input">
 	<h3 style="text-align: center;"> <u>Trip Conditions:</u></h3>
 	<ul>
-	<li><em>Trip Duration:</em> <?php echo $_SESSION['parameters']['hours'] . " hours"; ?></li>
+	<li><em>Trip Duration:</em> <?php echo $_SESSION['parameters']->hours . " hours"; ?></li>
 	<br>
 	<li><em>Traffic Levels:</em></li>
 	<div id="input_summary" class="no-page-break"></div>
@@ -107,7 +107,7 @@
 <script src="//d3js.org/d3.v3.min.js"></script>
 <script>
 
-var temp= <?php echo $_SESSION['parameters']['hours']; ?>;
+var temp= <?php echo $_SESSION['parameters']->hours; ?>;
 
 var margin = {top: 20, right: 50, bottom: 45, left: 50},
     width = 300,

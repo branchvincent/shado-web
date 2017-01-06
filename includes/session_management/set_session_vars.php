@@ -26,12 +26,14 @@
 //  Create session variables
 
     $_SESSION['default_tasks'] = array();
-    $_SESSION['parameters'] = array();
+    // $_SESSION['parameters'] = array();
     $_SESSION['tasks'] = array();
     $_SESSION['assistants'] = array();
     $_SESSION['results'] = array();
 
 //  Set basic settings
+
+    // $_SESSION['parameters'] = new Parameters('includes/session_management/default_params.txt');
 
     $_SESSION['parameters']['hours'] = 8;
     $_SESSION['parameters']['begin'] = '09:00 AM';
@@ -49,21 +51,17 @@
 
 //  Read in default values
 
-    // $file = fopen('./static_data/default_params.txt', 'r') or die('Unable to open default parameter file! Please return to check and update your settings.');
 	$file = fopen('includes/session_management/default_params.txt', 'r') or die('Unable to open default parameter file! Please return to check and update your settings.');
 
 //  Set default number of replications
-
     $line = fscanf($file, "%s %d");
     $_SESSION['parameters']['reps'] = $line[1];
 
 //  Set default number of assistants
-
     $line = fscanf($file, "%s %d");
     $num_ops = $line[1];
 
 //  Set default number of task types
-
     $line = fscanf($file, "%s %d");
     $num_tasks = $line[1];
 
@@ -72,14 +70,12 @@
     for ($i = 0; $i < $num_ops; $i++) {
 
     //  Set name
-
         $line = strstr(fgets($file), "\t");
         $line = strtolower(trim($line));
         $_SESSION['assistants'][$line] = array();
         $curr_op = $line;
 
     //  Set tasks to handle
-
         $line = strstr(fgets($file), "\t");
         $data = array_map('intval', explode(" ", $line));
         $_SESSION['assistants'][$curr_op]['tasks'] = $data;
@@ -99,51 +95,41 @@
         $line = strstr(fgets($file), "\t");
         $line = strtolower(trim($line));
         $_SESSION['tasks'][$line] = array();
-
         $curr_task = $line;
 
     //  Set priority
         list($name, $data[0], $data[1], $data[2]) = fscanf($file, "%s %d %d %d");
-        // $_SESSION['taskPrty'][$i] = $data;
         $_SESSION['tasks'][$curr_task]['priority'] = $data;
 
     //  Set arrival distribution type
         $line = fscanf($file, "%s %s");
-        // $_SESSION['taskArrDist'][$i] = $line[1];
         $_SESSION['tasks'][$curr_task]['arrDist'] = $line[1];
 
     //  Set arrival distribution parameters
         list($name, $data[0], $data[1], $data[2]) = fscanf($file, "%s %f %f %f");
-        // $_SESSION['taskArrPms'][$i] = $data;
         $_SESSION['tasks'][$curr_task]['arrPms'] = $data;
 
     //  Set service distribution type
         $line = fscanf($file, "%s %s");
-        // $_SESSION['taskSerDist'][$i] = $line[1];
         $_SESSION['tasks'][$curr_task]['serDist'] = $line[1];
 
     //  Set service distribution parameters
         list($name, $data2[0], $data2[1]) = fscanf($file, "%s %f %f");
-        // $_SESSION['taskSerPms'][$i] = $data2;
         $_SESSION['tasks'][$curr_task]['serPms'] = $data2;
 
     //  Set expiration distribution type
         $line = fscanf($file, "%s %s");
-        // $_SESSION['taskExpDist'][$i] = $line[1];
         $_SESSION['tasks'][$curr_task]['expDist'] = $line[1];
 
     //  Set expiration distribution parameters (lo + hi)
         list($name, $data[0], $data[1], $data[2]) = fscanf($file, "%s %f %f %f");
-        // $_SESSION['taskExpPmsLo'][$i] = $data;
         $_SESSION['tasks'][$curr_task]['expPmsLo'] = $data;
 
         list($name, $data[0], $data[1], $data[2]) = fscanf($file, "%s %f %f %f");
-        // $_SESSION['taskExpPmsHi'][$i] = $data;
         $_SESSION['tasks'][$curr_task]['expPmsHi'] = $data;
 
     //  Set affected by traffic
         list($name, $data[0], $data[1], $data[2]) = fscanf($file, "%s %d %d %d");
-        // $_SESSION['taskAffByTraff'][$i] = $data;
         $_SESSION['tasks'][$curr_task]['affByTraff'] = $data;
 
     //  Set results for each task's assistants
@@ -220,24 +206,3 @@
 
     $_SESSION['session_started'] = true;
     $_SESSION['session_results'] = false;
-
-    // function read_param($file, $session_prefix) {
-    //     $line = fscanf($file, "%s %s");
-    //     echo "line = $line \n";
-    //     $_SESSION["$session_prefix"]["$line[0]"] = $line[1];
-    //     $line = strtolower(trim($line));
-    //     if (is_numeric($line[1])) echo "$line[1] is numeric! \n";
-    // }
-    // print "<pre>";
-    // print_r($_SESSION['assistants']);
-    // print "</pre>";
-    // // print_r(array_keys($_SESSION['assistants']));
-    // // print_r($_SESSION['assistants'][$op_names[0]]['tasks']);
-    // print "<pre>";
-    // print_r(array_keys($_SESSION['tasks']));
-    // print "</pre>";
-
-    // readCSV('includes/session_management/stats_engineer.csv', 'engineer');
-    // print "<pre>";
-    // print_r($_SESSION['tasks']);
-    // print "</pre>";

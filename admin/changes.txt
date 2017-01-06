@@ -1,17 +1,3 @@
-Completed
-Delete
-    summary_page.php
-    test_file.php
-
-Move
-    Dependent pages at root into folders
-    Files into appropriate folder
-
-
-
-To Do
-
-
 Edit
     File names
     Add documentation

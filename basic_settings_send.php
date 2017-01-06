@@ -15,19 +15,16 @@
 
 //	Store time
 
-	$_SESSION['parameters']['hours'] = $_POST['num_hours'];
-	$_SESSION['parameters']['begin'] = $_POST['begin_time'];
-	$_SESSION['parameters']['end'] = $_POST['end_time'];
+	$_SESSION['parameters']->hours = $_POST['num_hours'];
+	$_SESSION['parameters']->begin = $_POST['begin_time'];
+	$_SESSION['parameters']->end = $_POST['end_time'];
 
 //  Store traffic levels
 
-	$traffic_chars = array('l' => 0.5, 'm' => 1, 'h' => 2);
-    $_SESSION['parameters']['traffic_chars'] = array();
-	$_SESSION['parameters']['traffic_nums'] = array();
+	$_SESSION['parameters']->traffic = array();
 
-	for ($i = 0; $i < $_SESSION['parameters']['hours']; $i++) {
-		$_SESSION['parameters']['traffic_chars'][$i] = $_POST["traffic_level_$i"];
-		$_SESSION['parameters']['traffic_nums'][$i] = $traffic_chars[$_POST["traffic_level_$i"]];
+	for ($i = 0; $i < $_SESSION['parameters']->hours; $i++) {
+		$_SESSION['parameters']->traffic[$i] = $_POST["traffic_level_$i"];
 	}
 
 //  Store assistants

@@ -8,7 +8,7 @@
 
 			<h3 style="text-align: center;"> <u><em>Why</em> is my operator over or under-utilized at work? </u></h3><br>
 			<ul><li >
-			We simulated <?php echo $_SESSION['parameters']['reps']; ?> trips and plotted the mean value per interval of time. The model shows that <?php echo round($type_byPhase[$keys[0]]*100/$length,2); ?>% of the operator’s time can be attributed to <?php echo array_keys($_SESSION['tasks'])[$keys[0]-1]; ?>. <?php $taskName = array_keys($_SESSION['tasks']); $name = $taskName[$keys[0]-1];
+			We simulated <?php echo $_SESSION['parameters']->reps; ?> trips and plotted the mean value per interval of time. The model shows that <?php echo round($type_byPhase[$keys[0]]*100/$length,2); ?>% of the operator’s time can be attributed to <?php echo array_keys($_SESSION['tasks'])[$keys[0]-1]; ?>. <?php $taskName = array_keys($_SESSION['tasks']); $name = $taskName[$keys[0]-1];
 			if(in_array($name,array_keys($_SESSION['default_tasks']))) {
 			echo ucfirst($taskName[$keys[0]-1]); ?> involves <?php if($assistant=='engineer') { echo strtolower($_SESSION['tasks'][$name]['description']);} else{ echo strtolower($_SESSION[$name]['description'])."."; }} ?>
 			</li><br><li >
@@ -128,8 +128,8 @@
 	<?php
 		$check=0;
 		$id=0;
-		$traffic = $_SESSION['parameters']['traffic_nums'];
-		if(array_sum(array_slice($traffic,0,$_SESSION['parameters']['hours']/2))>=array_sum(array_slice($traffic,$_SESSION['parameters']['hours']/2,$_SESSION['parameters']['hours']))){
+		$traffic = $_SESSION['parameters']->getTrafficNums();
+		if(array_sum(array_slice($traffic,0,$_SESSION['parameters']->hours/2))>=array_sum(array_slice($traffic,$_SESSION['parameters']->hours/2,$_SESSION['parameters']->hours))){
 			for($i=2+$length/2;$i<$num;$i++){
 				if($count[10][$i]>0.7){
 					$check=1.0;

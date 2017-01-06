@@ -2,13 +2,14 @@
 /****************************************************************************
 *                                                                           *
 *	File:		parameters.php                                              *
-*																			    *
+*																              *
 *	Author:		Branch Vincent                                                  *
 *																			  *
 *	Purpose:	To			                        *
 *													     						*
 ****************************************************************************/
 
+echo "Loading Parameters.php..." . "\r\n";
 require_once('classes/operator.php');
 require_once('classes/task.php');
 
@@ -16,18 +17,26 @@ class Parameters
 {
 //  Public member functions
 
-    function __construct()
+    function __construct($file_path = '')
     {
         $this->hours = 8;
         $this->begin = '09:00 AM';
         $this->end = '05:00 PM';
         $this->traffic = array_fill(0, $this->hours, 'm');
-        $this->reps = 100;
-        $this->operators = new Operator;
-        $this->tasks = new Task;
+
+        if ($file_path)
+        {
+            $this->updateFromFile($file_path);
+        }
+        else
+        {
+            $this->reps = 100;
+            $this->operators = array(new Operator);
+            $this->tasks = array(new Task);
+        }
     }
 
-    function getTrafficChars()
+    function getTrafficNums()
     {
         $traffic_chars = array();
 
@@ -51,7 +60,7 @@ class Parameters
         return $traffic_chars;
     }
 
-    function updateDataFromFile($file_path)
+    function updateFromFile($file_path)
     {
         $file = fopen($file_path, 'r') or die('Unable to open default parameter file! Please return to check and update your settings.');
 
@@ -78,35 +87,53 @@ class Parameters
 
         foreach ($this->operators as $op)
         {
-            $op->updateDataFromFile($file);
+            $op->updateFromFile($file);
         }
 
         foreach ($this->tasks as $task)
         {
-            $task->updateDataFromFile($file);
+            $task->updateFromFile($file);
         }
 
         fclose($file);
     }
 
-    function writeDataToFile($file_path)
+    function writeToFile($file_path)
     {
-        $file = fopen($file_path, 'r') or die('Unable to open new parameter file! Please return to check and update your settings.');
+        $file = fopen($file_path, 'w') or die('Unable to open new parameter file! Please return to check and update your settings.');
 
     	fwrite($file, "output_path\t\t" . $_SESSION['session_dir'] . "\n");
     	fwrite($file, "num_hours\t\t$this->hours\n");
-    	fwrite($file, "traff_levels\t" . implode(" ", $this->getTrafficChars()) . "\n");
+    	fwrite($file, "traff_levels\t" . implode(" ", $this->getTrafficNums()) . "\n");
     	fwrite($file, "num_reps\t\t$this->reps\n");
     	fwrite($file, "num_ops\t\t\t" . sizeof($this->operators) . "\n");
     	fwrite($file, "num_tasks\t\t" . sizeof($this->tasks) . "\n");
+
         foreach ($this->operators as $op)
         {
-            $op->writeDataToFile($file);
+            $op->writeToFile($file);
         }
         foreach ($this->tasks as $task)
         {
-            $task->writeDataToFile($file);
+            $task->writeToFile($file);
         }
+
+        fclose($file);
+    }
+
+    function getActiveOperators()
+    {
+        $names = array();
+
+        foreach ($this->operators as $op)
+        {
+            if ($op->active)
+            {
+                array_push($names, $op->name);
+            }
+        }
+
+        return $names;
     }
 
 //  Public data members
@@ -119,7 +146,3 @@ class Parameters
     var $operators;
     var $tasks;
 }
-
-$t = new Parameters;
-$t->updateDataFromFile('includes/session_management/default_params.txt');
-$t->writeDataToFile('temp.txt');

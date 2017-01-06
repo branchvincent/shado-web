@@ -9,6 +9,8 @@
 *																			*
 ****************************************************************************/
 
+echo "Loading Task.php..." . "\r\n";
+
 $descriptions = array();
 $descriptions['communicating'] = 'Filtering through relevant information for the operation and communicating information that may impact the macro-level network of operations';
 $descriptions['exception handling'] = "Manual tasks outside of the locomotive cab that may be passed on to the conductor";
@@ -35,7 +37,7 @@ class Task
         $this->description = "You have defined this task";
     }
 
-    function updateDataFromFile($file)
+    function updateFromFile($file)
     {
     //  Set task name
         $this->name = strtolower(trim(strrchr(fgets($file), "\t")));
@@ -74,7 +76,7 @@ class Task
     //             $_SESSION['tasks'][$curr_task]['results'][$op_names[$j]] = array();
     }
 
-    function writeDataToFile($file)
+    function writeToFile($file)
     {
 		fwrite($file, "name\t\t\t$this->name\n");
 		fwrite($file, "priority\t\t" . implode(' ', $this->priority) . "\n");

@@ -49,7 +49,7 @@
 								<?php
 									for ($i = 100; $i <= 1000; $i += 100) {
 										$selected = '';
-										if ($i == $_SESSION['parameters']['reps']) $selected = ' selected="selected"';
+										if ($i == $_SESSION['parameters']->reps) $selected = ' selected="selected"';
 										$val = sprintf('%02d', $i);
 										echo "<option$selected>$val</option>";
 									}
