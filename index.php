@@ -16,8 +16,8 @@
 
 //	Reset session, for testing purposes
 
-	// session_unset();
-	// include('includes/session_management/set_session_vars.php');
+	session_unset();
+	include('includes/session_management/set_session_vars.php');
 
 //	Include headers
 

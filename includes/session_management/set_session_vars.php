@@ -50,7 +50,7 @@
 //  Read in default values
 
     // $file = fopen('./static_data/default_params.txt', 'r') or die('Unable to open default parameter file! Please return to check and update your settings.');
-	$file = fopen('default_params.txt', 'r') or die('Unable to open default parameter file! Please return to check and update your settings.');
+	$file = fopen('includes/session_management/default_params.txt', 'r') or die('Unable to open default parameter file! Please return to check and update your settings.');
 
 //  Set default number of replications
 

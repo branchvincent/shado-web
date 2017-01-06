@@ -1,0 +1,18 @@
+output_path		
+num_hours		8
+traff_levels	1 1 1 1 1 1 1 1
+num_reps		100
+num_ops			1
+num_tasks		1
+op_name			New
+tasks			
+name			New
+priority		3 3 3
+arr_dist		E
+interarrival	0.033333333333333 0.033333333333333 0.033333333333333
+ser_dist		E
+service			5 5
+exp_dist		E
+expiration_lo	0 0 0
+expiration_hi	0 0 0
+traffic			0 0 0
