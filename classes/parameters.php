@@ -9,7 +9,7 @@
 *													     						*
 ****************************************************************************/
 
-echo "Loading Parameters.php..." . "\r\n";
+// echo "Loading Parameters.php..." . "\r\n";
 require_once('classes/operator.php');
 require_once('classes/task.php');
 
@@ -134,6 +134,21 @@ class Parameters
         }
 
         return $names;
+    }
+
+    function set_operators($op_names)
+    {
+        foreach ($self->operators as $op)
+        {
+            if (array_search($op->name, $op_names))
+            {
+                $op->active = true;
+            }
+            else
+            {
+                $op->active = false;
+            }
+        }
     }
 
 //  Public data members

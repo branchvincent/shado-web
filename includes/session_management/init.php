@@ -13,7 +13,7 @@
 
 	session_start();
 
-	echo "INIT!" . "\r\n";
+	// echo "INIT!" . "\r\n";
 
 	spl_autoload_register(function ($class_name)
 	{
@@ -27,7 +27,8 @@
 
 	if (empty($_SESSION['session_started']))
 	{
-		echo "NEW SESSION!";
+		// echo "NEW SESSION!";
+		// require_once('includes/session_management/set_session_vars.php');
 
 		$_SESSION['session_id'] = uniqid();
 	    $dir = sys_get_temp_dir() . '/' . $_SESSION['session_id'];
@@ -45,8 +46,8 @@
 	}
 	else
 	{
-		echo "SESSION AREADY STARTED!";
-		print_r($_SESSION);
+		// echo "SESSION AREADY STARTED!";
+		// print_r($_SESSION);
 	}
 
 // /****************************************************************************

@@ -9,7 +9,7 @@
 *																			*
 ****************************************************************************/
 
-echo "Loading Task.php..." . "\r\n";
+// echo "Loading Task.php..." . "\r\n";
 
 $descriptions = array();
 $descriptions['communicating'] = 'Filtering through relevant information for the operation and communicating information that may impact the macro-level network of operations';

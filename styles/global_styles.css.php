@@ -543,7 +543,7 @@ th {
 	text-align: center;
 }
 
-#operator2, #operator1{
+#operator3, #operator2, #operator1{
 	padding:5px 15px;
 	width:fit-content;
 	width:-webkit-fit-content;

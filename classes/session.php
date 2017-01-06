@@ -1,6 +1,6 @@
 <?php
 
-require_once('classes/parameters.php');
+// require_once('classes/parameters.php');
 
 class Session
 {

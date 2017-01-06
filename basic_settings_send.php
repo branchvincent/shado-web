@@ -29,32 +29,34 @@
 
 //  Store assistants
 
-    $_SESSION['parameters']['assistants'] = array();
-    $_SESSION['parameters']['assistants'][] = 'engineer';
+    // $_SESSION['parameters']->operators = array();
+    // $_SESSION['parameters']['assistants'][] = 'engineer';
 
 	$i = 0;
-	foreach (array_keys($_SESSION['assistants']) as $assistant) {
+	foreach ($_SESSION['parameters']->operators as $assistant) {
 		if (isset($_POST['assistant_' . $i]))
-			$_SESSION['parameters']['assistants'][] = $assistant;
+			$_SESSION['parameters']->operators->active = true;
 		$i++;
 	}
 
 //	Store custom operator tasks
 
-	if (isset($_POST['assistant_4'])) {
-		$_SESSION['assistants']['custom']['name'] = $_POST['custom_op_name'];
-		$_SESSION['assistants']['custom']['tasks'] = array();
-		for ($i = 0; $i < sizeof($_SESSION['tasks']); $i++)
-			if (isset($_POST['custom_op_task_' . $i]))
-				$_SESSION['assistants']['custom']['tasks'][] = $i;
-	}
+	// if (isset($_POST['assistant_4'])) {
+	// 	$_SESSION['assistants']['custom']['name'] = $_POST['custom_op_name'];
+	// 	$_SESSION['assistants']['custom']['tasks'] = array();
+	// 	for ($i = 0; $i < sizeof($_SESSION['tasks']); $i++)
+	// 		if (isset($_POST['custom_op_task_' . $i]))
+	// 			$_SESSION['assistants']['custom']['tasks'][] = $i;
+	// }
 
 //	Continue to next page
 
     if (isset($_POST['run_sim'])) {
-        header('Location: run_sim');
+        // header('Location: run_sim');
+		include('run_sim.php');
     } else if (isset($_POST['adv_settings'])) {
-        header('Location: adv_settings');
+        // header('Location: adv_settings');
+		include('adv_settings.php');
     } else {
         die("Could not determine action. Please return to check and update your settings.");
     }

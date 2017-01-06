@@ -10,7 +10,7 @@
 *																			*
 ****************************************************************************/
 
-echo "Loading Operator.php..." . "\r\n";
+// echo "Loading Operator.php..." . "\r\n";
 
 class Operator
 {

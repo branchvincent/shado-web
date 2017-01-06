@@ -38,7 +38,7 @@
 ?>
 			<div id="settingsPage" class="page">
 				<h1 class="pageTitle">Input Advanced Trip Conditions</h1>
-				<form id="taskParameters" action="adv_settings_send" method="post">
+				<form id="taskParameters" action="basic_settings_debug" method="post">
 					<input id="current_tasks" name="current_tasks" type="hidden" value=<?php print_task_ids();?>>
 					<h2>Replications</h2>
 					Enter the number of replications, or the number of simulated trips. Note that more trips provide more precise results, but it may also increase the processing time.
@@ -59,6 +59,23 @@
 					</div>
 					<h2>Task Details</h2>
 					Below, you can view and change the underlying assumptions for each task.
+					<br>
+					<br>
+					<div class="">
+						<strong>Assistant:</strong>
+						<select id='batch' onchange="">
+							<?php
+								foreach ($_SESSION['parameters']->operators as $op)
+								{
+									$selected = '';
+									$name = ucwords($op->name);
+									// if ($i == $batch) $selected = ' selected="selected"';
+									echo "<option$selected>$name</option>";
+								}
+							?>
+						</select>
+					</div>
+
 					<div id='taskParameterTable'>
 						<?php
 							$index = 0;
