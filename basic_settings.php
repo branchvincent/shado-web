@@ -37,7 +37,8 @@
 					<select id='beginHour' onchange="calculate_time();">
 						<?php
 							$hr = (int)substr($_SESSION['parameters']->begin, 0, 2);
-							for ($i = 1; $i <= 12; $i++) {
+							for ($i = 1; $i <= 12; $i++)
+							{
 								$selected = '';
 								if ($i == $hr) $selected = ' selected="selected"';
 								$val = sprintf('%02d', $i);
@@ -47,7 +48,8 @@
 					</select>:<select id='beginMin' onchange="calculate_time();">
 						<?php
 							$min = (int)substr($_SESSION['parameters']->end, 3, 5);
-							for ($i = 0; $i <= 50; $i+=10) {
+							for ($i = 0; $i <= 50; $i+=10)
+							{
 								$selected = '';
 								if ($i == $min) $selected = ' selected="selected"';
 								$val = sprintf('%02d', $i);
@@ -59,7 +61,8 @@
 						<?php
 							$options = ['AM', 'PM'];
 							$md = substr($_SESSION['parameters']->begin, 6);
-							for ($i = 0; $i < sizeof($options); $i++) {
+							for ($i = 0; $i < sizeof($options); $i++)
+							{
 								$selected = '';
 								if ($options[$i] == $md) $selected = ' selected="selected"';
 								echo "<option$selected>$options[$i]</option>";
@@ -86,7 +89,8 @@
 					</select>:<select id='endMin' onchange="calculate_time();">
 						<?php
 							$min = (int)substr($_SESSION['parameters']->end, 3, 5);
-							for ($i = 0; $i <= 50; $i+=10) {
+							for ($i = 0; $i <= 50; $i+=10)
+							{
 								$selected = '';
 								if ($i == $min) $selected = ' selected="selected"';
 								$val = sprintf('%02d', $i);
@@ -98,7 +102,8 @@
 						<?php
 							$options = ['AM', 'PM'];
 							$md = substr($_SESSION['parameters']->end, 6);
-							for ($i = 0; $i < sizeof($options); $i++) {
+							for ($i = 0; $i < sizeof($options); $i++)
+							{
 								$selected = '';
 								if ($options[$i] == $md) $selected = ' selected="selected"';
 								echo "<option$selected>$options[$i]</option>";
@@ -122,13 +127,15 @@
 								echo '<tr id="traffic_levels">';
 								$chars = ['h', 'm', 'l'];
 								$labels = ['High', 'Med', 'Low'];
-								for ($i = 0; $i < $_SESSION['parameters']->hours; $i++) {
+								for ($i = 0; $i < $_SESSION['parameters']->hours; $i++)
+								{
 									$val = $_SESSION['parameters']->traffic[$i];
 									echo '<td>';
-									for ($j = 0; $j < sizeof($labels); $j++) {
+									for ($j = 0; $j < sizeof($labels); $j++)
+									{
 										$selected = '';
 										if ($chars[$j] == $val) $selected = ' checked';
-										echo "<input type='radio' name='traffic_level_$i' value='$chars[$j]'$selected>$labels[$j]</input><br>";
+										echo "<input type='radio' name='traffic_levels[$i]' value='$chars[$j]'$selected>$labels[$j]</input><br>";
 									}
 									echo '</td>';
 								}
@@ -149,15 +156,17 @@
 						<tr>
 							<?php
 								$assistants = $_SESSION['parameters']->operators;
-								for ($i = 1; $i < sizeof($assistants); $i++) {
+								for ($i = 1; $i < sizeof($assistants); $i++)
+								{
 									$assistant = $assistants[$i];
 									$selected = '';
-									if ($assistant->active) {
+									if ($assistant->active)
+									{
 										$selected = ' checked';
 									}
 									echo '<td><input ';
 									if ($assistant->name == 'custom') echo 'id="custom_assistant" onchange="toggle_custom_settings();"';
-									echo 'type="checkbox" name="assistant_' . $i . '"' . $selected . '>' . ucwords($assistant->name) . ' ';
+									echo 'type="checkbox" name="assistants[' . $assistant->name . ']"' . $selected . '>' . ucwords($assistant->name) . ' ';
 									echo "<span class='hint--right hint--rounded hint--large' aria-label= '". $assistant->description . "'><sup>(?)</sup></span>";
 									echo '</td>';
 								}
@@ -186,7 +195,8 @@
 					$task_names = array_keys($_SESSION['tasks']);
 
 					$i = 0;
-					foreach ($task_names as $task) {
+					foreach ($task_names as $task)
+					{
 						echo "<tr><td>" . ucwords($task) . " <span class='hint--right hint--rounded hint--large' aria-label= '".  $_SESSION['tasks'][$task]['description'] . "'>";
 						echo '<sup>(?)</sup></span></td><td>';
 						echo '<input type="checkbox" name="custom_op_task_' . $i . '"';

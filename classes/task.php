@@ -24,6 +24,17 @@ $descriptions['planning ahead'] = 'Supporting the engineer in meeting required s
 
 class Task
 {
+//  Public data members
+
+    var $name;
+    var $priority;
+    var $interarrival;
+    var $service;
+    var $expiration;
+    var $traffic;
+    var $description;
+    var $results;
+
 //  Public member functions
 
     function __construct($name = 'New')
@@ -35,6 +46,11 @@ class Task
         $this->expiration = array("type" => "E", "lo" => array(0, 0, 0), "hi" => array(0, 0, 0));
         $this->traffic = array(0, 0, 0);
         $this->description = "You have defined this task";
+    }
+
+    function update($new_data)
+    {
+
     }
 
     function updateFromFile($file)
@@ -89,15 +105,4 @@ class Task
 		fwrite($file, "expiration_hi\t" . implode(" ", $this->expiration['hi']) . "\n");
 		fwrite($file, "traffic\t\t\t" . implode(" ", $this->traffic) . "\n");
     }
-
-//  Public data members
-
-    var $name;
-    var $priority;
-    var $interarrival;
-    var $service;
-    var $expiration;
-    var $traffic;
-    var $description;
-    var $results;
 }

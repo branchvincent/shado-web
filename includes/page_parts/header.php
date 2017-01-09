@@ -18,6 +18,12 @@
 					<img id="halLogo" src="images/hal_light.png">
 				</a>
 				<h1 style="padding: 40px 290px;">Simulator of Human Operator Workload</h1>
+				<?php
+					// if ($DEBUG)
+					// {
+					// 	<button type="button" class="button" onclick="location.href='includes/php_session/'; location.reload();" style="color: black;">Reset Session</button>
+					// }
+				?>
 			</div>
 
 			<!-- Navigation -->

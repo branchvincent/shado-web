@@ -152,13 +152,11 @@
 
 //  Set assistant descriptions
 
-
     $_SESSION['assistants']['engineer']['description'] = 'The engineer is responsible for operating the train';
     $_SESSION['assistants']['conductor']['description'] = 'The freight conductor supervises train conditions on the ground at terminal points and remains attentive to the engineer while the train is in motion in the case of emergency, when action could be needed';
     $_SESSION['assistants']['positive train control']['description'] = 'Positive Train Control (PTC), set to be fully implemented by 2018, is an embedded feature of railroads that automatically manages speed restrictions and emergency braking without human input';
     $_SESSION['assistants']['cruise control']['description'] = 'Cruise control can offload motion planning tasks that involve the locomotive control system of throttle and dynamic braking';
     $_SESSION['assistants']['custom']['description'] = 'You can define this assistant';
-
 
 //  Set task descriptions
 

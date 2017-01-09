@@ -15,35 +15,18 @@
 
 //	Store time
 
+	// $data = array(
+	// 	'hours' => $_POST['num_hours'],
+	// 	'begin' => $_POST['begin_time'],
+	// 	'end' => $_POST['end_time'],
+	// 	'traffic' => $_POST['traffic_levels']
+	// );
+
 	$_SESSION['parameters']->hours = $_POST['num_hours'];
 	$_SESSION['parameters']->begin = $_POST['begin_time'];
 	$_SESSION['parameters']->end = $_POST['end_time'];
-
-//  Store traffic levels
-
-	$_SESSION['parameters']->traffic = array();
-
-	for ($i = 0; $i < $_SESSION['parameters']->hours; $i++)
-	{
-		$_SESSION['parameters']->traffic[$i] = $_POST["traffic_level_$i"];
-	}
-
-//  Store assistants
-
-    // $_SESSION['parameters']->operators = array();
-    // $_SESSION['parameters']['assistants'][] = 'engineer';
-
-	for ($i = 0; $i < sizeof($_SESSION['parameters']->operators); $i++)
-	{
-		if (isset($_POST["assistant_$i"]))
-		{
-			$_SESSION['parameters']->operators[$i]->active = true;
-		}
-		else
-		{
-			$_SESSION['parameters']->operators[$i]->active = false;
-		}
-	}
+	$_SESSION['parameters']->traffic = $_POST['traffic_levels'];
+	$_SESSION['parameters']->setActiveOperators(array_keys($_POST['assistants']));
 
 //	Store custom operator tasks
 

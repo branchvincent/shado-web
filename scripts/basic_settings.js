@@ -63,9 +63,9 @@ function calculate_time() {
 	for (i = 0; i < hours; i++) {
 		var cell = row.insertCell(i);
 		cell.innerHTML = "";
-		cell.innerHTML += "<input type='radio' name=traffic_level_" + i + " value='h'>High</input>"
-		cell.innerHTML += "<br><input type='radio' name=traffic_level_" + i + " value='m' checked>Med</input>"
-		cell.innerHTML += "<br><input type='radio' name=traffic_level_" + i + " value='l'>Low</input>";
+		cell.innerHTML += "<input type='radio' name=traffic_levels[" + i + "] value='h'>High</input>"
+		cell.innerHTML += "<br><input type='radio' name=traffic_levels[" + i + "] value='m' checked>Med</input>"
+		cell.innerHTML += "<br><input type='radio' name=traffic_levels[" + i + "] value='l'>Low</input>";
 	}
 
 //	Change hour labels

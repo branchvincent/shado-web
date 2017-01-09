@@ -20,7 +20,7 @@
 //	Remove old parameters
 
 	$_SESSION['tasks'] = array();
-	foreach (array_keys($_SESSION['assistants']) as $assistant)
+	foreach ($_SESSION['parameters']->operators as $assistant)
 		$_SESSION['assistants'][$assistant]['tasks'] = array();
 
 //	Save replications
@@ -29,9 +29,40 @@
 
 //	Loop through each task type
 
-	foreach ($curr_tasks as $task_num) {
-
+	foreach ($curr_tasks as $task_num)
+	{
 	// 	Store task names and descriptions
+
+		// $data = array(
+		// 	'name' => strtolower($_POST["t".$task_num."_name"]),
+		// 	'priority' => array(
+		// 		(int)$_POST["t".$task_num."_priority_p0"],
+		// 		(int)$_POST["t".$task_num."_priority_p1"],
+		// 		(int)$_POST["t".$task_num."_priority_p2"]
+		// 	),
+		// 	'interarrival' => array(
+		// 		'type' => 'E',
+		// 		'vals' => array(
+		// 			(float)$_POST["t".$task_num."_arrTime_p0"],
+		// 			(float)$_POST["t".$task_num."_arrTime_p1"],
+		// 			(float)$_POST["t".$task_num."_arrTime_p2"]
+		// 		)
+		// 	)
+		// 	'service' => array(
+		// 		'type' => $_POST["t".$task_num."_serTimeDist"],
+		// 		'vals' =>
+		// 	),
+		// 	'expiration' => array(
+		// 		'type' => 'E',
+		// 		'lo' => array(0, 0, 0),
+		// 		'hi' => array(0, 0, 0)
+		// 	),
+		// 	'traffic' => array(
+		// 		(int)$_POST["t".$task_num."_affByTraff_p0"],
+		// 		(int)$_POST["t".$task_num."_affByTraff_p1"],
+		// 		(int)$_POST["t".$task_num."_affByTraff_p2"]
+		// 	)
+		// );
 
 		$curr_task = strtolower($_POST["t".$task_num."_name"]);
 		if (in_array($curr_task, array_keys($_SESSION['default_tasks'])))
@@ -113,10 +144,15 @@
 
 //	Continue to next page
 
-    if (isset($_POST['run_sim'])) {
+    if (isset($_POST['run_sim']))
+	{
         header('Location: run_sim');
-    } else if (isset($_POST['basic_settings'])) {
+    }
+	else if (isset($_POST['basic_settings']))
+	{
         header('Location: basic_settings');
-    } else {
+    }
+	else
+	{
         die("Could not determine action. Please return to check and update your settings.");
     }

@@ -41,11 +41,11 @@
 					        <th>Description</th>
 					    </tr>
 						<?php
-							foreach ($_SESSION['defaults']->tasks as $task)
+							foreach (array_keys($ENGINEER_TASK_DESCRIPTIONS) as $task_name)
 							{
 								echo '<tr>';
-								echo '<td>' . ucwords($task->name) . '</td>';
-								echo '<td>' . $task->description . '</td>';
+								echo '<td>' . ucwords($task_name) . '</td>';
+								echo '<td>' . $ENGINEER_TASK_DESCRIPTIONS[$task_name] . '</td>';
 								echo '</tr>';
 							}
 						?>

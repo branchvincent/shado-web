@@ -195,7 +195,7 @@ class Parameters
 
     function setActiveOperators($op_names)
     {
-        foreach ($self->operators as $op)
+        foreach ($this->operators as $op)
         {
             if (array_search($op->name, $op_names))
             {
