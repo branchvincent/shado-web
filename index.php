@@ -11,14 +11,7 @@
 
 //	Initialize session
 
-	include('includes/session_management/init.php');
-	// print_r($_SESSION);
-
-//	Reset session, for testing purposes
-
-	session_unset();
-	include('includes/session_management/init.php');
-	// include('includes/session_management/set_session_vars.php');
+	require_once('includes/php_session/init.php');
 
 //	Include headers
 
@@ -48,7 +41,8 @@
 					        <th>Description</th>
 					    </tr>
 						<?php
-							foreach ($_SESSION['defaults']->tasks as $task) {
+							foreach ($_SESSION['defaults']->tasks as $task)
+							{
 								echo '<tr>';
 								echo '<td>' . ucwords($task->name) . '</td>';
 								echo '<td>' . $task->description . '</td>';

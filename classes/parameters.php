@@ -1,21 +1,38 @@
 <?php
 /****************************************************************************
 *                                                                           *
-*	File:		parameters.php                                              *
-*																              *
-*	Author:		Branch Vincent                                                  *
-*																			  *
-*	Purpose:	To			                        *
-*													     						*
+*	File:		Parameters.php                                              *
+*																            *
+*	Author:		Branch Vincent                                              *
+*																			*
+*	Purpose:	To define the Parameter class. 			                    *
+*													     				    *
 ****************************************************************************/
 
-// echo "Loading Parameters.php..." . "\r\n";
 require_once('classes/operator.php');
 require_once('classes/task.php');
 
 class Parameters
 {
+//  Public data members
+
+    var $hours;
+    var $begin;
+    var $end;
+    var $traffic;
+    var $reps;
+    var $operators;
+    var $tasks;
+
 //  Public member functions
+
+    /****************************************************************************
+    *															                *
+    *	Function:	__construct													*
+    *																			*
+    *	Purpose:	To construct a default Parameter                          	*
+    *																			*
+    ****************************************************************************/
 
     function __construct($file_path = '')
     {
@@ -35,6 +52,14 @@ class Parameters
             $this->tasks = array(new Task);
         }
     }
+
+    /****************************************************************************
+    *																			*
+    *	Function:	getTrafficNums												*
+    *																			*
+    *	Purpose:	To convert traffic characters to multipliers                *
+    *																			*
+    ****************************************************************************/
 
     function getTrafficNums()
     {
@@ -59,6 +84,14 @@ class Parameters
 
         return $traffic_chars;
     }
+
+    /****************************************************************************
+    *																			*
+    *	Function:	updateFromFile												*
+    *																			*
+    *	Purpose:	To update the data members from a parameter file            *
+    *																			*
+    ****************************************************************************/
 
     function updateFromFile($file_path)
     {
@@ -98,6 +131,14 @@ class Parameters
         fclose($file);
     }
 
+    /****************************************************************************
+    *																			*
+    *	Function:	writeToFile													*
+    *																			*
+    *	Purpose:	To output the data members to a parameter file              *
+    *																			*
+    ****************************************************************************/
+
     function writeToFile($file_path)
     {
         $file = fopen($file_path, 'w') or die('Unable to open new parameter file! Please return to check and update your settings.');
@@ -121,6 +162,14 @@ class Parameters
         fclose($file);
     }
 
+    /****************************************************************************
+    *																			*
+    *	Function:	getActiveOperators											*
+    *																			*
+    *	Purpose:	To return an array of active operators                   	*
+    *																			*
+    ****************************************************************************/
+
     function getActiveOperators()
     {
         $names = array();
@@ -136,7 +185,15 @@ class Parameters
         return $names;
     }
 
-    function set_operators($op_names)
+    /****************************************************************************
+    *																			*
+    *	Function:	setActiveOperators											*
+    *																			*
+    *	Purpose:	To set the active operators                             	*
+    *																			*
+    ****************************************************************************/
+
+    function setActiveOperators($op_names)
     {
         foreach ($self->operators as $op)
         {
@@ -150,14 +207,4 @@ class Parameters
             }
         }
     }
-
-//  Public data members
-
-    var $hours;
-    var $begin;
-    var $end;
-    var $traffic;
-    var $reps;
-    var $operators;
-    var $tasks;
 }

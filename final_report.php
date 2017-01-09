@@ -13,7 +13,7 @@
 
 //	Initialize session
 
-    require_once('includes/session_management/init.php');
+    require_once('includes/php_session/init.php');
 
 //	Include headers
 

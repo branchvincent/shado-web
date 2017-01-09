@@ -11,6 +11,7 @@
 		<?php if (isset($html_head_insertions)) echo $html_head_insertions;?>
 	</head>
 	<body>
+		<!-- Header -->
 		<div id="fixedHead">
 			<div id="title">
 				<a href="http://hal.pratt.duke.edu">
@@ -19,6 +20,7 @@
 				<h1 style="padding: 40px 290px;">Simulator of Human Operator Workload</h1>
 			</div>
 
+			<!-- Navigation -->
 			<nav id="topNav" class="hide">
 				<ul>
 					<li><a href="index">Home</a></li>
@@ -29,6 +31,7 @@
 			</nav>
 		</div>
 
+		<!-- Page body -->
 		<div id="fixedBody"></div>
 		<div id="main">
 			<input id="assistant_info" value="<?php echo $_SESSION['session_results'] + in_array('conductor', $_SESSION['parameters']->getActiveOperators());?>" type="hidden">

@@ -14,7 +14,7 @@
 
 //	Initialize session
 
-    require_once('includes/session_management/init.php');
+    require_once('includes/php_session/init.php');
 
 	$low_count_0 = $_SESSION['low_count_0'];
 	$normal_count_0 = $_SESSION['normal_count_0'];

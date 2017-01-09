@@ -22,9 +22,8 @@ class Session
     var $parameters;
 }
 
-if (empty($_SESSION['session_started'])) {
-    // require_once('includes/session_management/set_session_vars.php');
-
+if (empty($_SESSION['session_started']))
+{
     echo "NEW SESSION!";
     require_once('classes/parameters.php');
 
@@ -34,8 +33,8 @@ if (empty($_SESSION['session_started'])) {
     $_SESSION['session_dir'] = $dir . '/';
     $_SESSION['des_version'] = '1.0.0';
 
-    $_SESSION['parameters'] = new Parameters('includes/session_management/default_params.txt');
-    $_SESSION['defaults'] = new Parameters('includes/session_management/default_params.txt');
+    $_SESSION['parameters'] = new Parameters('includes/php_session/default_params.txt');
+    $_SESSION['defaults'] = new Parameters('includes/php_session/default_params.txt');
 }
 else
 {

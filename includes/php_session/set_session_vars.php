@@ -12,7 +12,7 @@
 
 //	Start session
 
-	// require_once('./includes/session_management/init.php');
+	// require_once('./includes/php_session/init.php');
 	// require_once('init.php');
 
 //  Set session id and directory
@@ -33,7 +33,7 @@
 
 //  Set basic settings
 
-    // $_SESSION['parameters'] = new Parameters('includes/session_management/default_params.txt');
+    // $_SESSION['parameters'] = new Parameters('includes/php_session/default_params.txt');
 
     $_SESSION['parameters']['hours'] = 8;
     $_SESSION['parameters']['begin'] = '09:00 AM';
@@ -51,7 +51,7 @@
 
 //  Read in default values
 
-	$file = fopen('includes/session_management/default_params.txt', 'r') or die('Unable to open default parameter file! Please return to check and update your settings.');
+	$file = fopen('includes/php_session/default_params.txt', 'r') or die('Unable to open default parameter file! Please return to check and update your settings.');
 
 //  Set default number of replications
     $line = fscanf($file, "%s %d");

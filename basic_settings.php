@@ -12,7 +12,7 @@
 
 //	Initialize session
 
-	require_once('includes/session_management/init.php');
+	require_once('includes/php_session/init.php');
 
 //	Include headers
 
@@ -27,18 +27,6 @@
 		<p>
 			To get started, provide the following information. Then, you can either run the simulation or change more assumptions.
 		</p>
-		<br>
-
-		<!-- <div style="width: 100%; float: right;">
-			<form action="adv_settings.php">
-				<button class="button" type="submit" style="float: right; color: black;">
-					<img src="images/settings-gear.png" width="40" height="40" align="top">
-					<div style="display: inline-block;  text-align: left; padding: 3px;">
-						Advanced <br> Settings
-					</div>
-				</button>
-			</form>
-		</div> -->
 
 		<form class="centerOuter" action="basic_settings_send" method="post">
 			<div class="centerOuter">

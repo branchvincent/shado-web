@@ -18,17 +18,6 @@
     //     $taskArr = $_SESSION['tasks'][$task];
     // }
 ?>
-<!-- <div style="float: left;"> -->
-<!-- <h3 style="text-align: center;">
-    <span style="color: #f44336; float: left;">
-        <button class="roundButton" type="button" onclick=<?php echo "deleteTask(".$taskNum.")"; ?> style="background-color: #f44336;"><strong>x</strong></button> Delete Task
-    </span>
-    <span style="text-align: center;  "><?php echo ucwords($taskName);?></span>
-</h3> -->
-    <!-- </span> -->
-<!-- </div> -->
-<!-- <h3 style="text-align: center;"> -->
-<!-- </h3> -->
 <table align="center" style="margin-top: 10px; margin-bottom: 10px;">
     <caption><h3>
         <span style="float: left; color: #f44336; font-weight: bold;">

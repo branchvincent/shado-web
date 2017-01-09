@@ -12,7 +12,7 @@
 
 //	Initialize session
 
-    require_once('includes/session_management/init.php');
+    require_once('includes/php_session/init.php');
 
     read_csv($_SESSION['session_dir'] . 'stats_engineer.csv', 'engineer');
 
