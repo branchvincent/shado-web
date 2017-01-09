@@ -22,4 +22,3 @@ require_once('includes/php_session/globals.php');
 //	Resume session
 
 resumeSession();
-// clearSession();

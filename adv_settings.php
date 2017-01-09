@@ -91,7 +91,7 @@
 								<input type="submit" class="button" name="basic_settings" value="&#8678 Basic Conditions" style="color: black;">
 							</li>
 							<li>
-								<button type="button" class="button" onclick="location.href='includes/php_session/set_session_vars'; location.reload();" style="color: black;">Restore Defaults</button>
+								<button type="button" class="button" onclick="callPHP('clearSession'); location.reload();" style="color: black;">Restore Defaults</button>
 							</li>
 							<li>
 								<input type="submit" class="button" name="run_sim" value="Run Simulation &#8680" style="background-color: #4CAF50;">

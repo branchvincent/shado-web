@@ -90,3 +90,16 @@ function resetTasks()
 {
     $_SESSION['parameters'] = new Parameters('includes/php_session/default_params.txt');
 }
+
+/****************************************************************************
+*																			*
+*	Function:	           										*
+*																			*
+*	Purpose:	To reset the tasks                  	                    *
+*																			*
+****************************************************************************/
+
+function updateParameters()
+{
+    $_SESSION['parameters'] = new Parameters('includes/php_session/default_params.txt');
+}

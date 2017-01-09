@@ -156,7 +156,7 @@
 						<tr>
 							<?php
 								$assistants = $_SESSION['parameters']->operators;
-								for ($i = 1; $i < sizeof($assistants); $i++)
+								for ($i = 0; $i < sizeof($assistants); $i++)
 								{
 									$assistant = $assistants[$i];
 									$selected = '';
@@ -218,8 +218,11 @@
 						<input type="submit" class="button" name="adv_settings" style="color: black;" value="Advanced Conditions">
 					</li>
 					<li>
-						<button type="submit" class="button" name="run_sim" style="background-color: #4CAF50;">Run Simulation &#8680</button>
+						<input type="submit" class="button" name="run_sim" style="background-color: #4CAF50;" value="Run Simulation &#8680">
 					</li>
+					<!-- <li>
+						<button type="submit" class="button" name="run_sim" style="background-color: #4CAF50;">Run Simulation &#8680</button>
+					</li> -->
 				</ul>
 			</div>
 		</form>

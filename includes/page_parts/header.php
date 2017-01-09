@@ -6,6 +6,7 @@
 		<link rel="stylesheet" type="text/css" href="styles/global_styles.css.php">
 		<link rel="stylesheet" type="text/css" href="styles/tooltip.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+		<script type="text/javascript" src="scripts/global.js"></script>
 		<script type="text/javascript" src="scripts/graph_navBar.js"></script>
 		<script type="text/javascript" src="scripts/nav_selections.js"></script>
 		<?php if (isset($html_head_insertions)) echo $html_head_insertions;?>
@@ -18,12 +19,6 @@
 					<img id="halLogo" src="images/hal_light.png">
 				</a>
 				<h1 style="padding: 40px 290px;">Simulator of Human Operator Workload</h1>
-				<?php
-					// if ($DEBUG)
-					// {
-					// 	<button type="button" class="button" onclick="location.href='includes/php_session/'; location.reload();" style="color: black;">Reset Session</button>
-					// }
-				?>
 			</div>
 
 			<!-- Navigation -->
@@ -33,6 +28,12 @@
 					<li><a href="basic_settings">Run Simulation</a></li>
 					<li><a href="contact_us">Contact Us</a></li>
 					<li style="float: right"><a href="version_history">Version</a></li>
+					<?php
+						if ($DEBUG)
+						{
+							echo "<li style=\"float: right; background-color: red;\"><a href=\"#\" onclick=\"callPHP('clearSession')\">Reset Session</a></li>";
+						}
+					?>
 				</ul>
 			</nav>
 		</div>

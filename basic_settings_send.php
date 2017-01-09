@@ -30,7 +30,7 @@
 
 //	Store custom operator tasks
 
-	// if (isset($_POST['assistant_4'])) {
+	// if (isset($_POST['assistants']['custom'])) {
 	// 	$_SESSION['assistants']['custom']['name'] = $_POST['custom_op_name'];
 	// 	$_SESSION['assistants']['custom']['tasks'] = array();
 	// 	for ($i = 0; $i < sizeof($_SESSION['tasks']); $i++)
@@ -44,7 +44,7 @@
 	{
         header('Location: run_sim');
     }
-	else if (isset($_POST['adv_settings']))
+	elseif (isset($_POST['adv_settings']))
 	{
         header('Location: adv_settings');
     }
