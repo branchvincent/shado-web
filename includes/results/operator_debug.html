@@ -1,5 +1,5 @@
 			<div id="page" class='page'>
-					<div id="operators" class="operatorSummaryOuter">
+					<!-- <div id="operators" class="operatorSummaryOuter">
 						<div id="operator1">
 							<h3>On average, your <em>dispatcher</em> is projected to experience:</h3>
 							<div id="bullets">
@@ -46,6 +46,46 @@
 							<form action="view_detailed_results_debug?operator=conductor" method="post" style='text-align: center;'>
 								<button type="submit" id="submit2" class="button" style="background-color: #4CAF50;">Investigate</button>
 							</form>
-						</div>
+						</div> -->
+
+						<table align="center"  width="500" style="margin-top: 30px;">
+							<tr>
+						        <th rowspan="2">Batch</th>
+								<th rowspan="2">Operator</th>
+								<th colspan="3">Workload (min)</th>
+						    </tr>
+							<tr>
+								<th style='background-color: #F33939'>Low</th>
+								<th style='background-color: #4ED176'>Moderate</th>
+								<th style='background-color: #F33939'>High</th>
+							</tr>
+							<tr>
+								<td>All</td>
+								<td>Dispatcher</td>
+								<td>30</td>
+								<td>250</td>
+								<td>200</td>
+							</tr>
+							<tr>
+								<td rowspan="2">1</td>
+								<td>Engineer</td>
+								<td>180</td>
+								<td>300</td>
+								<td>0</td>
+							</tr>
+							<tr>
+								<td>Conductor</td>
+								<td>400</td>
+								<td>80</td>
+								<td>0</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>Engineer</td>
+								<td>220</td>
+								<td>100</td>
+								<td>0</td>
+							</tr>
+						</table>
 
 					</div>

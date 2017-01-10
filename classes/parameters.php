@@ -239,7 +239,7 @@ class Parameters
     {
         foreach ($this->operators as $op)
         {
-            if ($op->type = ucwords($op_type))
+            if ($op->type = strtolower($op_type))
             {
                 return $op;
             }

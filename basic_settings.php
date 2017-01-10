@@ -16,25 +16,25 @@
 
 //	Include headers
 
-	$page_title = 'Run Simulation';
-	$html_head_insertions = '<script type="text/javascript" src="scripts/basic_settings.js"></script>';
+	$PAGE_TITLE = 'Run Simulation';
+	$HTML_HEADER = '<script type="text/javascript" src="scripts/basic_settings.js"></script>';
 	$html_head_insertions .= '<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>';
 	require_once('includes/page_parts/header.php');
 	require_once('includes/page_parts/side_navigation.php');
 ?>
-	<div id="runSimulationPage" class="page">
-		<h1 class="pageTitle">Input Basic Trip Conditions</h1>
+	<div id='runSimulationPage' class='page'>
+		<h1 class='pageTitle'>Input Basic Trip Conditions</h1>
 		<p>
 			To get started, provide the following information. Then, you can either run the simulation or change more assumptions.
 		</p>
 
-		<form class="centerOuter" action="basic_settings_send" method="post">
+		<form class='centerOuter' action='basic_settings_send' method='post'>
 			<div class="centerOuter">
 				<div class="startEndTime stepBox" style="width: 220px;">
 					<div class='stepCircle'>1</div>
-					<h3 class="whiteFont">When Does This Batch Trip Begin? <span class="hint--bottom-right hint--rounded hint--large" aria-label= "Enter the time of day that your engineer begins his/her shift."><sup>(?)</sup></span></h3>
+					<h3 class='whiteFont'>When Does This Batch Trip Begin? <span class='hint--bottom-right hint--rounded hint--large' aria-label= 'Enter the time of day that your engineer begins his/her shift.'><sup>(?)</sup></span></h3>
 
-					<select id='beginHour' onchange="calculate_time();">
+					<select id='beginHour' onchange='calculate_time();'>
 						<?php
 							$hr = (int)substr($_SESSION['parameters']->begin, 0, 2);
 							for ($i = 1; $i <= 12; $i++)
@@ -192,8 +192,10 @@
 					foreach ($_SESSION['parameters']->getOperatorByName('engineer')->tasks as $task)
 					{
 						echo "<tr><td>" . ucwords($task->name) . " <span class='hint--right hint--rounded hint--large' aria-label= '".  $ENGINEER_TASK_DESCRIPTIONS[$task->name] . "'>";
+						// echo "<tr><td>" . ucwords($task) . " <span class='hint--right hint--rounded hint--large' aria-label= '".  $ENGINEER_TASK_DESCRIPTIONS[$task] . "'>";
 						echo '<sup>(?)</sup></span></td><td>';
 						echo '<input type="checkbox" name="custom_op_task_' . $i . '"';
+						// echo '<input type="checkbox" name="assistants[' . $op->name . '][tasks][' . $i . ']"';
 						if (in_array($i++, $op->tasks)) echo ' checked';
 						echo '></input>';
 						echo '</td></tr>';
