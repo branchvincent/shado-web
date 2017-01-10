@@ -32,7 +32,7 @@
 			<div class="centerOuter">
 				<div class="startEndTime stepBox" style="width: 220px;">
 					<div class='stepCircle'>1</div>
-					<h3 class="whiteFont">When Does Your Trip Begin? <span class="hint--bottom-right hint--rounded hint--large" aria-label= "Enter the time of day that your engineer begins his/her shift."><sup>(?)</sup></span></h3>
+					<h3 class="whiteFont">When Does This Batch Trip Begin? <span class="hint--bottom-right hint--rounded hint--large" aria-label= "Enter the time of day that your engineer begins his/her shift."><sup>(?)</sup></span></h3>
 
 					<select id='beginHour' onchange="calculate_time();">
 						<?php
@@ -74,7 +74,7 @@
 
 				<div class="startEndTime stepBox" style="width: 220px;">
 					<div class='stepCircle'>2</div>
-					<h3 class="whiteFont">When Does Your Trip End? <span class="hint--bottom-left hint--rounded hint--large" aria-label="Enter the time of day that your engineer is expected to end his/her shift."><sup>(?)</sup></span></h3>
+					<h3 class="whiteFont">When Does This Batch Trip End? <span class="hint--bottom-left hint--rounded hint--large" aria-label="Enter the time of day that your engineer is expected to end his/her shift."><sup>(?)</sup></span></h3>
 
 					<select id='endHour' onchange="calculate_time();">
 						<?php
@@ -118,7 +118,7 @@
 			<div class="trafficTableStepOuter stepBox centerOuter">
 				<div class='stepCircle'>3</div>
 					<h3 class="whiteFont">
-						What are the Traffic Levels?
+						What are the Batch Traffic Levels?
 						<span class="hint--right hint--rounded hint--large" aria-label= "Enter the local levels of traffic during this shift. This will modify the frequency of certain task arrivals."><sup>(?)</sup></span>
 					</h3>
 					<div id="totalTime" style="overflow-x:auto;">
@@ -165,7 +165,7 @@
 										$selected = ' checked';
 									}
 									echo '<td><input ';
-									if ($assistant->name == 'custom') echo 'id="custom_assistant" onchange="toggle_custom_settings();"';
+									if ($assistant->type == 'custom') echo 'id="custom_assistant" onchange="toggle_custom_settings();"';
 									echo 'type="checkbox" name="assistants[' . $assistant->name . ']"' . $selected . '>' . ucwords($assistant->name) . ' ';
 									echo "<span class='hint--right hint--rounded hint--large' aria-label= '". $assistant->description . "'><sup>(?)</sup></span>";
 									echo '</td>';
@@ -183,24 +183,18 @@
 				<br>
 				<table id='custom_table'>
 					<tr>
-						<?php $custom_name = $_SESSION['assistants']['custom']['name']; ?>
+						<?php $op = $_SESSION['parameters']->getOperatorByType('custom')?>
 						<th>Assistant Name:</td>
-						<td><input type='text' name="custom_op_name" value="<?php if ($custom_name != 'custom') echo ucwords($custom_name); ?>"></input></td>
+						<td><input type='text' name="custom_op_name" value="<?php if ($op->name != 'custom') echo ucwords($op->name); ?>"></input></td>
 					</tr>
 				<?php
-					if (isset($_SESSION['assistants']['custom']))
-						$custom_tasks = $_SESSION['assistants']['custom']['tasks'];
-					else
-						$custom_tasks = array();
-					$task_names = array_keys($_SESSION['tasks']);
-
 					$i = 0;
-					foreach ($task_names as $task)
+					foreach ($_SESSION['parameters']->getOperatorByName('engineer')->tasks as $task)
 					{
-						echo "<tr><td>" . ucwords($task) . " <span class='hint--right hint--rounded hint--large' aria-label= '".  $_SESSION['tasks'][$task]['description'] . "'>";
+						echo "<tr><td>" . ucwords($task->name) . " <span class='hint--right hint--rounded hint--large' aria-label= '".  $ENGINEER_TASK_DESCRIPTIONS[$task->name] . "'>";
 						echo '<sup>(?)</sup></span></td><td>';
 						echo '<input type="checkbox" name="custom_op_task_' . $i . '"';
-						if (in_array($i++, $custom_tasks)) echo ' checked';
+						if (in_array($i++, $op->tasks)) echo ' checked';
 						echo '></input>';
 						echo '</td></tr>';
 					}

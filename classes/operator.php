@@ -18,7 +18,6 @@ class Operator
     var $active;
     var $type;
     var $description;
-    var $descriptions;
 
 //  Public member functions
 
@@ -27,8 +26,9 @@ class Operator
         $this->name = $name;
         $this->tasks = $tasks;
         $this->active = false;
+        $this->description = 'You can define this assistant';
 
-        $this->descriptions = array();
+        // $this->descriptions = array();
         // $this->descriptions['engineer'] = 'The engineer is responsible for operating the train';
         // $this->descriptions['conductor'] = 'The freight conductor supervises train conditions on the ground at terminal points and remains attentive to the engineer while the train is in motion in the case of emergency, when action could be needed';
         // $this->descriptions['positive train control'] = 'Positive Train Control (PTC), set to be fully implemented by 2018, is an embedded feature of railroads that automatically manages speed restrictions and emergency braking without human input';
@@ -44,12 +44,29 @@ class Operator
         {
             $this->active = true;
         }
-        // $this->description = $this->descriptions[$this->name];
+        else
+        {
+            $this->active = false;
+        }
+
+        $this->type = $this->name;
+
+        if (isset($ASSISTANT_DESCRIPTIONS[$this->name]))
+        {
+            $this->description = $ASSISTANT_DESCRIPTIONS[$this->name];
+        }
+        else
+        {
+            $this->description = 'You can define this assistant';
+        }
     }
 
     function writeToFile($file)
     {
-        fwrite($file, "op_name\t\t\t$this->name\n");
-		fwrite($file, "tasks\t\t\t" . implode(" ", $this->tasks) . "\n");
+        if ($this->active and !empty($this->tasks))
+        {
+            fwrite($file, "op_name\t\t\t$this->name\n");
+            fwrite($file, "tasks\t\t\t" . implode(" ", $this->tasks) . "\n");
+        }
     }
 }

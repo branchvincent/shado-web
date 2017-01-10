@@ -2,6 +2,13 @@
 
 class Database
 {
+//  Public data members
+
+    var $servername;
+    var $username;
+    var $password;
+    var $dbname;
+
 //  Public member functions
 
     function __construct()
@@ -123,11 +130,4 @@ class Database
     		}
     	}
     }
-
-//  Public data members
-
-    var $servername;
-    var $username;
-    var $password;
-    var $dbname;
 }

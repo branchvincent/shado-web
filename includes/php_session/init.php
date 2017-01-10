@@ -16,8 +16,8 @@ spl_autoload_register(function ($class_name)
 	require_once("classes/$class_name.php");
 });
 
-require_once('includes/php_session/util.php');
 require_once('includes/php_session/globals.php');
+require_once('includes/php_session/util.php');
 
 //	Resume session
 

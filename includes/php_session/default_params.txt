@@ -9,8 +9,8 @@ op_name			Positive Train Control
 tasks			1 5 6
 op_name	        Cruise Control
 tasks			8
-op_name         custom
-tasks
+op_name	        Custom
+tasks           
 name      		Communicating
 prty         	4 3 4
 arr_dist     	E

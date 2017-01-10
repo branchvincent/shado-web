@@ -20,9 +20,7 @@
 	$page_title = 'Detailed Analysis';
 	require_once('includes/page_parts/header.php');
 	require_once('includes/page_parts/side_navigation.php');
-	require_once('includes/results/graph_navBar_calculations.php');
 	// require_once('includes/results/d3_graph.php');
-	require_once('includes/results/graph_CsvFile.php');
 	echo "<div id='page' class='page'>";
 	if ($_GET['operator'] == 'conductor') {
 		$assistant = "conductor";

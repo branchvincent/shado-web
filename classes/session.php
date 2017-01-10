@@ -34,7 +34,6 @@ if (empty($_SESSION['session_started']))
     $_SESSION['des_version'] = '1.0.0';
 
     $_SESSION['parameters'] = new Parameters('includes/php_session/default_params.txt');
-    $_SESSION['defaults'] = new Parameters('includes/php_session/default_params.txt');
 }
 else
 {

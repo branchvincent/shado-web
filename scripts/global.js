@@ -2,14 +2,23 @@
 //     $(document).ready(init());
 // });
 
-function callPHP(funct)
+function callPHPFile(file)
 {
-    console.log("Calling php." + funct + "()...");
+    window.open(file);
+}
+
+function callPHP(funct, args = '')
+{
+    console.log("Calling php." + funct + "(" + args + ")...");
     jQuery.ajax(
     {
         url: 'callPHP.php',
         type: 'POST',
-        data: 'funct=' + funct
+        data:
+        {
+            funct: funct,
+            args: args
+        }
      }).done(function(data){
             console.log(JSON.stringify(data));
     });

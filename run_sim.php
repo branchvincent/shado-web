@@ -14,23 +14,28 @@
 //	Initialize session
 
 	require_once('includes/php_session/init.php');
-	echo "here";
 
 //	Update database
 
-	if (PHP_OS == "Linux") {
-		update_database();
+	if (PHP_OS == "Linux")
+	{
+		$_SESSION['database']->update();
 	}
 
 //	Create parameter file and run simulation
 
 	$_SESSION['parameters']->writeToFile($_SESSION['session_dir'] . "params");
 
-	if (PHP_OS == "Darwin") {
+	if (PHP_OS == "Darwin")
+	{
 		echo passthru("bin/des_mac " . $_SESSION['session_dir'] . "params");
-	} else if (PHP_OS == "Linux") {
-		exec ("bin/des_unix " . $_SESSION['session_dir'] . "params");
-	} else {
+	}
+	else if (PHP_OS == "Linux")
+	{
+		exec("bin/des_unix " . $_SESSION['session_dir'] . "params");
+	}
+	else
+	{
 		die("Operating system not recognized.");
 	}
 

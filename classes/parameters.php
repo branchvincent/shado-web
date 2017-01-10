@@ -207,4 +207,42 @@ class Parameters
             }
         }
     }
+
+    /****************************************************************************
+    *																			*
+    *	Function:	setActiveOperators											*
+    *																			*
+    *	Purpose:	To set the active operators                             	*
+    *																			*
+    ****************************************************************************/
+
+    function getOperatorByName($op_name)
+    {
+        foreach ($this->operators as $op)
+        {
+            if ($op->name = ucwords($op_name))
+            {
+                return $op;
+            }
+        }
+    }
+
+    /****************************************************************************
+    *																			*
+    *	Function:	setActiveOperators											*
+    *																			*
+    *	Purpose:	To set the active operators                             	*
+    *																			*
+    ****************************************************************************/
+
+    function getOperatorByType($op_type)
+    {
+        foreach ($this->operators as $op)
+        {
+            if ($op->type = ucwords($op_type))
+            {
+                return $op;
+            }
+        }
+    }
 }

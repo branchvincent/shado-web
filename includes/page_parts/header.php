@@ -31,7 +31,8 @@
 					<?php
 						if ($DEBUG)
 						{
-							echo "<li style=\"float: right; background-color: red;\"><a href=\"#\" onclick=\"callPHP('clearSession')\">Reset Session</a></li>";
+							echo "<li style=\"float: right; background-color: pink;\"><a href=\"#\" onclick=\"window.open('callPHP.php?f=print_r&a=\$GLOBALS')\">Print Session</a></li>";
+							echo "<li style=\"float: right; background-color: red;\"><a href=\"#\" onclick=\"callPHP('clearSession'); location.reload()\">Reset Session</a></li>";
 						}
 					?>
 				</ul>
