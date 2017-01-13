@@ -15,7 +15,7 @@
 
 //	Include headers
 
-	$page_title = 'Results';
+	$PAGE_TITLE = 'Results';
 	require_once('includes/page_parts/header.php');
 	require_once('includes/page_parts/side_navigation.php');
 	// require_once('includes/results/operator_calculations.php');

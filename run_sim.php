@@ -47,8 +47,8 @@
 	//
 	// 	}
 
-	$html_head_insertions = '<link rel="stylesheet" href="styles/loading_bar.css">';
-	$html_head_insertions .= "<script src='scripts/loading_bar.js'></script>";
+	$HTML_HEADER = '<link rel="stylesheet" href="styles/loading_bar.css">';
+	$HTML_HEADER .= "<script src='scripts/loading_bar.js'></script>";
 	require_once('includes/page_parts/header.php');
 ?>
 

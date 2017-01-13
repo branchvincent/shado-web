@@ -15,7 +15,7 @@
 
 //	Include headers
 
-	$page_title = 'Results';
+	$PAGE_TITLE = 'Results';
 	// include('includes/results/read_csv.php');
 	require_once('includes/page_parts/header.php');
 	require_once('includes/page_parts/side_navigation.php');

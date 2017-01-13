@@ -15,7 +15,7 @@
 
 //	Include headers
 
-	$page_title = 'Contact Us';
+	$PAGE_TITLE = 'Contact Us';
 	require_once('includes/page_parts/header.php');
 ?>
 			<div id="contactPage" class="page">

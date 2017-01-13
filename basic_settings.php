@@ -18,7 +18,7 @@
 
 	$PAGE_TITLE = 'Run Simulation';
 	$HTML_HEADER = '<script type="text/javascript" src="scripts/basic_settings.js"></script>';
-	$html_head_insertions .= '<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>';
+	$HTML_HEADER .= '<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>';
 	require_once('includes/page_parts/header.php');
 	require_once('includes/page_parts/side_navigation.php');
 ?>

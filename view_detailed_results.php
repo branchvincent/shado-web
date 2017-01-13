@@ -15,9 +15,9 @@
 
 //	Include headers
 
-	$html_head_insertions = '<script src="http://d3js.org/d3.v3.min.js"></script>' . "\r\n\t\t";
-	$html_head_insertions .= '<script type="text/javascript" src="scripts/d3_graph.js"></script>';
-	$page_title = 'Detailed Analysis';
+	$HTML_HEADER = '<script src="http://d3js.org/d3.v3.min.js"></script>' . "\r\n\t\t";
+	$HTML_HEADER .= '<script type="text/javascript" src="scripts/d3_graph.js"></script>';
+	$PAGE_TITLE = 'Detailed Analysis';
 	require_once('includes/page_parts/header.php');
 	require_once('includes/page_parts/side_navigation.php');
 	// require_once('includes/results/d3_graph.php');

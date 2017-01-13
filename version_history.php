@@ -15,7 +15,7 @@
 
 //	Include headers
 
-	$page_title = 'Current Version';
+	$PAGE_TITLE = 'Current Version';
 	require_once('includes/page_parts/header.php');
 ?>
 			<div id="versionPage" class="page">

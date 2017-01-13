@@ -2,14 +2,14 @@
 	<head>
 		<meta charset='UTF-8'>
 		<meta name='viewport' content='width=device-width, initial-scale=1.0'>
-		<title><?php if (isset($page_title)) echo $page_title; else echo 'SHOW';?></title>
+		<title><?php if (isset($PAGE_TITLE)) echo $PAGE_TITLE; else echo 'SHOW';?></title>
 		<link rel='stylesheet' type='text/css' href='styles/global_styles.css.php'>
 		<link rel='stylesheet' type='text/css' href='styles/tooltip.css'>
 		<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
 		<script type='text/javascript' src='scripts/global.js'></script>
 		<script type='text/javascript' src='scripts/graph_navBar.js'></script>
 		<script type='text/javascript' src='scripts/nav_selections.js'></script>
-		<?php if (isset($html_head_insertions)) echo $html_head_insertions;?>
+		<?php if (isset($HTML_HEADER)) echo $HTML_HEADER;?>
 	</head>
 	<body>
 		<!-- Header -->
@@ -30,13 +30,13 @@
 					<li style='float: right'><a href='version_history'>Version</a></li>
 				<?php if ($DEBUG): echo "\r\n";?>
 					<li style='float: right; background-color: pink;'>
-						<a href='#' onclick='window.open("callPHP.php?f=print_r&a=$GLOBALS")'>
-							Print Session
+						<a href='#' onclick='window.open("callPHP?f=print_r&a=$GLOBALS")'>
+							Print
 						</a>
 					</li>
 					<li style='float: right; background-color: red;'>
-						<a href='#' onclick='callPHP("clearSession"); location.reload()'>
-							Reset Session
+						<a href='#' onclick='window.open("callPHP?f=clearSession"); location.reload();'>
+							Reset
 						</a>
 					</li>
 				<?php endif; echo "\r\n";?>

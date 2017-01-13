@@ -15,7 +15,7 @@
 
 //	Include headers
 
-	$page_title = 'SHOW';
+	$PAGE_TITLE = 'SHOW';
 	require_once('includes/page_parts/header.php');
 ?>
 			<div id="homePage" class="page">

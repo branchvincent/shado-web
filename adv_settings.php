@@ -16,8 +16,8 @@
 
 //	Include headers
 
-	$page_title = 'Advanced Settings';
-	$html_head_insertions = '<script type="text/javascript" src="scripts/adv_settings.js"></script>';
+	$PAGE_TITLE = 'Advanced Settings';
+	$HTML_HEADER = '<script type="text/javascript" src="scripts/adv_settings.js"></script>';
 	require_once('includes/page_parts/header.php');
 	require_once('includes/page_parts/side_navigation.php');
 
