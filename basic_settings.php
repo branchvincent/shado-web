@@ -28,6 +28,20 @@
 			To get started, provide the following information. Then, you can either run the simulation or change more assumptions.
 		</p>
 		<br>
+		<div class="">
+			<strong>Batch:</strong>
+			<select id='batch' onchange="">
+				<?php
+					$batch = (int)substr($_SESSION['parameters']->end, 3, 5);
+					for ($i = 1; $i <= 5; $i++) {
+						$selected = '';
+						if ($i == $batch) $selected = ' selected="selected"';
+						// $val = sprintf('%02d', $i);
+						echo "<option$selected>$i</option>";
+					}
+				?>
+			</select>
+		</div>
 
 		<!-- <div style="width: 100%; float: right;">
 			<form action="adv_settings.php">
@@ -40,10 +54,28 @@
 			</form>
 		</div> -->
 
-		<form class="centerOuter" action="basic_settings_send" method="post">
+		<form class="centerOuter" action="adv_settings" method="post">
 			<div class="centerOuter">
 				<div class="startEndTime stepBox" style="width: 220px;">
 					<div class='stepCircle'>1</div>
+					<h3 class="whiteFont">How Many Trains In This Batch? <span class="hint--bottom-right hint--rounded hint--large" aria-label= "Enter the number of trains that are in this batch."><sup>(?)</sup></span></h3>
+
+					<select id='beginMin' onchange="calculate_time();">
+						<?php
+							$min = (int)substr($_SESSION['parameters']->end, 3, 5);
+							for ($i = 1; $i <= 15; $i++) {
+								$selected = '';
+								if ($i == $min) $selected = ' selected="selected"';
+								$val = sprintf('%02d', $i);
+								echo "<option$selected>$val</option>";
+							}
+						?>
+					</select>
+					<input id="begin_time" name="begin_time" type="hidden" value="<?php echo $_SESSION['parameters']->begin;?>">
+				</div>
+				<br>
+				<div class="startEndTime stepBox" style="width: 220px;">
+					<div class='stepCircle'>2</div>
 					<h3 class="whiteFont">When Does Your Trip Begin? <span class="hint--bottom-right hint--rounded hint--large" aria-label= "Enter the time of day that your engineer begins his/her shift."><sup>(?)</sup></span></h3>
 
 					<select id='beginHour' onchange="calculate_time();">
@@ -82,7 +114,7 @@
 				</div>
 
 				<div class="startEndTime stepBox" style="width: 220px;">
-					<div class='stepCircle'>2</div>
+					<div class='stepCircle'>3</div>
 					<h3 class="whiteFont">When Does Your Trip End? <span class="hint--bottom-left hint--rounded hint--large" aria-label="Enter the time of day that your engineer is expected to end his/her shift."><sup>(?)</sup></span></h3>
 
 					<select id='endHour' onchange="calculate_time();">
@@ -123,7 +155,7 @@
 			</div>
 
 			<div class="trafficTableStepOuter stepBox centerOuter">
-				<div class='stepCircle'>3</div>
+				<div class='stepCircle'>4</div>
 					<h3 class="whiteFont">
 						What are the Traffic Levels?
 						<span class="hint--right hint--rounded hint--large" aria-label= "Enter the local levels of traffic during this shift. This will modify the frequency of certain task arrivals."><sup>(?)</sup></span>
@@ -154,7 +186,7 @@
 			</div>
 			<br><br>
 			<div class="assistantsSelectStepOuter stepBox centerOuter">
-				<div class='stepCircle'>4</div>
+				<div class='stepCircle'>5</div>
 				<h3 id='assistants' class='whiteFont'>Who Will Assist the Engineer? <span class="hint--right hint--rounded hint--large" aria-label= "Identify any humans or technologies that will support the locomotive engineer. SHOW models their interaction by offloading certain tasks from the engineer."><sup>(?)</sup></span></h3>
 				<div id="assist">
 					<table id="assistantsTable" cellspacing="0">

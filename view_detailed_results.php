@@ -20,26 +20,28 @@
 	$page_title = 'Detailed Analysis';
 	require_once('includes/page_parts/header.php');
 	require_once('includes/page_parts/side_navigation.php');
-	require_once('includes/results/graph_navBar_calculations.php');
-	// require_once('includes/results/d3_graph.php');
-	require_once('includes/results/graph_CsvFile.php');
-	echo "<div id='page' class='page'>";
-	if ($_GET['operator'] == 'conductor') {
-		$assistant = "conductor";
-		require_once('includes/results/d3_graph.php');
-		createGraphCsv('conductor');
-		graphText('conductor');
-		echo "</div>";
-	} else if ($_GET['operator'] == 'engineer') {
-		$assistant = "Engineer";
-		require_once('includes/results/d3_graph.php');
-		createGraphCsv('engineer');
-		graphText('engineer');
-		echo "</div>";
-	} else {
-		die('There was an error');
-	}
 ?>
+	<div class="centerOuter">
+		<br>
+		<br>
+		<strong>Batch:</strong>
+		<select id='batch' onchange="">
+			<?php
+				$batch = (int)substr($_SESSION['parameters']->end, 3, 5);
+				for ($i = 1; $i <= 5; $i++) {
+					$selected = '';
+					if ($i == $batch) $selected = ' selected="selected"';
+					// $val = sprintf('%02d', $i);
+					echo "<option$selected>$i</option>";
+				}
+			?>
+		</select>
+	</div>
+
+	<div class="centerOuter">
+		<img src="img.png">
+	</div>
+
 	<div id="bottomNav">
 		<ul>
 			<li>
