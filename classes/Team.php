@@ -22,27 +22,7 @@ class Team
 
     function updateFromFile($file)
     {
-        $this->name = strtolower(trim(strstr(fgets($file), "\t")));
-        $this->tasks = array_map('intval', explode(" ", strstr(fgets($file), "\t")));
-        if ($this->name == "engineer")
-        {
-            $this->active = true;
-        }
-        else
-        {
-            $this->active = false;
-        }
 
-        $this->type = $this->name;
-
-        if (isset($ASSISTANT_DESCRIPTIONS[$this->name]))
-        {
-            $this->description = $ASSISTANT_DESCRIPTIONS[$this->name];
-        }
-        else
-        {
-            $this->description = 'You can define this assistant';
-        }
     }
 
     function writeToFile($file)
