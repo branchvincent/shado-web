@@ -11,17 +11,6 @@
 
 class Task
 {
-//  Public data members
-
-    var $name;
-    var $priority;
-    var $interarrival;
-    var $service;
-    var $expiration;
-    var $traffic;
-    var $description;
-    var $results;
-
 //  Public member functions
 
     function __construct($name = 'New')
@@ -92,4 +81,15 @@ class Task
 		fwrite($file, "expiration_hi\t" . implode(" ", $this->expiration['hi']) . "\n");
 		fwrite($file, "traffic\t\t\t" . implode(" ", $this->traffic) . "\n");
     }
+
+//  Public data members
+
+    var $name;
+    var $priority;
+    var $interarrival;
+    var $service;
+    var $expiration;
+    var $traffic;
+    var $description;
+    var $results;
 }

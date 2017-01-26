@@ -28,18 +28,18 @@
 					<li><a href='basic_settings'>Run Simulation</a></li>
 					<li><a href='contact_us'>Contact Us</a></li>
 					<li style='float: right'><a href='version_history'>Version</a></li>
-				<?php if ($DEBUG): echo "\r\n";?>
+				<?php if (Util::$DEBUG): ?>
 					<li style='float: right; background-color: pink;'>
 						<a href='#' onclick='window.open("callPHP?f=print_r&a=$GLOBALS")'>
 							Print
 						</a>
 					</li>
 					<li style='float: right; background-color: red;'>
-						<a href='#' onclick='window.open("callPHP?f=clearSession"); location.reload();'>
+						<a href='#' onclick='window.open("callPHP?f=Util::clearSession"); location.reload();'>
 							Reset
 						</a>
 					</li>
-				<?php endif; echo "\r\n";?>
+				<?php endif ?>
 				</ul>
 			</nav>
 		</div>
@@ -47,4 +47,4 @@
 		<!-- Page body -->
 		<div id='fixedBody'></div>
 		<div id='main'>
-			<input id='assistant_info' value='<?php echo $_SESSION['session_results'] + in_array('conductor', $_SESSION['parameters']->getActiveOperators());?>' type='hidden'>
+			<input id='assistant_info' value='<?=$_SESSION['session_results'] + in_array('conductor', $_SESSION['parameters']->getActiveAgents())?>' type='hidden'>

@@ -26,7 +26,7 @@
 	$_SESSION['parameters']->begin = $_POST['begin_time'];
 	$_SESSION['parameters']->end = $_POST['end_time'];
 	$_SESSION['parameters']->traffic = $_POST['traffic_levels'];
-	$_SESSION['parameters']->setActiveOperators(array_keys($_POST['assistants']));
+	$_SESSION['parameters']->setActiveAgents(array_keys($_POST['assistants']));
 
 //	Store custom operator tasks
 

@@ -21,6 +21,16 @@
 	$HTML_HEADER .= '<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>';
 	require_once('includes/page_parts/header.php');
 	require_once('includes/page_parts/side_navigation.php');
+
+//	Define local variables
+
+	$begin_hr = (int)substr($_SESSION['parameters']->begin, 0, 2);
+	$begin_min = (int)substr($_SESSION['parameters']->begin, 3, 5);
+	$begin_md = substr($_SESSION['parameters']->begin, 6);
+
+	$end_hr = (int)substr($_SESSION['parameters']->end, 0, 2);
+	$end_min = (int)substr($_SESSION['parameters']->end, 3, 5);
+	$end_md = substr($_SESSION['parameters']->end, 6);
 ?>
 	<div id='runSimulationPage' class='page'>
 		<h1 class='pageTitle'>Input Basic Trip Conditions</h1>
@@ -28,183 +38,138 @@
 			To get started, provide the following information. Then, you can either run the simulation or change more assumptions.
 		</p>
 
+		<!-- Form -->
 		<form class='centerOuter' action='basic_settings_send' method='post'>
 			<div class="centerOuter">
+
+				<!-- Begin time -->
 				<div class="startEndTime stepBox" style="width: 220px;">
 					<div class='stepCircle'>1</div>
-					<h3 class='whiteFont'>When Does This Batch Trip Begin? <span class='hint--bottom-right hint--rounded hint--large' aria-label= 'Enter the time of day that your engineer begins his/her shift.'><sup>(?)</sup></span></h3>
+					<h3 class='whiteFont'>
+						When Does This Batch Trip Begin?
+						<?=Util::createTooltip('Enter the time of day that your engineer begins his/her shift.')?>
+					</h3>
 
-					<select id='beginHour' onchange='calculate_time();'>
-						<?php
-							$hr = (int)substr($_SESSION['parameters']->begin, 0, 2);
-							for ($i = 1; $i <= 12; $i++)
-							{
-								$selected = '';
-								if ($i == $hr) $selected = ' selected="selected"';
-								$val = sprintf('%02d', $i);
-								echo "<option$selected>$val</option>";
-							}
-						?>
-					</select>:<select id='beginMin' onchange="calculate_time();">
-						<?php
-							$min = (int)substr($_SESSION['parameters']->end, 3, 5);
-							for ($i = 0; $i <= 50; $i+=10)
-							{
-								$selected = '';
-								if ($i == $min) $selected = ' selected="selected"';
-								$val = sprintf('%02d', $i);
-								echo "<option$selected>$val</option>";
-							}
-						?>
+					<select id='beginHour' onchange='calculate_time()'>
+						<?=Util::getSelectOptions(range(1,12), $begin_hr, true)?>
+					</select> :
+
+					<select id='beginMin' onchange="calculate_time()">
+						<?=Util::getSelectOptions(range(0,50,10), $begin_min, true)?>
 					</select>
-					<select id='beginMd' onchange="calculate_time();">
-						<?php
-							$options = ['AM', 'PM'];
-							$md = substr($_SESSION['parameters']->begin, 6);
-							for ($i = 0; $i < sizeof($options); $i++)
-							{
-								$selected = '';
-								if ($options[$i] == $md) $selected = ' selected="selected"';
-								echo "<option$selected>$options[$i]</option>";
-							}
-						?>
+
+					<select id='beginMd' onchange="calculate_time()">
+						<?=Util::getSelectOptions(['AM', 'PM'], $begin_md)?>
 					</select>
-					<input id="begin_time" name="begin_time" type="hidden" value="<?php echo $_SESSION['parameters']->begin;?>">
+
+					<input id="begin_time" name="begin_time" type="hidden" value="<?=$_SESSION['parameters']->begin?>">
 				</div>
 
+				<!-- End time -->
 				<div class="startEndTime stepBox" style="width: 220px;">
 					<div class='stepCircle'>2</div>
-					<h3 class="whiteFont">When Does This Batch Trip End? <span class="hint--bottom-left hint--rounded hint--large" aria-label="Enter the time of day that your engineer is expected to end his/her shift."><sup>(?)</sup></span></h3>
+					<h3 class="whiteFont">
+						When Does This Batch Trip End?
+						<?=Util::createTooltip('Enter the time of day that your engineer is expected to end his/her shift.')?>
+					</h3>
 
-					<select id='endHour' onchange="calculate_time();">
-						<?php
-							$hr = (int)substr($_SESSION['parameters']->end, 0, 2);
-							for ($i = 1; $i <= 12; $i++) {
-								$selected = '';
-								if ($i == $hr) $selected = ' selected="selected"';
-								$val = sprintf('%02d', $i);
-								echo "<option$selected>$val</option>";
-							}
-						?>
-					</select>:<select id='endMin' onchange="calculate_time();">
-						<?php
-							$min = (int)substr($_SESSION['parameters']->end, 3, 5);
-							for ($i = 0; $i <= 50; $i+=10)
-							{
-								$selected = '';
-								if ($i == $min) $selected = ' selected="selected"';
-								$val = sprintf('%02d', $i);
-								echo "<option$selected>$val</option>";
-							}
-						?>
+					<select id='endHour' onchange="calculate_time()">
+					<?=Util::getSelectOptions(range(1,12), $end_hr, true)?>
+					</select> :
+
+					<select id='endMin' onchange="calculate_time()">
+					<?=Util::getSelectOptions(range(0,50,10), $end_min, true)?>
 					</select>
-					<select id='endMd' onchange="calculate_time();">
-						<?php
-							$options = ['AM', 'PM'];
-							$md = substr($_SESSION['parameters']->end, 6);
-							for ($i = 0; $i < sizeof($options); $i++)
-							{
-								$selected = '';
-								if ($options[$i] == $md) $selected = ' selected="selected"';
-								echo "<option$selected>$options[$i]</option>";
-							}
-						?>
+
+					<select id='endMd' onchange="calculate_time()">
+					<?=Util::getSelectOptions(['AM', 'PM'], $end_md)?>
 					</select>
-					<input id="end_time" name="end_time" type="hidden" value="<?php echo $_SESSION['parameters']->end;?>">
-					<input id="num_hours" name="num_hours" type="hidden" value="<?php echo $_SESSION['parameters']->hours;?>">
+
+					<input id="end_time" name="end_time" type="hidden" value="<?=$_SESSION['parameters']->end?>">
+					<input id="num_hours" name="num_hours" type="hidden" value="<?=$_SESSION['parameters']->hours?>">
 				</div>
 			</div>
 
+			<!-- Traffic levels -->
 			<div class="trafficTableStepOuter stepBox centerOuter">
 				<div class='stepCircle'>3</div>
 					<h3 class="whiteFont">
 						What are the Batch Traffic Levels?
-						<span class="hint--right hint--rounded hint--large" aria-label= "Enter the local levels of traffic during this shift. This will modify the frequency of certain task arrivals."><sup>(?)</sup></span>
+						<?=Util::createTooltip('Enter the local levels of traffic during this shift. This will modify the frequency of certain task arrivals.')?>
 					</h3>
-					<div id="totalTime" style="overflow-x:auto;">
+					<div style="overflow-x:auto;">
 						<table id='table' class='trafficTable remove'>
-							<?php
-								echo '<tr id="traffic_levels">';
-								$chars = ['h', 'm', 'l'];
-								$labels = ['High', 'Med', 'Low'];
-								for ($i = 0; $i < $_SESSION['parameters']->hours; $i++)
-								{
-									$val = $_SESSION['parameters']->traffic[$i];
-									echo '<td>';
-									for ($j = 0; $j < sizeof($labels); $j++)
-									{
-										$selected = '';
-										if ($chars[$j] == $val) $selected = ' checked';
-										echo "<input type='radio' name='traffic_levels[$i]' value='$chars[$j]'$selected>$labels[$j]</input><br>";
-									}
-									echo '</td>';
-								}
-								echo '</tr>';
-								echo '<tr id="traffic_level_labels">';
-								echo '</tr>';
-							?>
+							<tr id="trafficLevels"></tr>
+							<tr id="trafficLevelLabels"></tr>
 						</table>
 
+						<input id="traffic_levels" name="traffic_levels" type='hidden' value='<?=json_encode($_SESSION['parameters']->traffic)?>'>
 				</div>
 			</div>
+
 			<br><br>
-			<div class="assistantsSelectStepOuter stepBox centerOuter">
-				<div class='stepCircle'>4</div>
-				<h3 id='assistants' class='whiteFont'>Who Will Assist the Engineer? <span class="hint--right hint--rounded hint--large" aria-label= "Identify any humans or technologies that will support the locomotive engineer. SHOW models their interaction by offloading certain tasks from the engineer."><sup>(?)</sup></span></h3>
-				<div id="assist">
-					<table id="assistantsTable" cellspacing="0">
-						<tr>
-							<?php
-								$assistants = $_SESSION['parameters']->operators;
-								for ($i = 0; $i < sizeof($assistants); $i++)
-								{
-									$assistant = $assistants[$i];
-									$selected = '';
-									if ($assistant->active)
-									{
-										$selected = ' checked';
-									}
-									echo '<td><input ';
-									if ($assistant->type == 'custom') echo 'id="custom_assistant" onchange="toggle_custom_settings();"';
-									echo 'type="checkbox" name="assistants[' . $assistant->name . ']"' . $selected . '>' . ucwords($assistant->name) . ' ';
-									echo "<span class='hint--right hint--rounded hint--large' aria-label= '". $assistant->description . "'><sup>(?)</sup></span>";
-									echo '</td>';
-								}
-							?>
-						</tr>
-					</table>
-				</div>
-			</div>
+
+			<!-- Assistants -->
+		    <div class="assistantsSelectStepOuter stepBox centerOuter">
+		        <div class='stepCircle'>4</div>
+		        <h3 id='assistants' class='whiteFont'>Who Will Assist the Engineer?
+					<?=Util::createTooltip('Identify any humans or technologies that will support the locomotive engineer. SHOW models their interaction by offloading certain tasks from the engineer.')?>
+				</h3>
+		        <div id="assist">
+		            <table id="assistantsTable" cellspacing="0">
+		                <tr>
+	                    <?php
+							foreach ($_SESSION['parameters']->agents as $agt):
+	                        	$checked = $custom = '';
+	                            if ($agt->active)
+									$checked = ' checked';
+								if ($agt->type == 'custom')
+									$custom = ' id="custom_assistant" onchange="toggle_custom_settings()"';
+								if ($agt->name == 'engineer') continue;
+						?>
+							<td>
+		                        <input <?=$custom?> type="checkbox" name="assistants[<?=$agt->name?>]"<?=$checked?>><?=ucwords($agt->name) . " " . Util::createTooltip($agt->description)?>
+							</td>
+	                    <?php endforeach ?>
+		                </tr>
+		            </table>
+		        </div>
+		    </div>
+
 			<br>
+
+			<!-- Custom assistant settings -->
 			<div class="custom remove" id="custom_assistant_settings">
-				<div class='stepCircle'>5</div>
-
-				<h3 id='custom_heading' class='whiteFont'>Which Tasks Will This Custom Assistant Handle? <span class="hint--right hint--rounded hint--large" aria-label= "Identify which tasks the custom assistant can offload from the locomotive engineer."><sup>(?)</sup></span></h3>
-				<br>
-				<table id='custom_table'>
-					<tr>
-						<?php $op = $_SESSION['parameters']->getOperatorByType('custom')?>
-						<th>Assistant Name:</td>
-						<td><input type='text' name="custom_op_name" value="<?php if ($op->name != 'custom') echo ucwords($op->name); ?>"></input></td>
-					</tr>
-				<?php
-					$i = 0;
-					foreach ($_SESSION['parameters']->getOperatorByName('engineer')->tasks as $task)
-					{
-						echo "<tr><td>" . ucwords($task->name) . " <span class='hint--right hint--rounded hint--large' aria-label= '".  $ENGINEER_TASK_DESCRIPTIONS[$task->name] . "'>";
-						// echo "<tr><td>" . ucwords($task) . " <span class='hint--right hint--rounded hint--large' aria-label= '".  $ENGINEER_TASK_DESCRIPTIONS[$task] . "'>";
-						echo '<sup>(?)</sup></span></td><td>';
-						echo '<input type="checkbox" name="custom_op_task_' . $i . '"';
-						// echo '<input type="checkbox" name="assistants[' . $op->name . '][tasks][' . $i . ']"';
-						if (in_array($i++, $op->tasks)) echo ' checked';
-						echo '></input>';
-						echo '</td></tr>';
-					}
+		        <div class='stepCircle'>5</div>
+		        <h3 id='custom_heading' class='whiteFont'>Which Tasks Will This Custom Assistant Handle?
+					<?=Util::createTooltip('Identify which tasks the custom assistant can offload from the locomotive engineer.')?>
+				</h3>
+		        <br>
+		        <table id='custom_table'>
+		            <tr>
+		                <?php $asst = $_SESSION['parameters']->getAgentByType('custom')?>
+		                <th>Assistant Name:</td>
+		                <td><input type='text' name="custom_op_name" value="<?=ucwords($asst->name)?>"></input></td>
+		            </tr>
+		        <?php foreach ($_SESSION['parameters']->getAgentByName('engineer')->tasks as $i => $task):
+						$checked = '';
+						if (in_array($i, $asst->tasks)) $checked = ' checked';
 				?>
-				</table>
-			</div>
+					<tr>
+						<td>
+							<?php print_r($task)?>
+							<?=ucwords($task->name) . ' ' . Util::createTooltip($ENGINEER_TASK_DESCRIPTIONS[$task->name])?>
+						</td>
+						<td>
+							<input type="checkbox" name="assistants[<?=$asst->name?>][tasks][<?=$i?>]"<?=$checked?>>
+							</input>
+						</td>
+					</tr>
+		        <?php endforeach?>
+		        </table>
+		    </div>
 
-			<br>
+			<!-- Bottom navigation -->
 			<div id="bottomNav">
 				<ul>
 					<li>
@@ -221,6 +186,7 @@
 					</li> -->
 				</ul>
 			</div>
+
 		</form>
 	</div>
 <?php require_once('includes/page_parts/footer.php');?>

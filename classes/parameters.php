@@ -9,21 +9,11 @@
 *													     				    *
 ****************************************************************************/
 
-require_once('classes/operator.php');
-require_once('classes/task.php');
+require_once('classes/Agent.php');
+require_once('classes/Task.php');
 
 class Parameters
 {
-//  Public data members
-
-    var $hours;
-    var $begin;
-    var $end;
-    var $traffic;
-    var $reps;
-    var $operators;
-    var $tasks;
-
 //  Public member functions
 
     /****************************************************************************
@@ -48,7 +38,7 @@ class Parameters
         else
         {
             $this->reps = 100;
-            $this->operators = array(new Operator);
+            $this->agents = array(new Agent);
             $this->tasks = array(new Task);
         }
     }
@@ -98,18 +88,16 @@ class Parameters
         $file = fopen($file_path, 'r') or die('Unable to open default parameter file! Please return to check and update your settings.');
 
         $this->reps = fscanf($file, "%s %d")[1];
-        $num_ops = fscanf($file, "%s %d")[1];
+        $num_agts = fscanf($file, "%s %d")[1];
         $num_tasks = fscanf($file, "%s %d")[1];
-        // $tasks = array_fill(0, $num_tasks, 0);
-        // $operators = array_fill(0, $num_ops, 0);
 
     //  Initialize arrays
 
-        $this->operators = array();
+        $this->agents = array();
         $this->tasks = array();
-        for ($i = 0; $i < $num_ops; $i++)
+        for ($i = 0; $i < $num_agts; $i++)
         {
-            $this->operators[$i] = new Operator;
+            $this->agents[$i] = new Agent;
         }
         for ($i = 0; $i < $num_tasks; $i++)
         {
@@ -118,9 +106,9 @@ class Parameters
 
     //  Fill arrays
 
-        foreach ($this->operators as $op)
+        foreach ($this->agents as $agt)
         {
-            $op->updateFromFile($file);
+            $agt->updateFromFile($file);
         }
 
         foreach ($this->tasks as $task)
@@ -147,12 +135,12 @@ class Parameters
     	fwrite($file, "num_hours\t\t$this->hours\n");
     	fwrite($file, "traff_levels\t" . implode(" ", $this->getTrafficNums()) . "\n");
     	fwrite($file, "num_reps\t\t$this->reps\n");
-    	fwrite($file, "num_ops\t\t\t" . sizeof($this->operators) . "\n");
+    	fwrite($file, "num_agts\t\t\t" . sizeof($this->agents) . "\n");
     	fwrite($file, "num_tasks\t\t" . sizeof($this->tasks) . "\n");
 
-        foreach ($this->operators as $op)
+        foreach ($this->agents as $agt)
         {
-            $op->writeToFile($file);
+            $agt->writeToFile($file);
         }
         foreach ($this->tasks as $task)
         {
@@ -164,21 +152,21 @@ class Parameters
 
     /****************************************************************************
     *																			*
-    *	Function:	getActiveOperators											*
+    *	Function:	getActiveAgents 											*
     *																			*
-    *	Purpose:	To return an array of active operators                   	*
+    *	Purpose:	To return an array of active agents                   	    *
     *																			*
     ****************************************************************************/
 
-    function getActiveOperators()
+    function getActiveAgents()
     {
         $names = array();
 
-        foreach ($this->operators as $op)
+        foreach ($this->agents as $agt)
         {
-            if ($op->active)
+            if ($agt->active)
             {
-                array_push($names, $op->name);
+                array_push($names, $agt->name);
             }
         }
 
@@ -187,62 +175,72 @@ class Parameters
 
     /****************************************************************************
     *																			*
-    *	Function:	setActiveOperators											*
+    *	Function:	setActiveAgents											    *
     *																			*
-    *	Purpose:	To set the active operators                             	*
+    *	Purpose:	To set the active agents                             	    *
     *																			*
     ****************************************************************************/
 
-    function setActiveOperators($op_names)
+    function setActiveAgents($agt_names)
     {
-        foreach ($this->operators as $op)
+        foreach ($this->agents as $agt)
         {
-            if (array_search($op->name, $op_names))
+            if (array_search($agt->name, $agt_names))
             {
-                $op->active = true;
+                $agt->active = true;
             }
             else
             {
-                $op->active = false;
+                $agt->active = false;
             }
         }
     }
 
     /****************************************************************************
     *																			*
-    *	Function:	setActiveOperators											*
+    *	Function:	getAgentByName											    *
     *																			*
-    *	Purpose:	To set the active operators                             	*
+    *	Purpose:	To get the agent by name                            	    *
     *																			*
     ****************************************************************************/
 
-    function getOperatorByName($op_name)
+    function getAgentByName($agt_name)
     {
-        foreach ($this->operators as $op)
+        foreach ($this->agents as $agt)
         {
-            if ($op->name = ucwords($op_name))
+            if ($agt->name = ucwords($agt_name))
             {
-                return $op;
+                return $agt;
             }
         }
     }
 
     /****************************************************************************
     *																			*
-    *	Function:	setActiveOperators											*
+    *	Function:	getAgentByType  											*
     *																			*
-    *	Purpose:	To set the active operators                             	*
+    *	Purpose:	To get the agents by type                                 	*
     *																			*
     ****************************************************************************/
 
-    function getOperatorByType($op_type)
+    function getAgentByType($agt_type)
     {
-        foreach ($this->operators as $op)
+        foreach ($this->agents as $agt)
         {
-            if ($op->type = strtolower($op_type))
+            if ($agt->type = strtolower($agt_type))
             {
-                return $op;
+                return $agt;
             }
         }
     }
+
+//  Public data members
+
+    var $hours;
+    var $begin;
+    var $end;
+    var $traffic;
+    var $reps;
+    var $agents;
+    var $tasks;
 }

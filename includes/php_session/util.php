@@ -67,6 +67,7 @@ function initSession()
 //  Start session
 
     $_SESSION['session_results'] = false;
+    echo "NEW SESS";
 }
 
 /****************************************************************************

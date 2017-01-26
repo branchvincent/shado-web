@@ -9,16 +9,16 @@
 *																			*
 ****************************************************************************/
 
-//	Load class and function definitions
+//	Load class definitions
 
-spl_autoload_register(function ($class_name)
+spl_autoload_register(function ($class)
 {
-	require_once("classes/$class_name.php");
+	require_once("classes/$class.php");
 });
 
-require_once('includes/php_session/globals.php');
-require_once('includes/php_session/util.php');
+// require_once('includes/php_session/globals.php');
+// require_once('includes/php_session/util.php');
 
 //	Resume session
 
-resumeSession();
+Util::resumeSession();

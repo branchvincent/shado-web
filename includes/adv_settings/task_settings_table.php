@@ -146,14 +146,14 @@
         <td colspan="3">
             <?php
                 $i = 0;
-                foreach ($_SESSION['parameters']->operators as $assistant) {
+                foreach ($_SESSION['parameters']->agents as $agt) {
                     $checked = '';
-                     if (in_array($taskNum, $assistant->tasks)) $checked = ' checked';
+                     if (in_array($taskNum, $agt->tasks)) $checked = ' checked';
                     echo "<input type='checkbox' name='tasks[$name][operators][$i]' value='on' style='margin-left: 10px;'$checked>";
-                    if ($assistant == 'custom')
+                    if ($agt == 'custom')
                         echo ucwords($_SESSION['assistants']['custom']['name']) . " ";
                     else
-                        echo ucwords($assistant->name);
+                        echo ucwords($agt->name);
                     $i++;
                 }
             ?>

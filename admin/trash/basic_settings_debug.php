@@ -192,7 +192,7 @@
 					<table id="assistantsTable" cellspacing="0">
 						<tr>
 							<?php
-								$assistants = $_SESSION['parameters']->operators;
+								$assistants = $_SESSION['parameters']->agents;
 								for ($i = 1; $i < sizeof($assistants); $i++) {
 									$assistant = $assistants[$i];
 									$selected = '';
