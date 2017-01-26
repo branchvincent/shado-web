@@ -72,6 +72,7 @@
 									// if ($i == $batch) $selected = ' selected="selected"';
 									echo "<option$selected>$name</option>";
 								}
+								echo "<option>Dispatcher</option>";
 							?>
 						</select>
 					</div>

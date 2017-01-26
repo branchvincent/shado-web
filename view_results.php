@@ -20,7 +20,7 @@
 	require_once('includes/page_parts/header.php');
 	require_once('includes/page_parts/side_navigation.php');
 	// require_once('includes/results/operator_calculations.php');
-	require_once('includes/results/operator_debug.html');
+	require_once('includes/results/operator.html');
 ?>
 			<br><br><br>
 		</div>
