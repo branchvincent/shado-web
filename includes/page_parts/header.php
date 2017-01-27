@@ -2,7 +2,7 @@
 	<head>
 		<meta charset='UTF-8'>
 		<meta name='viewport' content='width=device-width, initial-scale=1.0'>
-		<title><?php if (isset($PAGE_TITLE)) echo $PAGE_TITLE; else echo 'SHOW';?></title>
+		<title><?php if (isset($PAGE_TITLE)) echo $PAGE_TITLE; else echo 'SHADO';?></title>
 		<link rel='stylesheet' type='text/css' href='styles/global_styles.css.php'>
 		<link rel='stylesheet' type='text/css' href='styles/tooltip.css'>
 		<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
@@ -18,7 +18,7 @@
 				<a href='http://hal.pratt.duke.edu'>
 					<img id='halLogo' src='images/hal_light.png'>
 				</a>
-				<h1 style='padding: 40px 290px;'>Simulator of Human Operator Workload</h1>
+				<h1 style='padding: 40px 290px;'>Simulator of Humans and Automation in Dispatch Operations</h1>
 			</div>
 
 			<!-- Navigation -->
@@ -47,4 +47,5 @@
 		<!-- Page body -->
 		<div id='fixedBody'></div>
 		<div id='main'>
-			<input id='assistant_info' value='<?=$_SESSION['session_results'] + in_array('conductor', $_SESSION['parameters']->getActiveAgents())?>' type='hidden'>
+			<input id='assistant_info' value='<?=$_SESSION['session_results']?>' type='hidden'>
+-

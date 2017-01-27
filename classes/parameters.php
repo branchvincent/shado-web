@@ -9,8 +9,8 @@
 *													     				    *
 ****************************************************************************/
 
-require_once('classes/Agent.php');
-require_once('classes/Task.php');
+// require_once('classes/Agent.php');
+// require_once('classes/Task.php');
 
 class Parameters
 {
@@ -24,223 +24,59 @@ class Parameters
     *																			*
     ****************************************************************************/
 
-    function __construct($file_path = '')
+    function __construct($params)
     {
-        $this->hours = 8;
-        $this->begin = '09:00 AM';
-        $this->end = '05:00 PM';
-        $this->traffic = array_fill(0, $this->hours, 'm');
-
-        if ($file_path)
-        {
-            $this->updateFromFile($file_path);
-        }
-        else
-        {
-            $this->reps = 100;
-            $this->agents = array(new Agent);
-            $this->tasks = array(new Task);
-        }
+        $default = array(
+            'reps' = 100;
+            'teams' = array();
+            'batched trains' = array();
+        )
+        $params = array_merge($defaults, $params);
+        $this->reps = $params['reps'];
+        $this->teams = $params['teams'];
+        $this->batched_trains = $params['batched trains'];
     }
 
-    /****************************************************************************
-    *																			*
-    *	Function:	getTrafficNums												*
-    *																			*
-    *	Purpose:	To convert traffic characters to multipliers                *
-    *																			*
-    ****************************************************************************/
-
-    function getTrafficNums()
+    fuction get()
     {
-        $traffic_chars = array();
-
-        foreach ($this->traffic as $t)
-        {
-            if ($t == 'l')
-            {
-                $num = 2;
-            }
-            elseif ($t == 'm')
-            {
-                $num = 1;
-            }
-            elseif ($t == 'h')
-            {
-                $num = 0.5;
-            }
-            array_push($traffic_chars, $num);
-        }
-
-        return $traffic_chars;
+        $data = array(
+            'reps' => $this->reps,
+            'teams' => $this->teams,
+            'batched trains' => $this->batched_trains
+        )
+        return $data;
     }
 
-    /****************************************************************************
-    *																			*
-    *	Function:	updateFromFile												*
-    *																			*
-    *	Purpose:	To update the data members from a parameter file            *
-    *																			*
-    ****************************************************************************/
-
-    function updateFromFile($file_path)
+    function update($params)
     {
-        $file = fopen($file_path, 'r') or die('Unable to open default parameter file! Please return to check and update your settings.');
+        $this->reps = $params['reps'];
+        $this->teams = array();
+        $this->batched_trains = array();
 
-        $this->reps = fscanf($file, "%s %d")[1];
-        $num_agts = fscanf($file, "%s %d")[1];
-        $num_tasks = fscanf($file, "%s %d")[1];
+    //  Teams
 
-    //  Initialize arrays
+        $train = new Train;
+        $train->update($params['train']);
+        array_push($this->teams, $train);
 
-        $this->agents = array();
-        $this->tasks = array();
-        for ($i = 0; $i < $num_agts; $i++)
-        {
-            $this->agents[$i] = new Agent;
-        }
-        for ($i = 0; $i < $num_tasks; $i++)
-        {
-            $this->tasks[$i] = new Task;
-        }
+        $dispatcher = new Dispatcher;
+        $dispatcher->update($params['dispatcher']);
+        array_push($this->teams, $dispatcher);
 
-    //  Fill arrays
+    //  Batch
 
-        foreach ($this->agents as $agt)
-        {
-            $agt->updateFromFile($file);
-        }
+        // foreach ($this->teams as $i => $t)
+        //     $t->update($params['teams'][$i]);
 
-        foreach ($this->tasks as $task)
-        {
-            $task->updateFromFile($file);
-        }
-
-        fclose($file);
-    }
-
-    /****************************************************************************
-    *																			*
-    *	Function:	writeToFile													*
-    *																			*
-    *	Purpose:	To output the data members to a parameter file              *
-    *																			*
-    ****************************************************************************/
-
-    function writeToFile($file_path)
-    {
-        $file = fopen($file_path, 'w') or die('Unable to open new parameter file! Please return to check and update your settings.');
-
-    	fwrite($file, "output_path\t\t" . $_SESSION['session_dir'] . "\n");
-    	fwrite($file, "num_hours\t\t$this->hours\n");
-    	fwrite($file, "traff_levels\t" . implode(" ", $this->getTrafficNums()) . "\n");
-    	fwrite($file, "num_reps\t\t$this->reps\n");
-    	fwrite($file, "num_agts\t\t\t" . sizeof($this->agents) . "\n");
-    	fwrite($file, "num_tasks\t\t" . sizeof($this->tasks) . "\n");
-
-        foreach ($this->agents as $agt)
-        {
-            $agt->writeToFile($file);
-        }
-        foreach ($this->tasks as $task)
-        {
-            $task->writeToFile($file);
-        }
-
-        fclose($file);
-    }
-
-    /****************************************************************************
-    *																			*
-    *	Function:	getActiveAgents 											*
-    *																			*
-    *	Purpose:	To return an array of active agents                   	    *
-    *																			*
-    ****************************************************************************/
-
-    function getActiveAgents()
-    {
-        $names = array();
-
-        foreach ($this->agents as $agt)
-        {
-            if ($agt->active)
-            {
-                array_push($names, $agt->name);
-            }
-        }
-
-        return $names;
-    }
-
-    /****************************************************************************
-    *																			*
-    *	Function:	setActiveAgents											    *
-    *																			*
-    *	Purpose:	To set the active agents                             	    *
-    *																			*
-    ****************************************************************************/
-
-    function setActiveAgents($agt_names)
-    {
-        foreach ($this->agents as $agt)
-        {
-            if (array_search($agt->name, $agt_names))
-            {
-                $agt->active = true;
-            }
-            else
-            {
-                $agt->active = false;
-            }
-        }
-    }
-
-    /****************************************************************************
-    *																			*
-    *	Function:	getAgentByName											    *
-    *																			*
-    *	Purpose:	To get the agent by name                            	    *
-    *																			*
-    ****************************************************************************/
-
-    function getAgentByName($agt_name)
-    {
-        foreach ($this->agents as $agt)
-        {
-            if ($agt->name = ucwords($agt_name))
-            {
-                return $agt;
-            }
-        }
-    }
-
-    /****************************************************************************
-    *																			*
-    *	Function:	getAgentByType  											*
-    *																			*
-    *	Purpose:	To get the agents by type                                 	*
-    *																			*
-    ****************************************************************************/
-
-    function getAgentByType($agt_type)
-    {
-        foreach ($this->agents as $agt)
-        {
-            if ($agt->type = strtolower($agt_type))
-            {
-                return $agt;
-            }
-        }
+        foreach ($params['batched trains'] as $bt)
+            array_push($this->batched_trains, new BatchedTrain);
+        foreach ($this->batched_trains as $i => $bt)
+            $bt->update($params['batched trains'][$i]);
     }
 
 //  Public data members
 
-    var $hours;
-    var $begin;
-    var $end;
-    var $traffic;
     var $reps;
-    var $agents;
-    var $tasks;
+    var $teams;
+    var $batched_trains;
 }

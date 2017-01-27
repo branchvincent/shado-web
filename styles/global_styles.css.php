@@ -49,11 +49,12 @@ h1 {
 
 #title {
 	background: <?php echo $color_theme_dark_blue; ?>;
-	height:120px;
+	height: 120px;
 }
 
 #title h1 {
 	color: white;
+	font-size: 28px;
 }
 
 /*	Page Header	*/
