@@ -40,7 +40,7 @@
 ?>
 			<div id="settingsPage" class="page">
 				<h1 class="pageTitle">Input Advanced Trip Conditions</h1>
-				<form id="taskParameters" action="adv_settings_send" method="post">
+				<form id="taskParameters" action="adv_settings_send.php" method="post">
 					<input id="current_tasks" name="current_tasks" type="hidden" value=<?php print_task_ids();?>>
 					<h2>Replications</h2>
 					Enter the number of replications, or the number of simulated trips. Note that more trips provide more precise results, but it may also increase the processing time.

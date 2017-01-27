@@ -19,7 +19,7 @@
 
 	if (PHP_OS == "Linux")
 	{
-		$_SESSION['database']->update();
+		// $_SESSION['database']->update();
 	}
 
 //	Create parameter file and run simulation

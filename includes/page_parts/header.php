@@ -24,10 +24,10 @@
 			<!-- Navigation -->
 			<nav id='topNav' class='hide'>
 				<ul>
-					<li><a href='index'>Home</a></li>
-					<li><a href='basic_settings'>Run Simulation</a></li>
-					<li><a href='contact_us'>Contact Us</a></li>
-					<li style='float: right'><a href='version_history'>Version</a></li>
+					<li><a href='index.php'>Home</a></li>
+					<li><a href='basic_settings.php'>Run Simulation</a></li>
+					<li><a href='contact_us.php'>Contact Us</a></li>
+					<li style='float: right'><a href='version_history.php'>Version</a></li>
 				<?php if (Util::$DEBUG): ?>
 					<li style='float: right; background-color: pink;'>
 						<a href='#' onclick='window.open("callPHP?f=print_r&a=$GLOBALS")'>

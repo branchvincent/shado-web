@@ -31,7 +31,7 @@
 					<button type="button" class="button remove" onclick="location.href='final_report.php';" style="color: black">Print Report</button>
 				</li> -->
 				<li>
-					<button class="button" type="button" onclick="location.href='basic_settings';" style="color: black">&#8678 Change Inputs</button>
+					<button class="button" type="button" onclick="location.href='basic_settings.php';" style="color: black">&#8678 Change Inputs</button>
 				</li>
 				<!-- <li>
 					<button type="button" class="button hide remove" onclick="location.href='view_detailed_results?operator=engineer';" style="color: black;">Detailed Results &#8680</button>
