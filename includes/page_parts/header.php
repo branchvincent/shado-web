@@ -18,7 +18,7 @@
 				<a href='http://hal.pratt.duke.edu'>
 					<img id='halLogo' src='images/hal_light.png'>
 				</a>
-				<h1 style='padding: 40px 290px;'>Simulator of Human Operator Workload</h1>
+				<h1 style='padding: 40px 290px;'>Simulator of Humans and Automation in Dispatch Operatorations</h1>
 			</div>
 
 			<!-- Navigation -->

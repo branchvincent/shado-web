@@ -151,21 +151,20 @@
 		                <th>Assistant Name:</td>
 		                <td><input type='text' name="custom_op_name" value="<?=ucwords($asst->name)?>"></input></td>
 		            </tr>
-		        <?php foreach ($_SESSION['parameters']->getAgentByName('engineer')->tasks as $i => $task):
-						$checked = '';
-						if (in_array($i, $asst->tasks)) $checked = ' checked';
-				?>
-					<tr>
-						<td>
-							<?php print_r($task)?>
-							<?=ucwords($task->name) . ' ' . Util::createTooltip($ENGINEER_TASK_DESCRIPTIONS[$task->name])?>
-						</td>
-						<td>
-							<input type="checkbox" name="assistants[<?=$asst->name?>][tasks][<?=$i?>]"<?=$checked?>>
-							</input>
-						</td>
-					</tr>
-		        <?php endforeach?>
+					<?php foreach ($_SESSION['parameters']->getAgentByName('engineer')->tasks as $i => $task):
+							$checked = '';
+							if (in_array($i, $asst->tasks)) $checked = ' checked';
+					?>
+						<tr>
+							<td>
+								<?=ucwords($_SESSION['parameters']->tasks[$i]->name);?>
+							</td>
+							<td>
+								<input type="checkbox" name="assistants[<?=$asst->name?>][tasks][<?=$i?>]"<?=$checked?>>
+								</input>
+							</td>
+						</tr>
+			        <?php endforeach?>
 		        </table>
 		    </div>
 
@@ -181,9 +180,6 @@
 					<li>
 						<input type="submit" class="button" name="run_sim" style="background-color: #4CAF50;" value="Run Simulation &#8680">
 					</li>
-					<!-- <li>
-						<button type="submit" class="button" name="run_sim" style="background-color: #4CAF50;">Run Simulation &#8680</button>
-					</li> -->
 				</ul>
 			</div>
 

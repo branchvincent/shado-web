@@ -15,7 +15,7 @@
 
 //	Get selected tasks
 
-	print_r($_POST);
+	// print_r($_POST);
 
 	// $curr_tasks = explode(',', $_POST['current_tasks']);
 
@@ -34,36 +34,36 @@
 	// {
 	// // 	Store task names and descriptions
 	//
-	// 	// $data = array(
-	// 	// 	'name' => strtolower($_POST["t".$task_num."_name"]),
-	// 	// 	'priority' => array(
-	// 	// 		(int)$_POST["t".$task_num."_priority_p0"],
-	// 	// 		(int)$_POST["t".$task_num."_priority_p1"],
-	// 	// 		(int)$_POST["t".$task_num."_priority_p2"]
-	// 	// 	),
-	// 	// 	'interarrival' => array(
-	// 	// 		'type' => 'E',
-	// 	// 		'vals' => array(
-	// 	// 			(float)$_POST["t".$task_num."_arrTime_p0"],
-	// 	// 			(float)$_POST["t".$task_num."_arrTime_p1"],
-	// 	// 			(float)$_POST["t".$task_num."_arrTime_p2"]
-	// 	// 		)
-	// 	// 	)
-	// 	// 	'service' => array(
-	// 	// 		'type' => $_POST["t".$task_num."_serTimeDist"],
-	// 	// 		'vals' =>
-	// 	// 	),
-	// 	// 	'expiration' => array(
-	// 	// 		'type' => 'E',
-	// 	// 		'lo' => array(0, 0, 0),
-	// 	// 		'hi' => array(0, 0, 0)
-	// 	// 	),
-	// 	// 	'traffic' => array(
-	// 	// 		(int)$_POST["t".$task_num."_affByTraff_p0"],
-	// 	// 		(int)$_POST["t".$task_num."_affByTraff_p1"],
-	// 	// 		(int)$_POST["t".$task_num."_affByTraff_p2"]
-	// 	// 	)
-	// 	// );
+	// 	$data = array(
+	// 		'name' => strtolower($_POST["t".$task_num."_name"]),
+	// 		'priority' => array(
+	// 			(int)$_POST["t".$task_num."_priority_p0"],
+	// 			(int)$_POST["t".$task_num."_priority_p1"],
+	// 			(int)$_POST["t".$task_num."_priority_p2"]
+	// 		),
+	// 		'interarrival' => array(
+	// 			'type' => 'E',
+	// 			'vals' => array(
+	// 				(float)$_POST["t".$task_num."_arrTime_p0"],
+	// 				(float)$_POST["t".$task_num."_arrTime_p1"],
+	// 				(float)$_POST["t".$task_num."_arrTime_p2"]
+	// 			)
+	// 		),
+	// 		'service' => array(
+	// 			'type' => $_POST["t".$task_num."_serTimeDist"],
+	// 			'vals' =>
+	// 		),
+	// 		'expiration' => array(
+	// 			'type' => 'E',
+	// 			'lo' => array(0, 0, 0),
+	// 			'hi' => array(0, 0, 0)
+	// 		),
+	// 		'traffic' => array(
+	// 			(int)$_POST["t".$task_num."_affByTraff_p0"],
+	// 			(int)$_POST["t".$task_num."_affByTraff_p1"],
+	// 			(int)$_POST["t".$task_num."_affByTraff_p2"]
+	// 		)
+	// 	);
 	//
 	// 	$curr_task = strtolower($_POST["t".$task_num."_name"]);
 	// 	if (in_array($curr_task, array_keys($_SESSION['default_tasks'])))
@@ -145,15 +145,15 @@
 
 //	Continue to next page
 
-    // if (isset($_POST['run_sim']))
-	// {
-    //     header('Location: run_sim');
-    // }
-	// else if (isset($_POST['basic_settings']))
-	// {
-    //     header('Location: basic_settings');
-    // }
-	// else
-	// {
-    //     die("Could not determine action. Please return to check and update your settings.");
-    // }
+    if (isset($_POST['run_sim']))
+	{
+        header('Location: run_sim');
+    }
+	else if (isset($_POST['basic_settings']))
+	{
+        header('Location: basic_settings');
+    }
+	else
+	{
+        die("Could not determine action. Please return to check and update your settings.");
+    }
