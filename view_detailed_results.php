@@ -9,7 +9,7 @@
 	require_once('includes/results/graph_navBar_calculations.php');
 ?>
 
-<?php if ($_POST['operator'] != 'dispatcher'):?>
+<?php if ($_GET['operator'] != 'dispatcher'):?>
 	<div class="centerOuter">
 		<div class="startEndTime stepBox" style="width: 220px;">
 			<!-- <div class='stepCircle'>1</div> -->
@@ -27,7 +27,7 @@
 
 	<div class="centerOuter">
 		<div style="width: 220px;">
-			<img src="<?=$_POST['operator']?>.png">
+			<img src="<?=$_GET['operator']?>.png">
 		</div>
 	</div>
 
