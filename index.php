@@ -16,8 +16,8 @@
 
 //	Reset session, for testing purposes
 
-	session_unset();
-	include('includes/session_management/init.php');
+	// session_unset();
+	// include('includes/session_management/init.php');
 	// include('includes/session_management/set_session_vars.php');
 
 //	Include headers
@@ -26,10 +26,10 @@
 	require_once('includes/page_parts/header.php');
 ?>
 			<div id="homePage" class="page">
-				<h1 class="pageTitle">Welcome to the SHOW!</h1>
+				<h1 class="pageTitle">Welcome to SHADO!</h1>
 				<h2>Introduction</h2>
 				<p>
-					Welcome to the <u>S</u>imulator of <u>H</u>uman <u>O</u>perator <u>W</u>orkload (SHOW)! This tool, designed by Duke University researchers, simulates a freight rail operator's workload across the duration of a given trip. With SHOW, you can choose a trip with unique conditions and then see the operator's average workload after thousands of similar trips.
+					Welcome to the <u>S</u>imulator of <u>H</u>umans and <u>A</u>utomation in <u>D</u>ispatch <u>O</u>perations (SHADO)! This tool, designed by Duke University researchers, simulates the workload of a dispatch operator and associated freight rail operators across the duration of a given shift. With SHADO, you can choose a trip with unique conditions and then see the operators' average workload after thousands of similar shifts.
 				</p>
 				<p>
 					You should use this tool to answer the following questions:
