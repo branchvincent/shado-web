@@ -1,0 +1,685 @@
+{
+    "num_reps": 100,
+    "teams": [
+        {
+            "name": "train",
+            "agents": {
+                "engineer": [
+                    "communicating",
+                    "exception handling",
+                    "paperwork",
+                    "maintenance of way interactions",
+                    "temporary speed restrictions",
+                    "signal response management",
+                    "monitoring inside",
+                    "monitoring outside",
+                    "planning ahead"
+                ],
+                "conductor": [
+                    "signal response management",
+                    "monitoring inside",
+                    "planning ahead"
+                ],
+                "positive train control": [
+                    "exception handling",
+                    "signal response management",
+                    "monitoring inside"
+                ],
+                "cruise control": [
+                    "planning ahead"
+                ],
+                "custom": []
+            },
+            "tasks": {
+                "communicating": {
+                    "priority": [
+                        4,
+                        3,
+                        4
+                    ],
+                    "interarrival": {
+                        "type": "e",
+                        "vals": [
+                            0.95,
+                            0.1,
+                            0.75
+                        ]
+                    },
+                    "service": {
+                        "type": "e",
+                        "vals": [
+                            7.5,
+                            0
+                        ]
+                    },
+                    "expiration": {
+                        "type": "e",
+                        "vals": [
+                            0,
+                            0.11,
+                            0
+                        ]
+                    },
+                    "traffic": [
+                        0,
+                        1,
+                        0
+                    ]
+                },
+                "exception handling": {
+                    "priority": [
+                        5,
+                        4,
+                        5
+                    ],
+                    "interarrival": {
+                        "type": "e",
+                        "vals": [
+                            0,
+                            0.00033,
+                            0.00033
+                        ]
+                    },
+                    "service": {
+                        "type": "l",
+                        "vals": [
+                            0.98,
+                            1.39
+                        ]
+                    },
+                    "expiration": {
+                        "type": "e",
+                        "vals": [
+                            0,
+                            0.045,
+                            0.045
+                        ]
+                    },
+                    "traffic": [
+                        0,
+                        1,
+                        0
+                    ]
+                },
+                "paperwork": {
+                    "priority": [
+                        3,
+                        0,
+                        2
+                    ],
+                    "interarrival": {
+                        "type": "e",
+                        "vals": [
+                            0.15,
+                            0.05,
+                            0.3
+                        ]
+                    },
+                    "service": {
+                        "type": "u",
+                        "vals": [
+                            0.05,
+                            1.5
+                        ]
+                    },
+                    "expiration": {
+                        "type": "e",
+                        "vals": [
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    "traffic": [
+                        0,
+                        1,
+                        1
+                    ]
+                },
+                "maintenance of way interactions": {
+                    "priority": [
+                        0,
+                        5,
+                        0
+                    ],
+                    "interarrival": {
+                        "type": "e",
+                        "vals": [
+                            0,
+                            0.0017,
+                            0.017
+                        ]
+                    },
+                    "service": {
+                        "type": "u",
+                        "vals": [
+                            0.17,
+                            2.5
+                        ]
+                    },
+                    "expiration": {
+                        "type": "e",
+                        "vals": [
+                            0,
+                            0.184,
+                            0
+                        ]
+                    },
+                    "traffic": [
+                        0,
+                        1,
+                        0
+                    ]
+                },
+                "temporary speed restrictions": {
+                    "priority": [
+                        0,
+                        5,
+                        0
+                    ],
+                    "interarrival": {
+                        "type": "e",
+                        "vals": [
+                            0,
+                            0.033,
+                            0
+                        ]
+                    },
+                    "service": {
+                        "type": "u",
+                        "vals": [
+                            0,
+                            0.5
+                        ]
+                    },
+                    "expiration": {
+                        "type": "e",
+                        "vals": [
+                            0,
+                            0.184,
+                            0
+                        ]
+                    },
+                    "traffic": [
+                        0,
+                        1,
+                        0
+                    ]
+                },
+                "signal response management": {
+                    "priority": [
+                        0,
+                        5,
+                        0
+                    ],
+                    "interarrival": {
+                        "type": "e",
+                        "vals": [
+                            0.033,
+                            0.1,
+                            0.067
+                        ]
+                    },
+                    "service": {
+                        "type": "u",
+                        "vals": [
+                            0.5,
+                            2
+                        ]
+                    },
+                    "expiration": {
+                        "type": "e",
+                        "vals": [
+                            0,
+                            0.184,
+                            0.184
+                        ]
+                    },
+                    "traffic": [
+                        0,
+                        1,
+                        0
+                    ]
+                },
+                "monitoring inside": {
+                    "priority": [
+                        2,
+                        2,
+                        1
+                    ],
+                    "interarrival": {
+                        "type": "e",
+                        "vals": [
+                            0.29,
+                            0.37,
+                            0.37
+                        ]
+                    },
+                    "service": {
+                        "type": "e",
+                        "vals": [
+                            7.52,
+                            0
+                        ]
+                    },
+                    "expiration": {
+                        "type": "e",
+                        "vals": [
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    "traffic": [
+                        0,
+                        0,
+                        0
+                    ]
+                },
+                "monitoring outside": {
+                    "priority": [
+                        1,
+                        1,
+                        3
+                    ],
+                    "interarrival": {
+                        "type": "e",
+                        "vals": [
+                            0.11,
+                            0.2,
+                            0.57
+                        ]
+                    },
+                    "service": {
+                        "type": "e",
+                        "vals": [
+                            6.67,
+                            0
+                        ]
+                    },
+                    "expiration": {
+                        "type": "e",
+                        "vals": [
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    "traffic": [
+                        0,
+                        1,
+                        0
+                    ]
+                },
+                "planning ahead": {
+                    "priority": [
+                        0,
+                        5,
+                        0
+                    ],
+                    "interarrival": {
+                        "type": "e",
+                        "vals": [
+                            0.067,
+                            0.2,
+                            0.4
+                        ]
+                    },
+                    "service": {
+                        "type": "e",
+                        "vals": [
+                            3,
+                            0
+                        ]
+                    },
+                    "expiration": {
+                        "type": "e",
+                        "vals": [
+                            0,
+                            0.17,
+                            0
+                        ]
+                    },
+                    "traffic": [
+                        0,
+                        1,
+                        0
+                    ]
+                }
+            }
+        },
+        {
+            "name": "dispatch center",
+            "agents": {
+                "dispatcher": [
+                    "communicating",
+                    "exception handling",
+                    "paperwork",
+                    "maintenance of way interactions",
+                    "temporary speed restrictions",
+                    "signal response management",
+                    "monitoring inside",
+                    "monitoring outside",
+                    "planning ahead"
+                ]
+            },
+            "tasks": {
+                "communicating": {
+                    "priority": [
+                        4,
+                        3,
+                        4
+                    ],
+                    "interarrival": {
+                        "type": "e",
+                        "vals": [
+                            0.95,
+                            0.1,
+                            0.75
+                        ]
+                    },
+                    "service": {
+                        "type": "e",
+                        "vals": [
+                            7.5,
+                            0
+                        ]
+                    },
+                    "expiration": {
+                        "type": "e",
+                        "vals": [
+                            0,
+                            0.11,
+                            0
+                        ]
+                    },
+                    "traffic": [
+                        0,
+                        1,
+                        0
+                    ]
+                },
+                "exception handling": {
+                    "priority": [
+                        5,
+                        4,
+                        5
+                    ],
+                    "interarrival": {
+                        "type": "e",
+                        "vals": [
+                            0,
+                            0.00033,
+                            0.00033
+                        ]
+                    },
+                    "service": {
+                        "type": "l",
+                        "vals": [
+                            0.98,
+                            1.39
+                        ]
+                    },
+                    "expiration": {
+                        "type": "e",
+                        "vals": [
+                            0,
+                            0.045,
+                            0.045
+                        ]
+                    },
+                    "traffic": [
+                        0,
+                        1,
+                        0
+                    ]
+                },
+                "paperwork": {
+                    "priority": [
+                        3,
+                        0,
+                        2
+                    ],
+                    "interarrival": {
+                        "type": "e",
+                        "vals": [
+                            0.15,
+                            0.05,
+                            0.3
+                        ]
+                    },
+                    "service": {
+                        "type": "u",
+                        "vals": [
+                            0.05,
+                            1.5
+                        ]
+                    },
+                    "expiration": {
+                        "type": "e",
+                        "vals": [
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    "traffic": [
+                        0,
+                        1,
+                        1
+                    ]
+                },
+                "maintenance of way interactions": {
+                    "priority": [
+                        0,
+                        5,
+                        0
+                    ],
+                    "interarrival": {
+                        "type": "e",
+                        "vals": [
+                            0,
+                            0.0017,
+                            0.017
+                        ]
+                    },
+                    "service": {
+                        "type": "u",
+                        "vals": [
+                            0.17,
+                            2.5
+                        ]
+                    },
+                    "expiration": {
+                        "type": "e",
+                        "vals": [
+                            0,
+                            0.184,
+                            0
+                        ]
+                    },
+                    "traffic": [
+                        0,
+                        1,
+                        0
+                    ]
+                },
+                "temporary speed restrictions": {
+                    "priority": [
+                        0,
+                        5,
+                        0
+                    ],
+                    "interarrival": {
+                        "type": "e",
+                        "vals": [
+                            0,
+                            0.033,
+                            0
+                        ]
+                    },
+                    "service": {
+                        "type": "u",
+                        "vals": [
+                            0,
+                            0.5
+                        ]
+                    },
+                    "expiration": {
+                        "type": "e",
+                        "vals": [
+                            0,
+                            0.184,
+                            0
+                        ]
+                    },
+                    "traffic": [
+                        0,
+                        1,
+                        0
+                    ]
+                },
+                "signal response management": {
+                    "priority": [
+                        0,
+                        5,
+                        0
+                    ],
+                    "interarrival": {
+                        "type": "e",
+                        "vals": [
+                            0.033,
+                            0.1,
+                            0.067
+                        ]
+                    },
+                    "service": {
+                        "type": "u",
+                        "vals": [
+                            0.5,
+                            2
+                        ]
+                    },
+                    "expiration": {
+                        "type": "e",
+                        "vals": [
+                            0,
+                            0.184,
+                            0.184
+                        ]
+                    },
+                    "traffic": [
+                        0,
+                        1,
+                        0
+                    ]
+                },
+                "monitoring inside": {
+                    "priority": [
+                        2,
+                        2,
+                        1
+                    ],
+                    "interarrival": {
+                        "type": "e",
+                        "vals": [
+                            0.29,
+                            0.37,
+                            0.37
+                        ]
+                    },
+                    "service": {
+                        "type": "e",
+                        "vals": [
+                            7.52,
+                            0
+                        ]
+                    },
+                    "expiration": {
+                        "type": "e",
+                        "vals": [
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    "traffic": [
+                        0,
+                        0,
+                        0
+                    ]
+                },
+                "monitoring outside": {
+                    "priority": [
+                        1,
+                        1,
+                        3
+                    ],
+                    "interarrival": {
+                        "type": "e",
+                        "vals": [
+                            0.11,
+                            0.2,
+                            0.57
+                        ]
+                    },
+                    "service": {
+                        "type": "e",
+                        "vals": [
+                            6.67,
+                            0
+                        ]
+                    },
+                    "expiration": {
+                        "type": "e",
+                        "vals": [
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    "traffic": [
+                        0,
+                        1,
+                        0
+                    ]
+                },
+                "planning ahead": {
+                    "priority": [
+                        0,
+                        5,
+                        0
+                    ],
+                    "interarrival": {
+                        "type": "e",
+                        "vals": [
+                            0.067,
+                            0.2,
+                            0.4
+                        ]
+                    },
+                    "service": {
+                        "type": "e",
+                        "vals": [
+                            3,
+                            0
+                        ]
+                    },
+                    "expiration": {
+                        "type": "e",
+                        "vals": [
+                            0,
+                            0.17,
+                            0
+                        ]
+                    },
+                    "traffic": [
+                        0,
+                        1,
+                        0
+                    ]
+                }
+            }
+        }
+    ]
+}
