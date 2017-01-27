@@ -9,6 +9,7 @@
 	// require_once('includes/results/d3_graph.php');
 	require_once('includes/results/graph_CsvFile.php');
 	echo "<div id='page' class='page'>";
+
 	if ($_GET['operator'] == 'conductor') {
 		$assistant = "conductor";
 		require_once('includes/results/d3_graph.php');

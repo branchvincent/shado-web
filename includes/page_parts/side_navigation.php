@@ -18,6 +18,6 @@
 					      	<a href="view_detailed_results?operator=conductor">Conductor</a>
 					    </div>
 				  	</li>
-				    <li><a href="final_report">Preview Report</a></li>
+				    <!-- <li><a href="final_report">Preview Report</a></li> -->
 				</ul>
 			</nav>
