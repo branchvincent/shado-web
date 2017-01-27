@@ -8,6 +8,7 @@
 	require_once('includes/page_parts/side_navigation.php');
 	require_once('includes/results/graph_navBar_calculations.php');
 ?>
+<div class="centerOuter">
 
 <?php if ($_GET['operator'] != 'dispatcher'):?>
 	<div class="centerOuter">
@@ -23,13 +24,14 @@
 			</select>
 		</div>
 	</div>
+	<br>
 <?php endif?>
 
-	<div class="centerOuter">
-		<div style="width: 220px;">
-			<img src="<?=$_GET['operator']?>.png">
-		</div>
+	<br>
+	<div>
+		<img src="results/<?=$_GET['operator']?>.png">
 	</div>
+</div>
 
 	<div id="bottomNav">
 		<ul>
