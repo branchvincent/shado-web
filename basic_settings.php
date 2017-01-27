@@ -42,9 +42,35 @@
 		<form class='centerOuter' action='basic_settings_send' method='post'>
 			<div class="centerOuter">
 
-				<!-- Begin time -->
 				<div class="startEndTime stepBox" style="width: 220px;">
 					<div class='stepCircle'>1</div>
+					<h3 class='whiteFont'>
+						What Batch Are You Editing?
+						<?=Util::createTooltip('Enter the batch number.')?>
+					</h3>
+
+					<select>
+						<?=Util::getSelectOptions(range(1,3), 1)?>
+					</select>
+				</div>
+
+				<!-- Number of trains -->
+				<div class="startEndTime stepBox" style="width: 220px;">
+					<div class='stepCircle'>2</div>
+					<h3 class='whiteFont'>
+						How Many Trains In This Batch?
+						<?=Util::createTooltip('Enter the number of trains in this batch.')?>
+					</h3>
+
+					<select>
+						<?=Util::getSelectOptions(range(1,20), 10)?>
+					</select>
+				</div>
+				<br>
+
+				<!-- Begin time -->
+				<div class="startEndTime stepBox" style="width: 220px;">
+					<div class='stepCircle'>3</div>
 					<h3 class='whiteFont'>
 						When Does This Batch Trip Begin?
 						<?=Util::createTooltip('Enter the time of day that your engineer begins his/her shift.')?>
@@ -67,7 +93,7 @@
 
 				<!-- End time -->
 				<div class="startEndTime stepBox" style="width: 220px;">
-					<div class='stepCircle'>2</div>
+					<div class='stepCircle'>4</div>
 					<h3 class="whiteFont">
 						When Does This Batch Trip End?
 						<?=Util::createTooltip('Enter the time of day that your engineer is expected to end his/her shift.')?>
@@ -111,8 +137,8 @@
 
 			<!-- Assistants -->
 		    <div class="assistantsSelectStepOuter stepBox centerOuter">
-		        <div class='stepCircle'>4</div>
-		        <h3 id='assistants' class='whiteFont'>Who Will Assist the Engineer?
+		        <div class='stepCircle'>5</div>
+		        <h3 id='assistants' class='whiteFont'>Who Will Assist the Engineer for This Batch?
 					<?=Util::createTooltip('Identify any humans or technologies that will support the locomotive engineer. SHOW models their interaction by offloading certain tasks from the engineer.')?>
 				</h3>
 		        <div id="assist">
@@ -136,17 +162,15 @@
 		        </div>
 		    </div>
 
-			<br>
-
 			<!-- Custom assistant settings -->
 			<div class="custom remove" id="custom_assistant_settings">
-		        <div class='stepCircle'>5</div>
+		        <div class='stepCircle'>6</div>
 		        <h3 id='custom_heading' class='whiteFont'>Which Tasks Will This Custom Assistant Handle?
 					<?=Util::createTooltip('Identify which tasks the custom assistant can offload from the locomotive engineer.')?>
 				</h3>
 		        <br>
-		        <table id='custom_table'>
-		            <tr>
+				<table id='custom_table'>
+					<tr>
 		                <?php $asst = $_SESSION['parameters']->getAgentByType('custom')?>
 		                <th>Assistant Name:</td>
 		                <td><input type='text' name="custom_op_name" value="<?=ucwords($asst->name)?>"></input></td>
@@ -167,6 +191,8 @@
 			        <?php endforeach?>
 		        </table>
 		    </div>
+
+			<br>
 
 			<!-- Bottom navigation -->
 			<div id="bottomNav">
