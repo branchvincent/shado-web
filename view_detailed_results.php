@@ -1,38 +1,31 @@
 <?php
-/****************************************************************************
-*																			*
-*	File:		view_detailed_results.php  									*
-*																			*
-*	Author:		Branch Vincent												*
-*																			*
-*	Purpose:	This file defines the View Detailed Analysis page. 			*
-*																			*
-****************************************************************************/
-
-//	Initialize session
-
 	require_once('includes/php_session/init.php');
-
-//	Include headers
-
-	$HTML_HEADER = '<script src="http://d3js.org/d3.v3.min.js"></script>' . "\r\n\t\t";
-	$HTML_HEADER .= '<script type="text/javascript" src="scripts/d3_graph.js"></script>';
-	$PAGE_TITLE = 'Detailed Analysis';
+	$html_head_insertions = '<script src="http://d3js.org/d3.v3.min.js"></script>' . "\r\n\t\t";
+	$html_head_insertions .= '<script type="text/javascript" src="includes/results/d3_graph.js"></script>';
+	$page_title = 'Detailed Analysis';
 	require_once('includes/page_parts/header.php');
 	require_once('includes/page_parts/side_navigation.php');
+	require_once('includes/results/graph_navBar_calculations.php');
 	// require_once('includes/results/d3_graph.php');
+	require_once('includes/results/graph_CsvFile.php');
 	echo "<div id='page' class='page'>";
 	if ($_GET['operator'] == 'conductor') {
 		$assistant = "conductor";
 		require_once('includes/results/d3_graph.php');
 		createGraphCsv('conductor');
-		graphText('conductor');
+		graphText($_SESSION['session_dir'] . 'stats_conductor.csv');
 		echo "</div>";
 	} else if ($_GET['operator'] == 'engineer') {
 		$assistant = "Engineer";
 		require_once('includes/results/d3_graph.php');
 		createGraphCsv('engineer');
-		graphText('engineer');
+		graphText($_SESSION['session_dir'] . 'stats_engineer.csv');
+		echo "</div>";
+	} else if ($_GET['operator'] == 'dispatcher') {
+		$assistant = "Dispatcher";
+		require_once('includes/results/d3_graph.php');
+		createGraphCsv('dispatcher');
+		graphText($_SESSION['session_dir'] . 'stats_dispatcher.csv');
 		echo "</div>";
 	} else {
 		die('There was an error');
@@ -44,12 +37,14 @@
 				<button class="button" type="button" onclick="location.href='view_results.php';" style="color: black">&#8678 Results</button>
 			</li>
 			<li>
-				<button type="button" class="button" onclick="location.href='final_report.php';" style="color: black; visibility: hidden;">Print Report</button>
+				<button type="button" class="button" onclick="location.href='sim_summary.php';" style="color: black; visibility: hidden;">Print Report</button>
 			</li>
 			<li>
-				<button type="button" class="button" onclick="location.href='final_report.php';" style="color: black;">Preview Report &#8680</button>
+				<button type="button" class="button" onclick="location.href='sim_summary.php';" style="color: black;">Preview Report &#8680</button>
 			</li>
 		</ul>
 	</div>
 
-<?php require_once('includes/page_parts/footer.php');?>
+<?php
+	require_once('includes/page_parts/footer.php');
+?>
