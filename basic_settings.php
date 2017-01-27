@@ -201,10 +201,10 @@
 						<button class="button hide" type="button" onclick="location.href='adv_settings.php';" style="color: black;">&#8678 Run Simulation</button>
 					</li>
 					<li>
-						<input type="submit" class="button" name="adv_settings.php" style="color: black;" value="Advanced Conditions">
+						<input type="submit" class="button" name="adv_settings" style="color: black;" value="Advanced Conditions">
 					</li>
 					<li>
-						<input type="submit" class="button" name="run_sim.php" style="background-color: #4CAF50;" value="Run Simulation &#8680">
+						<input type="submit" class="button" name="run_sim" style="background-color: #4CAF50;" value="Run Simulation &#8680">
 					</li>
 				</ul>
 			</div>

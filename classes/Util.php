@@ -580,7 +580,7 @@ class Util
 
 //  Public data members
 
-    static $DEBUG = true;
+    static $DEBUG = false;
 
     static $ASSISTANT_DESCRIPTIONS = array(
         'engineer' => 'The engineer is responsible for operating the train',

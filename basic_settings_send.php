@@ -40,11 +40,12 @@
 
 //	Continue to next page
 
-    if (isset($_POST['run_sim.php']))
+
+    if (isset($_POST['run_sim']))
 	{
         header('Location: run_sim.php');
     }
-	elseif (isset($_POST['adv_settings.php']))
+	elseif (isset($_POST['adv_settings']))
 	{
         header('Location: adv_settings.php');
     }
