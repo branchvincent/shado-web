@@ -348,6 +348,6 @@ $arr['teams'][] = array(
                     )
                 );
 
-$file = fopen("temp/config.txt", "w") or die("Unable to open file!");
+$file = fopen("includes/php_session/config_shado.json", "w") or die("Unable to open file!");
 fwrite($file, json_encode($arr, JSON_PRETTY_PRINT));
 fclose($file);
