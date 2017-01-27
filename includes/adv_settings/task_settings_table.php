@@ -141,7 +141,7 @@
             }
         ?>
     </tr>
-    <tr>
+    <!-- <tr>
         <td>Associated Assistants:</td>
         <td colspan="3">
             <?php
@@ -158,5 +158,5 @@
                 }
             ?>
         </td>
-    </tr>
+    </tr> -->
 </table>

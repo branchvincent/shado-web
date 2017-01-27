@@ -13,6 +13,7 @@
 					<li>
 					    <button class="accordion">View Detailed Analysis</button>
 					    <div class="accordion-content">
+							<a href="view_detailed_results?operator=dispatcher">Dispatcher</a>
 					      	<a href="view_detailed_results?operator=engineer">Engineer</a>
 					      	<a href="view_detailed_results?operator=conductor">Conductor</a>
 					    </div>

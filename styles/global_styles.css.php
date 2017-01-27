@@ -286,7 +286,7 @@ div.accordion-content.show {
 ****************************************************************************/
 
 .printPdf {
-	background-image: url("../images/print_button.png");
+	background-image: url("../images/print.png");
 	height: 50px;
 	width: 50px;
 	background-size: 50px;

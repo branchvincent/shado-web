@@ -47,4 +47,4 @@
 		<!-- Page body -->
 		<div id='fixedBody'></div>
 		<div id='main'>
-			<input id='assistant_info' value='<?=$_SESSION['session_results'] + in_array('conductor', $_SESSION['parameters']->getActiveAgents())?>' type='hidden'>
+			<input id='assistant_info' value='2' type='hidden'>

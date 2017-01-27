@@ -108,7 +108,7 @@
 					</select>
 
 					<select id='endMd' onchange="calculate_time()">
-					<?=Util::getSelectOptions(['AM', 'PM'], $end_md)?>
+					<?=Util::getSelectOptions(['AM', 'PM'], 'PM')?>
 					</select>
 
 					<input id="end_time" name="end_time" type="hidden" value="<?=$_SESSION['parameters']->end?>">

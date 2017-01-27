@@ -62,6 +62,21 @@
 					</div>
 					<h2>Task Details</h2>
 					Below, you can view and change the underlying assumptions for each task.
+
+					<div class="centerOuter">
+						<div class="startEndTime stepBox" style="width: 220px;">
+							<!-- <div class='stepCircle'>1</div> -->
+							<h3 class='whiteFont'>
+								What Operator Are You Editing?
+								<?=Util::createTooltip('Select the operator.')?>
+							</h3>
+
+							<select>
+								<?=Util::getSelectOptions(array('Dispatcher', 'Engineer', 'Conductor', 'Positive Train Control', 'Cruise Control', 'Custom'), 'Dispatcher')?>
+							</select>
+						</div>
+					</div>
+
 					<div id='taskParameterTable'>
 						<?php
 							$index = 0;
