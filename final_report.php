@@ -13,15 +13,15 @@
 
 //	Initialize session
 
-    require_once('includes/session_management/init.php');
+    require_once('includes/php_session/init.php');
 
 //	Include headers
 
-    $page_title = "Preview Report";
-    $html_head_insertions = '<script src="http://d3js.org/d3.v3.min.js"></script>';
-    $html_head_insertions .= '<script type="text/javascript" src="scripts/d3_graph.js"></script>';
-    // $html_head_insertions .= '<script type="text/javascript" src="includes/results/PrintReport/print_page.js"></script>';
-    $html_head_insertions .= '<script type="text/javascript" src="scripts/print_page.js"></script>';
+    $PAGE_TITLE = "Preview Report";
+    $HTML_HEADER = '<script src="http://d3js.org/d3.v3.min.js"></script>';
+    $HTML_HEADER .= '<script type="text/javascript" src="scripts/d3_graph.js"></script>';
+    // $HTML_HEADER .= '<script type="text/javascript" src="includes/results/PrintReport/print_page.js"></script>';
+    $HTML_HEADER .= '<script type="text/javascript" src="scripts/print_page.js"></script>';
     require_once('includes/page_parts/header.php');
     require_once('includes/page_parts/side_navigation.php');
     require_once('includes/results/operator_calculations.php');

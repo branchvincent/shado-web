@@ -11,37 +11,26 @@
 
 //	Start session
 
-	require_once('includes/session_management/init.php');
+	require_once('includes/php_session/init.php');
 
 //	Store time
+
+	// $data = array(
+	// 	'hours' => $_POST['num_hours'],
+	// 	'begin' => $_POST['begin_time'],
+	// 	'end' => $_POST['end_time'],
+	// 	'traffic' => $_POST['traffic_levels']
+	// );
 
 	$_SESSION['parameters']->hours = $_POST['num_hours'];
 	$_SESSION['parameters']->begin = $_POST['begin_time'];
 	$_SESSION['parameters']->end = $_POST['end_time'];
-
-//  Store traffic levels
-
-	$_SESSION['parameters']->traffic = array();
-
-	for ($i = 0; $i < $_SESSION['parameters']->hours; $i++) {
-		$_SESSION['parameters']->traffic[$i] = $_POST["traffic_level_$i"];
-	}
-
-//  Store assistants
-
-    // $_SESSION['parameters']->operators = array();
-    // $_SESSION['parameters']['assistants'][] = 'engineer';
-
-	$i = 0;
-	foreach ($_SESSION['parameters']->operators as $assistant) {
-		if (isset($_POST['assistant_' . $i]))
-			$_SESSION['parameters']->operators->active = true;
-		$i++;
-	}
+	$_SESSION['parameters']->traffic = $_POST['traffic_levels'];
+	$_SESSION['parameters']->setActiveAgents(array_keys($_POST['assistants']));
 
 //	Store custom operator tasks
 
-	// if (isset($_POST['assistant_4'])) {
+	// if (isset($_POST['assistants']['custom'])) {
 	// 	$_SESSION['assistants']['custom']['name'] = $_POST['custom_op_name'];
 	// 	$_SESSION['assistants']['custom']['tasks'] = array();
 	// 	for ($i = 0; $i < sizeof($_SESSION['tasks']); $i++)
@@ -51,12 +40,16 @@
 
 //	Continue to next page
 
-    if (isset($_POST['run_sim'])) {
-        // header('Location: run_sim');
-		include('run_sim.php');
-    } else if (isset($_POST['adv_settings'])) {
-        // header('Location: adv_settings');
-		include('adv_settings.php');
-    } else {
+
+    if (isset($_POST['run_sim']))
+	{
+        header('Location: run_sim.php');
+    }
+	elseif (isset($_POST['adv_settings']))
+	{
+        header('Location: adv_settings.php');
+    }
+	else
+	{
         die("Could not determine action. Please return to check and update your settings.");
     }

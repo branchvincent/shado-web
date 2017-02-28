@@ -10,7 +10,7 @@
 								</ul>
 							</div>
 
-							<form action="view_detailed_results.php?operator=engineer" method="post" style='text-align: center;'>
+							<form action="view_detailed_results_debug?operator=engineer" method="post" style='text-align: center;'>
 								<button type="submit" id="submit1" class="button" style="background-color: #4CAF50;">Investigate</button>
 							</form>
 						</div>
@@ -27,7 +27,7 @@
 							</div>
 
 
-							<form action="view_detailed_results.php?operator=conductor" method="post" style='text-align: center;'>
+							<form action="view_detailed_results_debug_debug?operator=conductor" method="post" style='text-align: center;'>
 								<button type="submit" id="submit2" class="button" style="background-color: #4CAF50;">Investigate</button>
 							</form>
 						</div>
@@ -48,10 +48,12 @@
 							</form>
 						</div> -->
 
-						<table align="center"  width="500" style="margin-top: 30px;">
+						<table align="center"  width="700" style="margin-top: 30px;">
 							<tr>
 						        <th rowspan="2">Batch</th>
-								<th rowspan="2">Operator</th>
+								<th rowspan="2">Operator(s)</th>
+								<th rowspan="2">Trains</th>
+								<th rowspan="2">Assistant(s)</th>
 								<th colspan="3">Workload (min)</th>
 						    </tr>
 							<tr>
@@ -62,29 +64,35 @@
 							<tr>
 								<td>All</td>
 								<td>Dispatcher</td>
-								<td>30</td>
-								<td>250</td>
-								<td>200</td>
+								<td>N/A</td>
+								<td>N/A</td>
+								<td>30 (6%)</td>
+								<td>250 (52%)</td>
+								<td>200 (42%)</td>
 							</tr>
 							<tr>
 								<td rowspan="2">1</td>
 								<td>Engineer</td>
-								<td>180</td>
-								<td>300</td>
-								<td>0</td>
+								<td rowspan="2">10</td>
+								<td rowspan="2">Cruise Control</td>
+								<td>180 (38%)</td>
+								<td>300 (62%)</td>
+								<td>0 (0%)</td>
 							</tr>
 							<tr>
 								<td>Conductor</td>
-								<td>400</td>
-								<td>80</td>
-								<td>0</td>
+								<td>400 (83%)</td>
+								<td>80 (17%)</td>
+								<td>0 (0%)</td>
 							</tr>
 							<tr>
 								<td>2</td>
 								<td>Engineer</td>
-								<td>220</td>
-								<td>100</td>
-								<td>0</td>
+								<td>5</td>
+								<td rowspan="2">Positive Train Control</td>
+								<td>220 (69%)</td>
+								<td>100 (31%)</td>
+								<td>0 (0%)</td>
 							</tr>
 						</table>
 

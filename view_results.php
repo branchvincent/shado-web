@@ -11,16 +11,16 @@
 
 //	Initialize session
 
-	require_once('includes/session_management/init.php');
+	require_once('includes/php_session/init.php');
 
 //	Include headers
 
-	$page_title = 'Results';
-	// include('includes/results/read_csv.php');
+	$PAGE_TITLE = 'Results';
 	require_once('includes/page_parts/header.php');
 	require_once('includes/page_parts/side_navigation.php');
 	// require_once('includes/results/operator_calculations.php');
-	require_once('includes/results/operator.html');
+	// require_once('includes/results/operator.html');
+	require_once('includes/results/operator_debug.html');
 ?>
 			<br><br><br>
 		</div>
@@ -31,7 +31,7 @@
 					<button type="button" class="button remove" onclick="location.href='final_report.php';" style="color: black">Print Report</button>
 				</li> -->
 				<li>
-					<button class="button" type="button" onclick="location.href='basic_settings';" style="color: black">&#8678 Change Inputs</button>
+					<button class="button" type="button" onclick="location.href='basic_settings.php';" style="color: black">&#8678 Change Inputs</button>
 				</li>
 				<!-- <li>
 					<button type="button" class="button hide remove" onclick="location.href='view_detailed_results?operator=engineer';" style="color: black;">Detailed Results &#8680</button>

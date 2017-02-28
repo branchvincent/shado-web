@@ -17,18 +17,8 @@
     //     $taskName = $task;
     //     $taskArr = $_SESSION['tasks'][$task];
     // }
+    $name = $task->name;
 ?>
-<!-- <div style="float: left;"> -->
-<!-- <h3 style="text-align: center;">
-    <span style="color: #f44336; float: left;">
-        <button class="roundButton" type="button" onclick=<?php echo "deleteTask(".$taskNum.")"; ?> style="background-color: #f44336;"><strong>x</strong></button> Delete Task
-    </span>
-    <span style="text-align: center;  "><?php echo ucwords($taskName);?></span>
-</h3> -->
-    <!-- </span> -->
-<!-- </div> -->
-<!-- <h3 style="text-align: center;"> -->
-<!-- </h3> -->
 <table align="center" style="margin-top: 10px; margin-bottom: 10px;">
     <caption><h3>
         <span style="float: left; color: #f44336; font-weight: bold;">
@@ -47,7 +37,7 @@
     </tr>
     <tr>
         <td>Name:</td>
-        <td colspan="3"><input type="text" name=<?php echo "t" . $taskNum . "_name";?> size="30" maxlength="30" value="<?php echo ucwords($task->name);?>"></td>
+        <td colspan="3"><input type="text" name=<?php echo "tasks[$name][name]";?> size="30" maxlength="30" value="<?php echo ucwords($task->name);?>"></td>
     </tr>
     <tr>
     <td>
@@ -57,7 +47,7 @@
         <?php
             $labels = ["Not a", "Low", "Somewhat", "Neutral", "Moderate", "High", "Essential"];
             for ($i = 0; $i < 3; $i++) {
-                echo "<td align='center'><select name='t$taskNum" . "_priority_p$i'>";
+                echo "<td align='center'><select name='tasks[$name][priority][$i]'>";
                 for ($j = 6; $j >= 0; $j--) {
                     $selected = '';
                     if ($task->priority[$i] == $j) $selected = ' selected="selected"';
@@ -76,7 +66,7 @@
             for ($i = 0; $i < 3; $i++) {
                 $arrival = $task->interarrival['vals'][$i];
                 if ($arrival != 0) $arrival = round(1/$arrival, 2);
-                echo "<td align='center'>Once every <input type='text' name='t$taskNum" . "_arrTime_p$i' size='4' maxlength='4' ";
+                echo "<td align='center'>Once every <input type='text' name='tasks[$name][interarrival][vals][$i]' size='4' maxlength='4' ";
                 echo "value='$arrival'> mins</td>";
             }
         ?>
@@ -90,7 +80,7 @@
             <?php
                 $dist_char = ["E", "L", "U"];
                 $dist_name = ["Exponential", "Lognormal", "Uniform"];
-                echo "<select id='t$taskNum" . "_serTimeDist' name='t$taskNum" . "_serTimeDist'";
+                echo "<select id='t$taskNum" . "_serTimeDist' name='tasks[$name][service][type]'";
                 echo "style='margin-right: 10px' onchange='updateSerDist($taskNum)'>";
                 for ($i = 0; $i < 3; $i++) {
                     $selected = '';
@@ -110,21 +100,21 @@
                     if ($i == 0) {
                         $param = $task->service['vals'][0];
                         if ($param != 0) $param = round(1/$param, 2);
-                        echo "Mean: <input type='text' name='t$taskNum" . "_$dist_string[$i]_serTime_0'";
+                        echo "Mean: <input type='text' name='tasks[$name][service][vals][$dist_string[$i]][0]'";
                         echo 'size="4" maxlength="4" value="' . $param . '"';
                         echo '> min</div>';
                     } else if ($i == 1) {
-                        echo "Mean: <input type='text' name='t$taskNum" . "_$dist_string[$i]_serTime_0'";
+                        echo "Mean: <input type='text' name='tasks[$name][service][vals][$dist_string[$i]][0]'";
                         echo 'size="4" maxlength="4" value="' . round($task->service['vals'][0], 2) . '"';
                         echo '> min ' . str_repeat(' &nbsp ', 2);
-                        echo "Std dev:<input type='text' name='t$taskNum" . "_$dist_string[$i]_serTime_1'";
+                        echo "Std dev:<input type='text' name='tasks[$name][service][vals][$dist_string[$i]][1]'";
                         echo 'size="4" maxlength="4" value="' . round($task->service['vals'][1], 2) . '"';
                         echo '> min</div>';
                     } else {
-                        echo "Min: <input type='text' name='t$taskNum" . "_$dist_string[$i]_serTime_0'";
+                        echo "Min: <input type='text' name='tasks[$name][service][vals][$dist_string[$i]][0]'";
                         echo 'size="4" maxlength="4" value="' . round($task->service['vals'][0], 2) . '"';
                         echo '> min ' . str_repeat(' &nbsp ', 2) ;
-                        echo "Max: <input type='text' name='t$taskNum" . "_$dist_string[$i]_serTime_1'";
+                        echo "Max: <input type='text' name='tasks[$name][service][vals][$dist_string[$i]][1]'";
                         echo 'size="4" maxlength="4" value="' . round($task->service['vals'][1], 2) . '"';
                         echo '> min</div>';
                     }
@@ -140,7 +130,7 @@
         <?php
             $options = ["No", "Yes"];
             for ($i = 0; $i < 3; $i++) {
-                echo '<td align="center"><select name="t' . $taskNum . '_affByTraff_p' . $i . '">';
+                echo '<td align="center"><select name="tasks[' . $taskNum . '][traffic][' . $i . ']">';
                 for ($j = 1; $j >= 0; $j--) {
                     $selected = '';
                     if ($task->traffic[$i] == $j)
@@ -156,15 +146,14 @@
         <td colspan="3">
             <?php
                 $i = 0;
-                foreach ($_SESSION['parameters']->operators as $assistant) {
+                foreach ($_SESSION['parameters']->agents as $agt) {
                     $checked = '';
-                    // print_r($_SESSION['assistants'][$assistant]['tasks']);
-                    if (in_array($taskNum, $assistant->tasks)) $checked = ' checked';
-                    echo "<input type='checkbox' name='t$taskNum" . "_op$i' value='on' style='margin-left: 10px;'$checked>";
-                    if ($assistant == 'custom')
+                     if (in_array($taskNum, $agt->tasks)) $checked = ' checked';
+                    echo "<input type='checkbox' name='tasks[$name][operators][$i]' value='on' style='margin-left: 10px;'$checked>";
+                    if ($agt == 'custom')
                         echo ucwords($_SESSION['assistants']['custom']['name']) . " ";
                     else
-                        echo ucwords($assistant->name);
+                        echo ucwords($agt->name);
                     $i++;
                 }
             ?>

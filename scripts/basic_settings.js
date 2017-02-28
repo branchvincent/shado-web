@@ -9,7 +9,8 @@
 *																			*
 ****************************************************************************/
 
-jQuery.noConflict()(function ($) {
+jQuery.noConflict()(function ($)
+{
     $(document).ready(init());
 });
 
@@ -21,11 +22,13 @@ jQuery.noConflict()(function ($) {
 *																			*
 ****************************************************************************/
 
-function init() {
+function init()
+{
 	console.log("Window has loaded!");
-	// calculate_time();
-    init_hour_labels();
+	calculate_time();
+    // init_hour_labels();
     toggle_custom_settings();
+    jQuery('#table').removeClass('remove');
 }
 
 /****************************************************************************
@@ -37,14 +40,14 @@ function init() {
 *																			*
 ****************************************************************************/
 
-function calculate_time() {
-
+function calculate_time()
+{
 //	Get times and calculate hour difference
 
 	var begin_time = get_date('begin');
 	var end_time = get_date('end');
 	var hours = get_hour_diff(begin_time, end_time);
-	console.log("Hours = " + hours);
+	// console.log("Hours = " + hours);
 
 //	Store new times
 
@@ -54,36 +57,40 @@ function calculate_time() {
 
 //	Empty traffic table
 
-	jQuery('#table').empty();
-	var table = document.getElementById('table');
-	var row = table.insertRow(0);
-
+	jQuery('#table tr').empty();
+	// var table = document.getElementById('table');
+    var row = document.getElementById('trafficLevels');
+//
 //	Insert hour columns
 
-	for (i = 0; i < hours; i++) {
+    var traffic_levels = JSON.parse(jQuery('#traffic_levels').val());
+
+	for (i = 0; i < hours; i++)
+    {
 		var cell = row.insertCell(i);
-		cell.innerHTML = "";
-		cell.innerHTML += "<input type='radio' name=traffic_level_" + i + " value='h'>High</input>"
-		cell.innerHTML += "<br><input type='radio' name=traffic_level_" + i + " value='m' checked>Med</input>"
-		cell.innerHTML += "<br><input type='radio' name=traffic_level_" + i + " value='l'>Low</input>";
+		cell.innerHTML = "<input type='radio' name=traffic_levels[" + i + "] value='h'>High</input><br>"
+		cell.innerHTML += "<input type='radio' name=traffic_levels[" + i + "] value='m'>Med</input><br>"
+		cell.innerHTML += "<input type='radio' name=traffic_levels[" + i + "] value='l'>Low</input>";
+
+    //  Check the selected traffic level, if applicable
+
+        var buttons = jQuery('input:radio[name="traffic_levels[' + i + ']"]');
+        if (traffic_levels.length == hours)
+            buttons.filter('[value="' + traffic_levels[i] + '"]').attr('checked', true);
+        else
+            buttons.filter('[value="m"]').attr('checked', true);
 	}
 
 //	Change hour labels
 
 	var hour_label = begin_time;
-	var row = table.insertRow(1);
-	for (i = 0; i < hours; i++) {
+	var row = document.getElementById('trafficLevelLabels');
+	for (i = 0; i < hours; i++)
+    {
 		var cell = row.insertCell(i);
 		cell.innerHTML = hour_label.format("h A");
 		hour_label.add(1, 'hour');
 	}
-
-//  Add animation to custom assistant
-
-    // var custom = jQuery('#custom_assistant');
-    // custom.onclick = function() {
-    //     jQuery('#custom_assistant_settings').toggleClass('hide');
-    // }
 }
 
 /****************************************************************************
@@ -94,18 +101,21 @@ function calculate_time() {
 *																			*
 ****************************************************************************/
 
-function init_hour_labels() {
-    var begin_time = jQuery('#begin_time').val();
-    console.log(begin_time);
-    var hour_label = moment("2016-01-01 " + begin_time, "YYYY-MM-DD HH:mm A");
-    var traffic_table = document.getElementById('traffic_level_labels');
-    for (var i = 0; i < jQuery('#num_hours').val(); i++) {
-        var cell = traffic_table.insertCell(i);
-        cell.innerHTML = hour_label.format("h A");
-        hour_label.add(1, 'hour');
-    }
-    jQuery('#table').removeClass('remove');
-}
+// function init_hour_labels()
+// {
+//     var begin_time = jQuery('#begin_time').val();
+//     // console.log(begin_time);
+//     var hour_label = moment("2016-01-01 " + begin_time, "YYYY-MM-DD HH:mm A");
+//     var traffic_table = document.getElementById('trafficLevelLabels');
+//     console.log(traffic_table);
+//     for (var i = 0; i < jQuery('#num_hours').val(); i++)
+//     {
+//         var cell = traffic_table.insertCell(i);
+//         cell.innerHTML = hour_label.format("h A");
+//         hour_label.add(1, 'hour');
+//     }
+//     jQuery('#table').removeClass('remove');
+// }
 /****************************************************************************
 *																			*
 *	Function:	get_date													*
@@ -115,7 +125,8 @@ function init_hour_labels() {
 *																			*
 ****************************************************************************/
 
-function get_date(html_div) {
+function get_date(html_div)
+{
 	var hr = jQuery('#' + html_div + 'Hour').val();
 	var min = jQuery('#' + html_div + 'Min').val();
 	var md = jQuery('#' + html_div + 'Md').val();
@@ -132,7 +143,8 @@ function get_date(html_div) {
 *																			*
 ****************************************************************************/
 
-function get_hour_diff(date1, date2) {
+function get_hour_diff(date1, date2)
+{
 	if (date1 >= date2) date2.add(1, 'day');
 	var mins = date2.diff(date1, 'minutes');
 	return Math.ceil(mins / 60);
@@ -146,14 +158,11 @@ function get_hour_diff(date1, date2) {
 *																			*
 ****************************************************************************/
 
-function toggle_custom_settings() {
-    var checked = jQuery('#custom_assistant').prop('checked') ;
+function toggle_custom_settings()
+{
+    var checked = jQuery('#custom_assistant').prop('checked');
     if (checked)
         jQuery('#custom_assistant_settings').removeClass('remove');
     else
         jQuery('#custom_assistant_settings').addClass('remove');
-
-    // console.log(test);
-    // if (jQuery('#custom_assistant'))
-    // jQuery('#custom_assistant_settings').toggleClass('hide');
 }

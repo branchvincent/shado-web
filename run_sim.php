@@ -13,24 +13,29 @@
 
 //	Initialize session
 
-	require_once('includes/session_management/init.php');
-	echo "here";
+	require_once('includes/php_session/init.php');
 
 //	Update database
 
-	if (PHP_OS == "Linux") {
-		update_database();
+	if (PHP_OS == "Linux")
+	{
+		// $_SESSION['database']->update();
 	}
 
 //	Create parameter file and run simulation
 
 	$_SESSION['parameters']->writeToFile($_SESSION['session_dir'] . "params");
 
-	if (PHP_OS == "Darwin") {
+	if (PHP_OS == "Darwin")
+	{
 		echo passthru("bin/des_mac " . $_SESSION['session_dir'] . "params");
-	} else if (PHP_OS == "Linux") {
-		exec ("bin/des_unix " . $_SESSION['session_dir'] . "params");
-	} else {
+	}
+	else if (PHP_OS == "Linux")
+	{
+		exec("bin/des_unix " . $_SESSION['session_dir'] . "params");
+	}
+	else
+	{
 		die("Operating system not recognized.");
 	}
 
@@ -42,8 +47,8 @@
 	//
 	// 	}
 
-	$html_head_insertions = '<link rel="stylesheet" href="styles/loading_bar.css">';
-	$html_head_insertions .= "<script src='scripts/loading_bar.js'></script>";
+	$HTML_HEADER = '<link rel="stylesheet" href="styles/loading_bar.css">';
+	$HTML_HEADER .= "<script src='scripts/loading_bar.js'></script>";
 	require_once('includes/page_parts/header.php');
 ?>
 

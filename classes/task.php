@@ -9,19 +9,6 @@
 *																			*
 ****************************************************************************/
 
-// echo "Loading Task.php..." . "\r\n";
-
-$descriptions = array();
-$descriptions['communicating'] = 'Filtering through relevant information for the operation and communicating information that may impact the macro-level network of operations';
-$descriptions['exception handling'] = "Manual tasks outside of the locomotive cab that may be passed on to the conductor";
-$descriptions['paperwork'] = 'Recording information about the train (apart from the locomotive) that is not of concern to the engineer but essential for the business of freight';
-$descriptions['maintenance of way interactions'] = 'Supporting the engineer in meeting required speed limits throughout the trip';
-$descriptions['temporary speed restrictions'] = 'Supporting the engineer in meeting required speed limits throughout the trip';
-$descriptions['signal response management'] = 'Supporting the engineer in meeting required speed limits throughout the trip';
-$descriptions['monitoring inside'] = 'Paying attention to the engineer’s task performance';
-$descriptions['monitoring outside'] = 'Maintaining attentiveness to warnings and environmental conditions that may affect operations';
-$descriptions['planning ahead'] = 'Supporting the engineer in meeting required speed limits throughout the trip';
-
 class Task
 {
 //  Public member functions
@@ -35,13 +22,18 @@ class Task
         $this->expiration = array("type" => "E", "lo" => array(0, 0, 0), "hi" => array(0, 0, 0));
         $this->traffic = array(0, 0, 0);
         $this->description = "You have defined this task";
+        $this->results = array();
+    }
+
+    function update($new_data)
+    {
+
     }
 
     function updateFromFile($file)
     {
     //  Set task name
         $this->name = strtolower(trim(strrchr(fgets($file), "\t")));
-        // echo "Setting name to " . $this->name . "\r\n";
 
     //  Set priority
         $this->priority = array_slice(fscanf($file, "%s %d %d %d"), 1, 3);

@@ -20,20 +20,25 @@ var current_task = 0;
 *																			*
 ****************************************************************************/
 
-function updateSerDist(task_num) {
-
+function updateSerDist(task_num)
+{
 	var item = document.getElementById("t" + task_num + "_serTimeDist");
 	var dist = item.options[item.selectedIndex].value;
 
-	if (dist == "E") {
+	if (dist == "E")
+	{
 		document.getElementById("t" + task_num + "_expPms").style.display = 'inline-block';
 		document.getElementById("t" + task_num + "_logPms").style.display = 'none';
 		document.getElementById("t" + task_num + "_uniPms").style.display = 'none';
-	} else if (dist == "L") {
+	}
+	else if (dist == "L")
+	{
 		document.getElementById("t" + task_num + "_expPms").style.display = 'none';
 		document.getElementById("t" + task_num + "_logPms").style.display = 'inline-block';
 		document.getElementById("t" + task_num + "_uniPms").style.display = 'none';
-	} else {
+	}
+	else 
+	{
 		document.getElementById("t" + task_num + "_expPms").style.display = 'none';
 		document.getElementById("t" + task_num + "_logPms").style.display = 'none';
 		document.getElementById("t" + task_num + "_uniPms").style.display = 'inline-block';
@@ -48,11 +53,12 @@ function updateSerDist(task_num) {
 *																			*
 ****************************************************************************/
 
-function addTask(task_num) {
-
+function addTask(task_num)
+{
 	if (current_task == 0)
 		current_task = task_num;
-	else if (current_task == 14) {
+	else if (current_task == 14)
+	{
 		console.log(jQuery('#taskAdder'));
 		jQuery('#taskAdder').addClass('remove');
 	}
@@ -69,14 +75,14 @@ function addTask(task_num) {
 
 /****************************************************************************
 *																			*
-*	Function:	deletTask													*
+*	Function:	deleteTask													*
 *																			*
 *	Purpose:	To hide the specified task on the page					 	*
 *																			*
 ****************************************************************************/
 
-function deleteTask(task_num) {
-
+function deleteTask(task_num)
+{
 //	Remove task
 
 	console.log("Removing task " + task_num);

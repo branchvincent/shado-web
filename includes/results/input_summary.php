@@ -11,7 +11,7 @@
 
 //	Initialize session
 
-	require_once('includes/session_management/init.php');
+	require_once('includes/php_session/init.php');
 
 	$traff_levels = [0.5 => 0.1, 1 => 1, 2 => 2];
 
